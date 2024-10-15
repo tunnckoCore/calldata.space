@@ -66,6 +66,9 @@ body {
 }
 
 #stars {
+  width: 1px;
+  height: 1px;
+  background-color: transparent;
   box-shadow:
     779px 1331px var(--star-rgba),
     324px 42px var(--star-rgba),
