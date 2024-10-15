@@ -60,13 +60,10 @@ body {
 
 
 :root {
-  --star-rgba: rgba(255, 215, 255, 0.5);
+  --star-rgba: rgba(87, 86, 87, 0.5);
 }
 
 #stars {
-  width: 1px;
-  height: 1px;
-  background: transparent;
   box-shadow:
     779px 1331px var(--star-rgba),
     324px 42px var(--star-rgba),
@@ -771,6 +768,7 @@ body {
 }
 
 [xdata-theme='light'] {
+  @apply bg-[#673d94];
   background-color: #442961;
   background-size: cover;
   background-position: center center;
