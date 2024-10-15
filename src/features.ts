@@ -112,8 +112,8 @@ export const features = [
   },
   {
     // TODO; finish WGW Wallet & WGW Safe (Spectre V4) first
-    title: 'Embedded Wallets',
-    text: `Safe, secure, and unique approach to wallets, for all your Ethscriptions. No
+    title: 'Safe Wallets',
+    text: `Embeddable, safe, and unique approach to wallets, for all your Ethscriptions. No
             need to trust random sites. You can also self-host it and manage it remotely,
             thus other dApps can integrate easily and embed it.`,
     icon: `<svg class="h-6 w-6 text-white" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
