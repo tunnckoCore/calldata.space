@@ -12,12 +12,27 @@ export default {
         'ping-2xs': 'ping 800s cubic-bezier(0, 0, 0.5, 0.8) infinite;',
         'rotate-cubic-10s': 'rotate 2500s linear infinite;',
         'rotate-linear-slow': 'rotate 50s cubic-bezier(0, 0, 0.5, 0.8) infinite;',
-        'spin-2xs': 'ping 1200s linear infinite;',
+        pinger: 'pinger 2000s linear infinite;',
         movingbg: 'movingbg 650s linear infinite',
         space1: 'space 180s ease-in-out infinite;',
         space3: 'space 240s ease-in-out infinite;',
       },
       keyframes: {
+        pinger: {
+          '40%': {
+            opacity: '0.55',
+          },
+          '50%': {
+            opacity: '0.25',
+          },
+          '70%': {
+            opacity: '0.75',
+          },
+          '75%, 100%': {
+            transform: 'scale(3)',
+            opacity: '0.15',
+          },
+        },
         space: {
           '40%': {
             opacity: '0.55',
