@@ -39,6 +39,7 @@ body {
 }
 
 [data-theme="light"] {
+  @apply bg-[#673d94];
   width: 100%;
   height: 100%;
   background-size: cover;
@@ -768,7 +769,6 @@ body {
 }
 
 [xdata-theme='light'] {
-  @apply bg-[#673d94];
   background-color: #442961;
   background-size: cover;
   background-position: center center;
