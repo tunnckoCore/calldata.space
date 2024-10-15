@@ -1,5 +1,7 @@
 export const features = [
   {
+    // TODO: live explorer
+    href: 'https://calldata.live',
     title: 'Explore',
     text: `Explore the growing Ethscriptions ecosystem and its community members.
             Search anything whether you're looking for a user or a specific ethscription.
@@ -12,6 +14,8 @@ export const features = [
             </svg>`,
   },
   {
+    // TODO: learn hub, user docs, and knowledge base
+    href: 'https://learn.calldata.space',
     title: 'Learn and share',
     text: `Learn what are Ethscriptions and how they work. What are the differences
             compared to regular Ethereum NFTs and the Bitcoin Ordinals? Then use the
@@ -24,6 +28,7 @@ export const features = [
           </svg>`,
   },
   {
+    // TODO: switch to docs.calldata.dev (api.calldata.dev)
     href: 'https://api.wgw.lol',
     external: true,
     title: 'Develop',
@@ -35,6 +40,8 @@ export const features = [
           </svg>`,
   },
   {
+    // TODO: toosl for creators and more art-oriented explorer
+    href: 'https://calldata.art',
     title: 'Create & Launch',
     text: `Create any type of standalone ethscription or blobscripion, or launch a whole
             collection. Choose from different mint flows. You upload the files and metadata,
@@ -87,6 +94,7 @@ export const features = [
           </svg>`,
   },
   {
+    // TODO: consider where
     title: 'On-chain Voting',
     text: `Bring your community decision making on-chain, simple voting protocol based on
             Ethscriptions. A minimal solution when you have the need for transparency, or
@@ -103,6 +111,7 @@ export const features = [
           </svg>`,
   },
   {
+    // TODO; finish WGW Wallet & WGW Safe (Spectre V4) first
     title: 'Embedded Wallets',
     text: `Safe, secure, and unique approach to wallets, for all your Ethscriptions. No
             need to trust random sites. You can also self-host it and manage it remotely,
