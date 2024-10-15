@@ -13,8 +13,7 @@ body {
   font-size: 1rem;
 }
 
-#brand {
-  @apply tracking-wider;
+#brand, .feature .title {
   font-family: 'Paytone One';
 }
 
