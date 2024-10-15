@@ -62,7 +62,7 @@ body {
 
 
 :root {
-  --star-rgba: rgba(245, 245, 245, 0.75);
+  --star-rgba: rgba(255, 255, 255, 0.8);
 }
 
 #stars {
