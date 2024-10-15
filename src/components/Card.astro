@@ -1,0 +1,44 @@
+---
+const { title, text, to, href, external = false, icon } = Astro.props;
+const target = external ? { target: '_blank' } : {};
+const _href = to || href || '#';
+---
+
+<a
+  href={_href}
+  {...target}
+  class="feature group flex rounded-xl border border-[#673d94] bg-purple-400 bg-opacity-10 bg-clip-padding p-6 backdrop-blur-lg backdrop-filter transition hover:border-purple-500"
+>
+  <div class="feature flex flex-col items-start">
+    <dt class="mx-auto w-full flex items-center justify-between text-lg font-semibold">
+      <div class="flex items-center gap-3">
+        <div
+          class="flex rounded-md bg-purple-400 bg-opacity-10 bg-clip-padding p-2 ring-1 ring-[#673d94] backdrop-blur-lg backdrop-filter group-hover:ring-purple-500"
+          set:html={icon}
+        />
+        <div
+          class="bg-size-2x animate-rainbow bg-gradient-to-br from-purple-400 to-orange-400 bg-clip-text text-xl text-transparent"
+        >
+          {title}
+        </div>
+      </div>
+      <div class="hidden group-hover:flex group-hover:transition">
+        <svg
+          class="h-6 w-6 text-white"
+          aria-hidden="true"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+      </div>
+    </dt>
+    <dd class="mt-4 leading-relaxed text-slate-100">{text}</dd>
+  </div>
+</a>

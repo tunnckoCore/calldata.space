@@ -1,0 +1,23 @@
+{
+  "license": "MPL-2.0",
+  "name": "growing-galaxy",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/tailwind": "^5.1.2",
+    "astro": "^4.16.3",
+    "tailwindcss": "^3.4.13",
+    "typescript": "^5.6.3"
+  },
+  "devDependencies": {
+    "eslint-config-tunnckocore": "^7.0.1"
+  }
+}

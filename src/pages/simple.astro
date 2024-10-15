@@ -1,0 +1,704 @@
+---
+import '../index.css';
+import Card from '../components/Card.astro';
+import { features } from '../features.ts';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Calldata.space</title>
+  </head>
+  <body id="simple" class="overflow-auto overflow-x-hidden">
+    <div class="relative isolate flex items-center justify-center">
+      <div class="mx-auto max-w-7xl px-6 py-10">
+        <!-- mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2 -->
+        <div class="mx-auto flex flex-col items-center">
+          <div class="flex flex-col w-11/12 gap-y-3">
+            <div class="flex items-center justify-between align-middle">
+              <h1
+                id="brand"
+                class="inline-flex bg-size-2x animate-rainbow bg-gradient-to-br from-purple-400 to-orange-500 box-decoration-clone bg-clip-text text-5xl font-extrabold text-transparent"
+              >
+                <a href="/">calldata.space</a>
+              </h1>
+              <div class="flex items-center gap-3 justify-center place-content-center mt-5">
+                <a href="https://github.com/tunnckocore/ethscriptions" target="_blank"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 text-white"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    ><path
+                      d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"
+                    ></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg
+                  ></a
+                ><button type="button" id="themecheck" data-theme="circle"
+                  ><svg
+                    class="h-6 w-6 text-white"
+                    aria-hidden="true"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                    ><path
+                      d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"></path></svg
+                  ></button
+                >
+              </div>
+            </div>
+            <!-- <p class="mt-4 text-lg leading-8 text-gray-200 dark:text-gray-600">One place to learn, explore, create and trade Ethscriptions.</p> -->
+            <h2 class="text-lg text-gray-300">
+              The Open Source platform to learn, explore, create, and trade EVM calldata.
+            </h2>
+            <div class="flex max-w-full group">
+              <label for="searchbox" class="sr-only">Search Ethscriptions Ecosystem</label>
+              <input
+                id="searchbox"
+                name="searchquery"
+                type="text"
+                autocomplete="text"
+                autofocus
+                required
+                class="peer min-w-0 flex-auto rounded-md rounded-r-none border-0 bg-white/5 px-3.5 py-2 text-gray-200 shadow-sm ring-1 ring-inset ring-[#673d94] focus:ring-1 focus:ring-inset focus:ring-purple-500 focus:outline-none sm:text-sm sm:leading-6 hover:ring-purple-500"
+                placeholder="Search by Address / Ethscription / Profile / Text / ENS Domain"
+              />
+
+              <button
+                type="submit"
+                class="flex-none rounded-md rounded-l-none px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm border border-[#673d94] bg-purple-400 bg-opacity-10 bg-clip-padding p-6 backdrop-blur-lg backdrop-filter transition group-hover:border-purple-500 peer-focus:border-purple-500"
+                >Search</button
+              >
+            </div>
+            <!-- <div class="flex flex-col gap-3 sm:flex-row">
+              <span class="hidden font-semibold text-gray-100 sm:inline-block">Quick Links:</span>
+              <ul class="flex flex-wrap gap-3 text-gray-300">
+                <li class="">
+                  <a
+                    href="#"
+                    class="border-b border-dashed border-b-purple-400 transition hover:text-purple-400/80"
+                    >Explore</a
+                  >
+                </li>
+                <li class="">
+                  <a
+                    href="#"
+                    class="border-b border-dashed border-b-purple-400 transition hover:text-purple-400/80"
+                    >Magazine</a
+                  >
+                </li>
+                <li class="">
+                  <a
+                    href="#"
+                    class="border-b border-dashed border-b-purple-400 transition hover:text-purple-400/80"
+                    >Hosting</a
+                  >
+                </li>
+                <li class="">
+                  <a
+                    href="#"
+                    class="border-b border-dashed border-b-purple-400 transition hover:text-purple-400/80"
+                    >Learn</a
+                  >
+                </li>
+                <li class="">
+                  <a
+                    href="#"
+                    class="border-b border-dashed border-b-purple-400 transition hover:text-purple-400/80"
+                    >Tools</a
+                  >
+                </li>
+                <li class="">
+                  <a
+                    href="#sa"
+                    class="border-b border-dashed border-b-purple-400 transition hover:text-purple-400/80"
+                    >API</a
+                  >
+                </li>
+                <li class="">
+                  <a
+                    href="#"
+                    class="cursor-not-allowed border-b border-dashed border-b-purple-400 line-through transition"
+                    >Market</a
+                  >
+                </li>
+                <li class="">
+                  <a
+                    href="#"
+                    class="cursor-not-allowed border-b border-dashed border-b-purple-400 line-through transition"
+                    >Auctions</a
+                  >
+                </li>
+              </ul>
+            </div> -->
+          </div>
+          <!-- rounded-3xl p-6 ring-1 ring-neutral-950/5 transition hover:bg-neutral-50 -->
+          <!-- <dl class="grid w-10/12 gap-x-8 gap-y-10 lg:grid-cols-3"> -->
+
+          <!-- relative group isolate rounded-xl background-gradient ring-1 ring-gray-200 dark:ring-gray-800 before:hidden before:lg:block before:absolute before:-inset-[2px] before:h-[calc(100%+4px)] before:w-[calc(100%+4px)] before:z-[-1] before:rounded-[13px] flex-1 flex flex-col shadow -->
+
+          <div class="flex w-full items-center justify-center my-5">
+            <dl class="grid w-11/12 grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {features.map((x) => <Card {...x} />)}
+              <!-- <a
+                href="#explore"
+                class="feature group flex rounded-xl border border-[#673d94] bg-purple-400 bg-opacity-10 bg-clip-padding p-6 backdrop-blur-lg backdrop-filter transition hover:border-purple-500"
+              >
+                <div class="feature flex flex-col items-start">
+                  <dt
+                    class="mx-auto w-full flex items-center justify-between text-lg font-semibold"
+                  >
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="flex rounded-md bg-purple-400 bg-opacity-10 bg-clip-padding p-2 ring-1 ring-[#673d94] backdrop-blur-lg backdrop-filter group-hover:ring-purple-500"
+                      >
+                        <svg
+                          class="h-6 w-6 text-white"
+                          aria-hidden="true"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                        </svg>
+                      </div>
+                      <div
+                        class="bg-size-2x animate-rainbow bg-gradient-to-br from-purple-400 to-orange-400 bg-clip-text text-xl text-transparent"
+                      >
+                        Explore
+                      </div>
+                    </div>
+                    <div class="hidden group-hover:flex group-hover:transition">
+                      <svg
+                        class="h-6 w-6 text-white"
+                        aria-hidden="true"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"></path>
+                      </svg>
+                    </div>
+                  </dt>
+                  <dd class="mt-4 leading-relaxed text-slate-100">
+                    Explore the growing Ethscriptions ecosystem and its community members. Search
+                    anything whether you're looking for a user or a specific ethscription. It's just
+                    the beginning of full-blown search engine.
+                  </dd>
+                </div>
+              </a>
+
+              <a
+                href="#learn"
+                class="feature group flex rounded-xl border border-[#673d94] bg-purple-400 bg-opacity-10 bg-clip-padding p-6 backdrop-blur-lg backdrop-filter transition hover:border-purple-500"
+                ><div class="feature flex flex-col items-start">
+                  <dt
+                    class="mx-auto w-full flex items-center justify-between text-lg font-semibold"
+                  >
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="rounded-md bg-purple-400 bg-opacity-10 bg-clip-padding p-2 ring-1 ring-[#673d94] backdrop-blur-lg backdrop-filter group-hover:ring-purple-500"
+                      >
+                        <svg
+                          class="h-6 w-6 text-white"
+                          aria-hidden="true"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                        </svg>
+                      </div>
+                      <div
+                        class="bg-size-2x animate-rainbow bg-gradient-to-br from-purple-400 to-orange-400 bg-clip-text text-xl text-transparent"
+                      >
+                        Learn and share
+                      </div>
+                    </div>
+                    <div class="hidden group-hover:flex group-hover:transition">
+                      <svg
+                        class="h-6 w-6 text-white"
+                        aria-hidden="true"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"></path>
+                      </svg>
+                    </div>
+                  </dt>
+                  <dd class="mt-4 leading-relaxed text-slate-100">
+                    Learn what are Ethscriptions and how they work. What are the differences
+                    compared to regular Ethereum NFTs and the Bitcoin Ordinals? Then use the
+                    platform to create an Ethscription or launch your first project.
+                  </dd>
+                </div>
+              </a>
+
+              <a
+                href="#dev"
+                class="feature group flex rounded-xl border border-[#673d94] bg-purple-400 bg-opacity-10 bg-clip-padding p-6 backdrop-blur-lg backdrop-filter transition hover:border-purple-500"
+                ><div class="feature flex flex-col items-start">
+                  <dt
+                    class="mx-auto w-full flex items-center justify-between text-lg font-semibold"
+                  >
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="rounded-md bg-purple-400 bg-opacity-10 bg-clip-padding p-2 ring-1 ring-[#673d94] backdrop-blur-lg backdrop-filter group-hover:ring-purple-500"
+                      >
+                        <svg
+                          class="h-6 w-6 text-white"
+                          aria-hidden="true"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                        </svg>
+                      </div>
+                      <span
+                        class="bg-size-2x animate-rainbow bg-gradient-to-br from-purple-400 to-orange-400 bg-clip-text text-xl text-transparent"
+                        >Develop</span
+                      >
+                    </div>
+                    <div class="hidden group-hover:flex group-hover:transition">
+                      <svg
+                        class="h-6 w-6 text-white"
+                        aria-hidden="true"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"></path>
+                      </svg>
+                    </div>
+                  </dt>
+                  <dd class="mt-4 leading-relaxed text-slate-100">
+                    Are you a developer? We have powerful APIs, tools, and extensive docs. We also
+                    support for Webhooks, Server Sent Events, Websockets, and more. Learn from the
+                    people building on the protocol since day one.
+                  </dd>
+                </div>
+              </a>
+
+              <a
+                href="#create"
+                class="feature group flex rounded-xl border border-[#673d94] bg-purple-400 bg-opacity-10 bg-clip-padding p-6 backdrop-blur-lg backdrop-filter transition hover:border-purple-500"
+                ><div class="feature flex flex-col items-start">
+                  <dt
+                    class="mx-auto w-full flex items-center justify-between text-lg font-semibold"
+                  >
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="rounded-md bg-purple-400 bg-opacity-10 bg-clip-padding p-2 ring-1 ring-[#673d94] backdrop-blur-lg backdrop-filter group-hover:ring-purple-500"
+                      >
+                        <svg
+                          class="h-6 w-6 text-white"
+                          aria-hidden="true"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M9.53 16.122a3 3 0 0 0-5.78 1.128 2.25 2.25 0 0 1-2.4 2.245 4.5 4.5 0 0 0 8.4-2.245c0-.399-.078-.78-.22-1.128Zm0 0a15.998 15.998 0 0 0 3.388-1.62m-5.043-.025a15.994 15.994 0 0 1 1.622-3.395m3.42 3.42a15.995 15.995 0 0 0 4.764-4.648l3.876-5.814a1.151 1.151 0 0 0-1.597-1.597L14.146 6.32a15.996 15.996 0 0 0-4.649 4.763m3.42 3.42a6.776 6.776 0 0 0-3.42-3.42"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                        </svg>
+                      </div>
+                      <span
+                        class="bg-size-2x animate-rainbow bg-gradient-to-br from-purple-400 to-orange-400 bg-clip-text text-xl text-transparent"
+                        >Create & Launch</span
+                      >
+                    </div>
+                    <div class="hidden group-hover:flex group-hover:transition">
+                      <svg
+                        class="h-6 w-6 text-white"
+                        aria-hidden="true"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"></path>
+                      </svg>
+                    </div>
+                  </dt>
+                  <dd class="mt-4 leading-relaxed text-slate-100">
+                    Create any type of standalone ethscription or blobscripion, or launch a whole
+                    collection. Choose from different mint flows. You upload the files and metadata,
+                    we handle the rest.
+                  </dd>
+                </div></a
+              > -->
+
+              <!-- <a
+                href="#market"
+                class="feature group flex rounded-xl border border-[#673d94] bg-purple-400 bg-opacity-10 bg-clip-padding p-6 backdrop-blur-lg backdrop-filter transition hover:border-purple-500"
+                ><div class="feature flex flex-col items-start">
+                  <dt
+                    class="mx-auto w-full flex items-center justify-between text-lg font-semibold"
+                  >
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="rounded-md bg-purple-400 bg-opacity-10 bg-clip-padding p-2 ring-1 ring-[#673d94] backdrop-blur-lg backdrop-filter group-hover:ring-purple-500"
+                      >
+                        <svg
+                          class="h-6 w-6 text-white"
+                          aria-hidden="true"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                        </svg>
+                      </div>
+                      <span
+                        class="bg-size-2x animate-rainbow bg-gradient-to-br from-purple-400 to-orange-400 bg-clip-text text-xl text-transparent"
+                        >Safe Markets</span
+                      >
+                    </div>
+                    <div class="hidden group-hover:flex group-hover:transition">
+                      <svg
+                        class="h-6 w-6 text-white"
+                        aria-hidden="true"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"></path>
+                      </svg>
+                    </div>
+                  </dt>
+                  <dd class="mt-4 leading-relaxed text-slate-100">
+                    Have your own safe and secure, user-owned and user-controlled marketplaces. Have
+                    a collection? Okay, have a specific collection market. Avoid censorship and
+                    security holes.
+                  </dd>
+                </div>
+              </a> -->
+
+              <!-- <a
+                href="#auctions"
+                class="feature group flex rounded-xl border border-[#673d94] bg-purple-400 bg-opacity-10 bg-clip-padding p-6 backdrop-blur-lg backdrop-filter transition hover:border-purple-500"
+                ><div class="feature flex flex-col items-start">
+                  <dt
+                    class="mx-auto w-full flex items-center justify-between text-lg font-semibold"
+                  >
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="rounded-md bg-purple-400 bg-opacity-10 bg-clip-padding p-2 ring-1 ring-[#673d94] backdrop-blur-lg backdrop-filter group-hover:ring-purple-500"
+                      >
+                        <svg
+                          class="h-6 w-6 text-white"
+                          aria-hidden="true"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                        </svg>
+                      </div>
+                      <span
+                        class="bg-size-2x animate-rainbow bg-gradient-to-br from-purple-400 to-orange-400 bg-clip-text text-xl text-transparent"
+                        >Auction House</span
+                      >
+                    </div>
+                    <div class="hidden group-hover:flex group-hover:transition">
+                      <svg
+                        class="h-6 w-6 text-white"
+                        aria-hidden="true"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"></path>
+                      </svg>
+                    </div>
+                  </dt>
+                  <dd class="mt-4 leading-relaxed text-slate-100">
+                    Create an Everybody Wins auctions for your Ethscriptions. Wait, what?! Yes, a
+                    fun and safe way to make a living by just betting, there's no way to loose -
+                    you're rewarded on top of your bid when someone outbids you.
+                  </dd>
+                </div>
+              </a> -->
+
+              <!-- <a
+                href="#voting"
+                class="feature group flex rounded-xl border border-[#673d94] bg-purple-400 bg-opacity-10 bg-clip-padding p-6 backdrop-blur-lg backdrop-filter transition hover:border-purple-500"
+                ><div class="feature flex flex-col items-start">
+                  <dt
+                    class="mx-auto w-full flex items-center justify-between text-lg font-semibold"
+                  >
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="rounded-md bg-purple-400 bg-opacity-10 bg-clip-padding p-2 ring-1 ring-[#673d94] backdrop-blur-lg backdrop-filter group-hover:ring-purple-500"
+                      >
+                        <svg
+                          class="h-6 w-6 text-white"
+                          aria-hidden="true"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                          <path
+                            d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                        </svg>
+                      </div>
+                      <span
+                        class="bg-size-2x animate-rainbow bg-gradient-to-br from-purple-400 to-orange-400 bg-clip-text text-xl text-transparent"
+                        >On-chain Voting</span
+                      >
+                    </div>
+                    <div class="hidden group-hover:flex group-hover:transition">
+                      <svg
+                        class="h-6 w-6 text-white"
+                        aria-hidden="true"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"></path>
+                      </svg>
+                    </div>
+                  </dt>
+                  <dd class="mt-4 leading-relaxed text-slate-100">
+                    Bring your community decision making on-chain, simple voting protocol based on
+                    Ethscriptions. A minimal solution when you have the need for transparency, or
+                    you just want on-chain polls.
+                  </dd>
+                </div>
+              </a> -->
+
+              <!-- <a
+                href="#wallet"
+                class="feature group flex rounded-xl border border-[#673d94] bg-purple-400 bg-opacity-10 bg-clip-padding p-6 backdrop-blur-lg backdrop-filter transition hover:border-purple-500"
+                ><div class="feature flex flex-col items-start">
+                  <dt
+                    class="mx-auto w-full flex items-center justify-between text-lg font-semibold"
+                  >
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="rounded-md bg-purple-400 bg-opacity-10 bg-clip-padding p-2 ring-1 ring-[#673d94] backdrop-blur-lg backdrop-filter group-hover:ring-purple-500"
+                      >
+                        <svg
+                          class="h-6 w-6 text-white"
+                          aria-hidden="true"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M21 12a2.25 2.25 0 0 0-2.25-2.25H15a3 3 0 1 1-6 0H5.25A2.25 2.25 0 0 0 3 12m18 0v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 9m18 0V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v3"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                        </svg>
+                      </div>
+                      <span
+                        class="bg-size-2x animate-rainbow bg-gradient-to-br from-purple-400 to-orange-400 bg-clip-text text-xl text-transparent"
+                        >Embedded Wallets</span
+                      >
+                    </div>
+                    <div class="hidden group-hover:flex group-hover:transition">
+                      <svg
+                        class="h-6 w-6 text-white"
+                        aria-hidden="true"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"></path>
+                      </svg>
+                    </div>
+                    <dd class="mt-4 leading-relaxed text-slate-100">
+                      Safe, secure, and unique approach to wallets, for all your Ethscriptions. No
+                      need to trust random sites. You can also self-host it and manage it remotely,
+                      thus other dApps can integrate easily and embed it.
+                    </dd>
+                  </dt>
+                </div> -->
+
+              <!-- <a
+                href="https://github.com/tunnckocore/calldata"
+                class="feature group flex rounded-xl border border-[#673d94] bg-purple-400 bg-opacity-10 bg-clip-padding p-6 backdrop-blur-lg backdrop-filter transition hover:border-purple-500"
+                ><div class="feature flex flex-col items-start">
+                  <dt
+                    class="mx-auto w-full flex items-center justify-between text-lg font-semibold"
+                  >
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="rounded-md bg-purple-400 bg-opacity-10 bg-clip-padding p-2 ring-1 ring-[#673d94] backdrop-blur-lg backdrop-filter group-hover:ring-purple-500"
+                      >
+                        <svg
+                          class="h-6 w-6 text-white"
+                          aria-hidden="true"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                        </svg>
+                      </div>
+                      <span
+                        class="bg-size-2x animate-rainbow bg-gradient-to-br from-purple-400 to-orange-400 bg-clip-text text-xl text-transparent"
+                        >100% Open Source</span
+                      >
+                    </div>
+                    <div class="hidden group-hover:flex group-hover:transition">
+                      <svg
+                        class="h-6 w-6 text-white"
+                        aria-hidden="true"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"></path>
+                      </svg>
+                    </div>
+                  </dt>
+                  <dd class="mt-4 leading-relaxed text-slate-100">
+                    Everything we build is fully Free and Open Source software. Built by veterans in
+                    the open source space. You can self-host all the things yourself and deploy on
+                    your own infrastructure with one-click.
+                  </dd>
+                </div>
+              </a> -->
+            </dl>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="absolute left-1/2 top-0 -z-10 -translate-x-1/2 blur-3xl xl:-top-6"
+        aria-hidden="true"
+      >
+        <div
+          class="aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20"
+          style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
+        >
+        </div>
+      </div>
+
+      <!-- <script>
+        const themecheck = document.querySelector('#themecheck') as HTMLButtonElement;
+        const body = document.body;
+
+        const selectedTheme = localStorage.getItem('calldata-theme') || 'sky';
+
+        const icon = {
+          sky: `<svg class="h-6 w-6 text-white" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" stroke-linecap="round" stroke-linejoin="round"></path></svg>`,
+          circle: `<svg class="h-6 w-6 text-white" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" stroke-linecap="round" stroke-linejoin="round"></path></svg>`,
+        };
+
+        function toggle(theme: string) {
+          body.id = theme === 'sky' ? 'circle' : 'sky';
+          themecheck.dataset.theme = theme === 'sky' ? 'circle' : 'sky';
+          themecheck.innerHTML = theme === 'sky' ? icon.sky : icon.circle;
+          localStorage.setItem('calldata-theme', theme === 'sky' ? 'sky' : 'circle');
+        }
+
+        toggle(selectedTheme);
+
+        themecheck?.addEventListener('click', () => {
+          toggle(themecheck.dataset.theme || '');
+        });
+      </script> -->
+    </div>
+  </body>
+</html>
