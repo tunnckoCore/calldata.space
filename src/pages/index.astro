@@ -712,11 +712,11 @@ import { features } from '../features.ts';
           localStorage.setItem('calldata-theme', 'dark');
         } else if (prefTheme === 'light') {
           bodyRef.dataset.theme = 'light';
-          toggleTheme.innerHTML = icon.sun;
+          toggleTheme.innerHTML = icon.moon;
           localStorage.setItem('calldata-theme', 'light');
         } else {
           bodyRef.dataset.theme = 'dark';
-          toggleTheme.innerHTML = icon.moon;
+          toggleTheme.innerHTML = icon.sun;
           localStorage.setItem('calldata-theme', 'dark');
         }
 
