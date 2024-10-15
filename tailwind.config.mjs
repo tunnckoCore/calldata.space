@@ -11,6 +11,7 @@ export default {
         rainbow: 'rainbow 3s ease-in infinite',
         'ping-2xs': 'ping 3s cubic-bezier(0, 0, 0.5, 0.8) infinite;',
         'rotate-2xs': 'rainbow 10s cubic-bezier(0, 0, 0.5, 0.8) infinite;',
+        'spin-2xs': 'ping 500s linear infinite;',
       },
       keyframes: {
         rotate: {
@@ -27,3 +28,12 @@ export default {
   },
   plugins: [],
 };
+
+// @keyframes spin {
+//   to {
+//     transform: rotate(360deg);
+//   }
+// }
+// .animate-spin {
+//   animation: spin 1s linear infinite;
+// }
