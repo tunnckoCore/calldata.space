@@ -20,12 +20,15 @@ import { features } from '../features.ts';
             <div class="flex items-center justify-between align-middle">
               <h1
                 id="brand"
-                class="inline-flex bg-size-2x animate-rainbow bg-gradient-to-br from-purple-400 to-orange-500 box-decoration-clone bg-clip-text text-5xl font-extrabold text-transparent"
+                class="inline-flex bg-size-2x animate-rainbow bg-gradient-to-br from-purple-400 to-orange-500 box-decoration-clone bg-clip-text text-3xl font-extrabold text-transparent md:text-5xl"
               >
                 <a href="https://calldata.space">calldata.space</a>
               </h1>
-              <div class="flex items-center gap-3 justify-center place-content-center mt-5">
-                <a href="https://github.com/tunnckocore/calldata.space" target="_blank"
+              <div class="flex items-center gap-3 justify-center pt-2">
+                <a
+                  href="https://github.com/tunnckocore/calldata.space"
+                  target="_blank"
+                  class="hidden sm:inline-flex"
                   ><svg
                     xmlns="http://www.w3.org/2000/svg"
                     class="h-5 w-5 text-white"
@@ -42,7 +45,7 @@ import { features } from '../features.ts';
                 ><button type="button" id="themetoggle">
                   <!-- circle theme icon (moon, eg. it's the next theme) -->
                   <svg
-                    class="h-6 w-6 text-white"
+                    class="h-5 w-5 text-white"
                     aria-hidden="true"
                     fill="none"
                     stroke="currentColor"
