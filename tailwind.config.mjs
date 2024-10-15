@@ -12,7 +12,7 @@ export default {
         'ping-2xs': 'ping 3s cubic-bezier(0, 0, 0.5, 0.8) infinite;',
         'rotate-cubic-10s': 'rainbow 10s cubic-bezier(0, 0, 0.5, 0.8) infinite;',
         'rotate-linear-slow': 'rotate 50s cubic-bezier(0, 0, 0.5, 0.8) infinite;',
-        'spin-2xs': 'ping 750s linear infinite;',
+        'spin-2xs': 'ping 1200s linear infinite;',
         movingbg: 'movingbg 650s linear infinite',
       },
       keyframes: {
