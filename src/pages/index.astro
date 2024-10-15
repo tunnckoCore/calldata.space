@@ -4,6 +4,23 @@ import Card from '../components/Card.astro';
 import { features } from '../features.ts';
 
 // class="flex-none rounded-md rounded-l-none px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm border border-[#673d94] bg-purple-400 bg-opacity-10 bg-clip-padding p-6 backdrop-blur-lg backdrop-filter transition group-hover:border-purple-500 peer-focus:border-purple-500"
+
+// <input
+//   id="searchbox"
+//   name="searchquery"
+//   type="text"
+//   autocomplete="text"
+//   autofocus
+//   required
+//   class="peer min-w-0 flex-auto rounded-md rounded-r-none bg-white/5 px-3.5 py-2 text-gray-200 shadow-sm border border-[#673d94] focus:border-purple-500 focus:outline-none sm:text-sm sm:leading-6 hover:border-purple-500"
+//   placeholder="Search by Address / Ethscription / Profile / Text / ENS"
+// />
+
+// <button
+//   type="submit"
+//   class="flex-none rounded-md rounded-l-none px-3.5 py-2.5 text-sm font-semibold bg-purple-400 bg-opacity-10 bg-clip-padding backdrop-blur-lg backdrop-filter text-gray-200 shadow-sm border border-[#673d94] focus:border-purple-500 focus:outline-none sm:text-sm sm:leading-6 group-hover:border-purple-500 peer-focus:border-purple-500"
+//   >Search</button
+// >
 ---
 
 <html lang="en">
@@ -74,13 +91,13 @@ import { features } from '../features.ts';
                 autocomplete="text"
                 autofocus
                 required
-                class="peer min-w-0 flex-auto rounded-md rounded-r-none bg-white/5 px-3.5 py-2 text-gray-200 shadow-sm border border-[#673d94] focus:border-purple-500 focus:outline-none sm:text-sm sm:leading-6 hover:border-purple-500"
+                class="peer min-w-0 flex-auto rounded-md rounded-r-none px-3.5 py-2 text-gray-200 focus:outline-none bg-purple-400/10 border-r-0 border border-[#673d94] hover:border-purple-500 focus:border-purple-500 transition text-sm"
                 placeholder="Search by Address / Ethscription / Profile / Text / ENS"
               />
 
               <button
                 type="submit"
-                class="flex-none rounded-md rounded-l-none px-3.5 py-2.5 text-sm font-semibold bg-purple-400 bg-opacity-10 bg-clip-padding backdrop-blur-lg backdrop-filter text-gray-200 shadow-sm border border-[#673d94] focus:border-purple-500 focus:outline-none sm:text-sm sm:leading-6 group-hover:border-purple-500 peer-focus:border-purple-500"
+                class="flex-none rounded-md rounded-l-none px-3.5 py-2.5 text-gray-200 focus:outline-none bg-purple-400/20 border border-[#673d94] peer-hover:border-purple-500 peer-focus:border-purple-500 transition font-semibold text-sm"
                 >Search</button
               >
             </div>
