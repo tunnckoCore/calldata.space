@@ -32,10 +32,12 @@ import { features } from '../features.ts';
     <title>Calldata.Space</title>
   </head>
   <body data-theme="dark" class="bg-[#231631] overflow-auto overflow-x-hidden">
-    <div class="fixed top-0 left-0 w-full h-screen m-0 p-0 -z-10">
-      <div id="stars" class="animate-spin-2xs"></div>
+    <!-- <div id="stars" class="animate-spin-2xs"></div> -->
+    <div class="z-10">
+      <div class="stars animate-movingbg"></div>
+      <div class="twinkling"></div>
     </div>
-    <div class="relative isolate flex items-center justify-center">
+    <div class="relative z-20 isolate flex items-center justify-center">
       <div class="mx-auto max-w-7xl px-6 py-12">
         <div class="mx-auto flex flex-col items-center">
           <div class="flex flex-col w-11/12 gap-y-3">
