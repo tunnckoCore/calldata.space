@@ -1,3 +1,6 @@
 {
-  "extends": "astro/tsconfigs/strictest",
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": ["eslint-config-tunnckocore/tsconfig.json", "astro/tsconfigs/strictest"],
+  "include": ["**/*.ts", "**/*.tsx", "**/*.astro"],
+  "exclude": ["node_modules", "dist"],
 }

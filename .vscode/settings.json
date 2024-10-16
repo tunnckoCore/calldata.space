@@ -1,4 +1,56 @@
 {
+  "editor.quickSuggestions": {
+    "other": "off",
+    "comments": "off",
+    "strings": "off",
+  },
+  "explorer.excludeGitIgnore": false,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "editor.inlineSuggest.enabled": true,
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": false,
+    "plaintext": false,
+    "markdown": true,
+    "javascript": true,
+    "typescript": true,
+    "python": true,
+  },
+  "editor.rulers": [80, 100, 120],
+  "files.autoSave": "onFocusChange",
+  "javascript.preferences.importModuleSpecifierEnding": "js",
+  "typescript.preferences.importModuleSpecifierEnding": "js",
+  "editor.formatOnType": false,
+  "editor.formatOnPaste": false,
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "always",
+    "source.fixAll.eslint": "always",
+    "source.fixAll.prettier": "always",
+    "source.organizeImports": "always",
+    // "source.fixAll.biome": "always",
+    // "source.organizeImports.biome": "always",
+    // "quickfix.biome": "always"
+  },
+  // "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // "[javascript]": {
+  //   "editor.defaultFormatter": "esbenp.prettier-vscode"
+  // },
+  "prettier.documentSelectors": ["**/*.{js,cjs,mjs,ts,jsx,tsx,astro,svelte,json}"],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+  "[javascript]": { "editor.defaultFormatter": "rvest.vs-code-prettier-eslint" },
+  "[typescript]": { "editor.defaultFormatter": "rvest.vs-code-prettier-eslint" },
+  "[javascriptreact]": { "editor.defaultFormatter": "rvest.vs-code-prettier-eslint" },
+  "[typescriptreact]": { "editor.defaultFormatter": "rvest.vs-code-prettier-eslint" },
+  // "[astro]": {
+  //   "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+  // },
+  "[markdown]": {
+    "files.trimTrailingWhitespace": false,
+    "files.insertFinalNewline": false,
+  },
   "eslint.validate": [
     "javascript",
     "javascriptreact",

@@ -40,7 +40,7 @@ function getEsLintConfig(options = {}) {
 // module.exports = { readJSON, getESLintConfig, loadConfigFromWorkspace };
 
 function loadConfigFromWorkspace(ws) {
-  const extensions = ['.js', '.mjs', '.cjs', '.jsx', '.md', '.mdx', '.ts', '.tsx'];
+  const extensions = ['.js', '.mjs', '.cjs', '.jsx', '.md', '.mdx', '.ts', '.tsx', '.astro'];
 
   const settingsAndImportResolver = {
     node: {
@@ -131,9 +131,9 @@ function loadConfigFromWorkspace(ws) {
     'arrow-parens': ['error', 'always', { requireForBlockBody: true }],
     'prefer-arrow-callback': ['error', { allowNamedFunctions: true, allowUnboundThis: true }],
     // http://eslint.org/docs/rules/max-params
-    'max-params': ['error', { max: 3 }],
+    'max-params': ['error', { max: 4 }],
     // http://eslint.org/docs/rules/max-statements
-    'max-statements': ['error', { max: 40 }],
+    'max-statements': ['error', 40, { ignoreTopLevelFunctions: true }],
     // http://eslint.org/docs/rules/max-statements-per-line
     'max-statements-per-line': ['error', { max: 1 }],
     // http://eslint.org/docs/rules/max-nested-callbacks
@@ -155,6 +155,7 @@ function loadConfigFromWorkspace(ws) {
         functions: false,
         classes: true,
         variables: true,
+        allowNamedExports: true,
       },
     ],
 
@@ -238,10 +239,12 @@ function loadConfigFromWorkspace(ws) {
       // ],
 
       'import/order': 'error',
-      'import/no-unassigned-import': [
-        'error',
-        { allow: ['dotenv/config', 'dotenv/import', '@babel/polyfill', '@babel/register'] },
-      ],
+      // 'import/no-unassigned-import': [
+      //   'error',
+      //   {
+      //     allow: ['dotenv/config', 'dotenv/import', '@babel/polyfill', '@babel/register', '*.css'],
+      //   },
+      // ],
 
       // TODO: mm?
       'import/prefer-default-export': 'off',
@@ -446,6 +449,9 @@ function loadConfigFromWorkspace(ws) {
           // If you are using "prettier/prettier" rule,
           // you don't need to format inside <script> as it will be formatted as a `.astro` file.
           'prettier/prettier': 'off',
+
+          // !NOTE: seems like `ignoreTopLevelFunctions` is not working for .astro files
+          'max-statements': ['warn', 40, { ignoreTopLevelFunctions: true }],
         },
       },
       {
@@ -456,6 +462,8 @@ function loadConfigFromWorkspace(ws) {
           // If you are using "prettier/prettier" rule,
           // you don't need to format inside <script> as it will be formatted as a `.astro` file.
           'prettier/prettier': 'off',
+          // !NOTE: seems like `ignoreTopLevelFunctions` is not working for .astro files
+          'max-statements': ['warn', 40, { ignoreTopLevelFunctions: true }],
         },
       },
       {
@@ -471,6 +479,8 @@ function loadConfigFromWorkspace(ws) {
           // If you are using "prettier/prettier" rule,
           // you don't need to format inside <script> as it will be formatted as a `.astro` file.
           'prettier/prettier': 'off',
+          // !NOTE: seems like `ignoreTopLevelFunctions` is not working for .astro files
+          'max-statements': ['warn', 40, { ignoreTopLevelFunctions: true }],
         },
       },
     ],
@@ -504,8 +514,6 @@ module.exports = {
     ...eslintConfig.rules,
     ...eslintConfigPrettier.rules,
     '@typescript-eslint/no-var-requires': 'off',
-    '@typescript-eslint/no-unused-vars': 'warn',
-    'no-unused-vars': 'off',
 
     'node/no-unsupported-features/node-builtins': ['error', { version: '>=18.0.0' }],
     'unicorn/no-await-expression-member': 'off',
@@ -513,7 +521,6 @@ module.exports = {
     'sort-keys': 'off',
 
     camelcase: 'off',
-    'max-statements': ['off', 40, { ignoreTopLevelFunctions: true }],
     'node/prefer-global/process': 'off',
     'node/file-extension-in-import': 'off',
     'unicorn/expiring-todo-comments': 'off',
@@ -524,22 +531,13 @@ module.exports = {
     // bruh
     'prefer-destructuring': 'off',
     'no-param-reassign': 'off',
-    'unicorn/no-null': 'off',
+
     'import/no-unresolved': ['error', { ignore: ['^astro:*'] }],
     'unicorn/no-useless-spread': 'off', // useless rule
     'unicorn/prefer-switch': 'off', // fvck off
     // 'no-explicit-any': 'warn',
     '@typescript-eslint/triple-slash-reference': 'off',
+    '@typescript-eslint/no-unused-vars': 'off', // fvck off, we have properly configured `no-unused-vars`
     '@typescript-eslint/no-explicit-any': 'off',
-    'no-console': 'off',
-    'no-use-before-define': [
-      'error',
-      {
-        functions: false,
-        classes: true,
-        variables: true,
-        allowNamedExports: false,
-      },
-    ],
   },
 };
