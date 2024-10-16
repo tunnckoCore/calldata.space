@@ -31,27 +31,28 @@ import { features } from '../features.ts';
     <meta name="generator" content={Astro.generator} />
     <title>Calldata.Space</title>
   </head>
-  <body data-theme="dark" class="relative z-10 bg-[#231631] overflow-auto overflow-x-hidden">
+
+  <body data-theme="dark" class="relative z-10 overflow-auto overflow-x-hidden bg-[#231631]">
     <div class="starsog animate-pinger"></div>
     <!-- <div class="stars2 animate-ping-2xs space"></div> -->
     <!-- <div class="stars3 animate-spin-2xs space"></div> -->
     <!-- <div class="stars3 animate-spin-2xs space"></div> -->
     <!-- <div class="z-10">
-      <div class="stars animate-movingbg"></div>
-      <div class="twinkling"></div>
-    </div> -->
+          <div class="stars animate-movingbg"></div>
+          <div class="twinkling"></div>
+        </div> -->
     <div class="relative isolate flex items-center justify-center">
       <div class="mx-auto max-w-7xl px-6 py-12">
         <div class="mx-auto flex flex-col items-center">
-          <div class="flex flex-col w-11/12 gap-y-3">
+          <div class="flex w-11/12 flex-col gap-y-3">
             <div class="flex items-center justify-between align-middle">
               <h1
                 id="brand"
-                class="tracking-wide sm:tracking-wider inline-flex bg-size-2x animate-rainbow bg-gradient-to-br from-purple-400 to-orange-500 box-decoration-clone bg-clip-text text-3xl font-extrabold text-transparent md:text-5xl"
+                class="inline-flex animate-rainbow bg-gradient-to-br from-purple-400 to-orange-500 box-decoration-clone bg-size-2x bg-clip-text text-3xl font-extrabold tracking-wide text-transparent sm:tracking-wider md:text-5xl"
               >
                 <a href="https://calldata.space">calldata.space</a>
               </h1>
-              <div class="flex items-center gap-3 justify-center pt-2">
+              <div class="flex items-center justify-center gap-3 pt-2">
                 <a
                   href="https://github.com/tunnckocore/calldata.space"
                   target="_blank"
@@ -90,22 +91,22 @@ import { features } from '../features.ts';
             <h2 class="text-lg text-gray-300">
               The Open Source platform to learn, explore, create, and trade EVM calldata.
             </h2>
-            <div class="flex max-w-full group">
-              <label for="searchbox" class="sr-only">Search Ethscriptions Ecosystem</label>
+            <div class="group flex max-w-full">
+              <label for="searchquery" class="sr-only">Search Ethscriptions Ecosystem</label>
               <input
-                id="searchbox"
+                id="searchquery"
                 name="searchquery"
                 type="text"
                 autocomplete="text"
                 autofocus
                 required
-                class="peer min-w-0 flex-auto rounded-md rounded-r-none px-3.5 py-2 text-gray-200 focus:outline-none bg-purple-400/10 border-r-0 border border-[#673d94] hover:border-purple-500 focus:border-purple-500 transition text-sm"
+                class="peer min-w-0 flex-auto rounded-md rounded-r-none border border-r-0 border-[#673d94] bg-purple-400/10 px-3.5 py-2 text-sm text-gray-200 transition hover:border-purple-500 focus:border-purple-500 focus:outline-none group-hover:border-purple-500"
                 placeholder="Search by Address / Ethscription / Profile / Text / ENS"
               />
 
               <button
                 type="submit"
-                class="flex-none rounded-md rounded-l-none px-3.5 py-2.5 text-gray-200 focus:outline-none bg-purple-400/20 border border-[#673d94] peer-hover:border-purple-500 peer-focus:border-purple-500 transition font-semibold text-sm"
+                class="flex-none rounded-md rounded-l-none border border-[#673d94] bg-purple-400/20 px-3.5 py-2.5 text-sm font-semibold text-gray-200 transition hover:border-purple-500 focus:outline-none peer-hover:border-purple-500 peer-focus:border-purple-500"
                 >Search</button
               >
             </div>
@@ -176,7 +177,7 @@ import { features } from '../features.ts';
 
           <!-- relative group isolate rounded-xl background-gradient ring-1 ring-gray-200 dark:ring-gray-800 before:hidden before:lg:block before:absolute before:-inset-[2px] before:h-[calc(100%+4px)] before:w-[calc(100%+4px)] before:z-[-1] before:rounded-[13px] flex-1 flex flex-col shadow -->
 
-          <div class="flex w-full items-center justify-center my-5">
+          <div class="my-5 flex w-full items-center justify-center">
             <dl class="grid w-11/12 grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {features.map((x) => <Card {...x} />)}
               <!-- <a

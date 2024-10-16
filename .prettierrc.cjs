@@ -1,5 +1,4 @@
 const sortImportsPlugin = {
-  plugins: ['@ianvs/prettier-plugin-sort-imports'],
   importOrder: [
     '<BUILTIN_MODULES>',
     '^(react/(.*)$)|^(react$)',
@@ -26,7 +25,8 @@ const config = {
   trailingComma: 'all',
   bracketSpacing: true,
   bracketSameLine: false,
-  plugins: ['prettier-plugin-tailwindcss'],
+
+  // !NOTE: do not use root level `plugins`, put it on overrides
 
   overrides: [
     {
@@ -47,6 +47,8 @@ const config = {
       files: ['**/*.{mjs,js,jsx}'],
       options: {
         ...sortImportsPlugin,
+        // !NOTE: tailwind plugin must be last
+        plugins: ['@ianvs/prettier-plugin-sort-imports', 'prettier-plugin-tailwindcss'],
       },
     },
     {
@@ -54,6 +56,8 @@ const config = {
       options: {
         ...sortImportsPlugin,
         parser: 'typescript',
+        // !NOTE: tailwind plugin must be last
+        plugins: ['@ianvs/prettier-plugin-sort-imports', 'prettier-plugin-tailwindcss'],
       },
     },
     {
@@ -85,7 +89,8 @@ const config = {
       files: ['**/*.astro'],
       options: {
         parser: 'astro',
-        plugins: ['prettier-plugin-astro'],
+        // !NOTE: tailwind plugin must be last
+        plugins: ['prettier-plugin-astro', 'prettier-plugin-tailwindcss'],
       },
     },
     {
@@ -102,4 +107,4 @@ const config = {
   ],
 };
 
-export default config;
+module.exports = config;
