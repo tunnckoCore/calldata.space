@@ -16,13 +16,12 @@ _Soon it could be renamed to `@calldata.space/core`._
 You can find it at
 [tunnckocore/ethscriptions-server](https://github.com/tunnckocore/ethscriptions-server).
 
-There is a NPM package called `ethscriptions-api-cache` that you can use to run your own server
-similar to the one that we currently host at [api.wgw.lol](https://api.wgw.lol). It's a thin layer
-on top of the official Ethscriptions API, but solving a lot of problems and adding a lot of
-features, like image optimizer and converter, ethscribe data cost estimation, SHA256 generation and
-checking for existance, aggressive caching of responses, resolving of Ethscription profiles and ENS
-domains, standardized responses and input validation, and many more things. It also implements the
-propsed
+There is a NPM package called `ethscriptions-server` that you can use to run your own server similar
+to the one that we currently host at [api.wgw.lol](https://api.wgw.lol). It's a thin layer on top of
+the official Ethscriptions API, but solving a lot of problems and adding a lot of features, like
+image optimizer and converter, ethscribe data cost estimation, SHA256 generation and checking for
+existance, aggressive caching of responses, resolving of Ethscription profiles and ENS domains,
+standardized responses and input validation, and many more things. It also implements the propsed
 [ESIP-9 for standardizing the `/content` and `/metadata` endpoints](https://github.com/ethscriptions-protocol/ESIP-Discussion/issues/18),
 allowing for the so-called "recursion". If all parties implement it, we can start having insanely
 cool and powerful primitive and composite Ethscriptions, and all that be visible on all platforms
