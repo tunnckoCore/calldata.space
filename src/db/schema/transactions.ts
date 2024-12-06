@@ -1,10 +1,10 @@
-// import { init as initCuidV2 } from '@paralleldrive/cuid2';
-import { relations } from 'drizzle-orm';
+import { init as initCuidV2 } from '@paralleldrive/cuid2';
+import { relations, sql } from 'drizzle-orm';
 import * as sq from 'drizzle-orm/sqlite-core';
 
 // import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
 
-// const createCuidV2 = initCuidV2({ length: 14, fingerprint: crypto.randomUUID() });
+const createCuidV2 = initCuidV2({ length: 14, fingerprint: crypto.randomUUID() });
 
 export const transactions = sq.sqliteTable('transactions', {
   block_number: sq.integer().notNull(),
@@ -40,12 +40,13 @@ export const ethscriptions = sq.sqliteTable('ethscriptions', {
     .text()
     .notNull()
     .primaryKey()
-    .references(() => transactions.transaction_hash, { onDelete: 'cascade' }),
+    .references(() => transactions.transaction_hash),
   number: sq.integer(), // Ethscription number in sequence
 
   block_number: sq.integer().notNull(),
   block_timestamp: sq.integer().notNull(),
   transaction_index: sq.integer().notNull(),
+
   media_type: sq.text().notNull(),
   media_subtype: sq.text().notNull(),
   content_type: sq.text().notNull(),
@@ -57,11 +58,18 @@ export const ethscriptions = sq.sqliteTable('ethscriptions', {
   is_esip6: sq.integer({ mode: 'boolean' }).notNull(),
   is_esip8: sq.integer({ mode: 'boolean' }).notNull(),
 
-  current_owner: sq.text().notNull(),
-  previous_owner: sq.text().notNull(),
   creator: sq.text().notNull(),
   initial_owner: sq.text().notNull(),
+  current_owner: sq.text().notNull(),
+  previous_owner: sq.text().notNull(),
+
+  updated_at: sq.integer().default(sql`(unixepoch())`),
 });
+
+// export const selectEthscriptionSchema = createSelectSchema(ethscriptions);
+// export const insertEthscriptionSchema = createInsertSchema(ethscriptions);
+// export type EthscriptionSelectType = z.infer<typeof selectEthscriptionSchema>;
+// export type EthscriptionInsertType = z.infer<typeof insertEthscriptionSchema>;
 
 export const ethscriptionsRelations = relations(ethscriptions, ({ one, many }) => ({
   metadata: one(transactions, {
@@ -69,25 +77,21 @@ export const ethscriptionsRelations = relations(ethscriptions, ({ one, many }) =
     references: [transactions.transaction_hash],
   }),
   transfers: many(transfers),
+  votes: many(votes),
 }));
-
-// export const selectEthscriptionSchema = createSelectSchema(ethscriptions);
-// export const insertEthscriptionSchema = createInsertSchema(ethscriptions);
-// export type EthscriptionSelectType = z.infer<typeof selectEthscriptionSchema>;
-// export type EthscriptionInsertType = z.infer<typeof insertEthscriptionSchema>;
 
 export const transfers = sq.sqliteTable('transfers', {
   // Transfer `transaction_hash` is the hash of the transaction that initiated the transfer
   transaction_hash: sq
     .text()
     .notNull()
-    .references(() => transactions.transaction_hash, { onDelete: 'cascade' }),
+    .references(() => transactions.transaction_hash),
 
   // And `ethscription_id` is the Ethscription ID that was transferred
   ethscription_id: sq
     .text()
     .notNull()
-    .references(() => ethscriptions.id, { onDelete: 'cascade' }),
+    .references(() => ethscriptions.id),
 
   index: sq.integer().primaryKey({ autoIncrement: true }),
   event_log_index: sq.integer(),
@@ -116,3 +120,48 @@ export const transfersRelations = relations(transfers, ({ one }) => ({
 // export const insertTransferSchema = createInsertSchema(transfers);
 // export type TransferSelectType = z.infer<typeof selectTransferSchema>;
 // export type TransferInsertType = z.infer<typeof insertTransferSchema>;
+
+export const votes = sq.sqliteTable('votes', {
+  id: sq.text().primaryKey().$defaultFn(createCuidV2),
+
+  // And `ethscription_id` is the Ethscription ID that was voted for
+  ethscription_id: sq
+    .text()
+    .notNull()
+    .references(() => ethscriptions.id),
+
+  timestamp: sq.integer().default(sql`(unixepoch())`),
+  voter: sq.text().notNull(),
+  rank: sq.integer().default(0),
+  up: sq.integer({ mode: 'boolean' }).notNull(),
+  down: sq.integer({ mode: 'boolean' }).notNull(),
+});
+
+export const votesRelations = relations(votes, ({ one }) => ({
+  metadata: one(transactions, {
+    fields: [votes.ethscription_id],
+    references: [transactions.transaction_hash],
+  }),
+  ethscription: one(ethscriptions, {
+    fields: [votes.ethscription_id],
+    references: [ethscriptions.id],
+  }),
+}));
+
+// export const selectVoteSchema = createSelectSchema(votes);
+// export const insertVoteSchema = createInsertSchema(votes);
+// export type VoteSelectType = z.infer<typeof selectVoteSchema>;
+// export type VoteInsertType = z.infer<typeof insertVoteSchema>;
+
+// export const voters = sq.sqliteTable('voters', {
+//   id: sq.text().primaryKey().$defaultFn(createCuidV2),
+//   voter: sq.text().notNull(),
+//   votes: sq.integer({ mode: 'boolean' }).default(false),
+// });
+
+// // export const selectVoterSchema = createSelectSchema(voters);
+// // export const insertVoterSchema = createInsertSchema(voters);
+// // export type VoterSelectType = z.infer<typeof selectVoterSchema>;
+// // export type VoterInsertType = z.infer<typeof insertVoterSchema>;
+
+// export const votersRelations = relations(voters, ({ one }) => ({}));

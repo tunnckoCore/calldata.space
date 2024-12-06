@@ -13,11 +13,12 @@ CREATE TABLE `ethscriptions` (
 	`is_esip4` integer NOT NULL,
 	`is_esip6` integer NOT NULL,
 	`is_esip8` integer NOT NULL,
-	`current_owner` text NOT NULL,
-	`previous_owner` text NOT NULL,
 	`creator` text NOT NULL,
 	`initial_owner` text NOT NULL,
-	FOREIGN KEY (`id`) REFERENCES `transactions`(`transaction_hash`) ON UPDATE no action ON DELETE cascade
+	`current_owner` text NOT NULL,
+	`previous_owner` text NOT NULL,
+	`updated_at` integer DEFAULT (unixepoch()),
+	FOREIGN KEY (`id`) REFERENCES `transactions`(`transaction_hash`) ON UPDATE no action ON DELETE no action
 );
 --> statement-breakpoint
 CREATE TABLE `transactions` (
@@ -49,6 +50,17 @@ CREATE TABLE `transfers` (
 	`transaction_index` integer NOT NULL,
 	`from_address` text NOT NULL,
 	`to_address` text NOT NULL,
-	FOREIGN KEY (`transaction_hash`) REFERENCES `transactions`(`transaction_hash`) ON UPDATE no action ON DELETE cascade,
-	FOREIGN KEY (`ethscription_id`) REFERENCES `ethscriptions`(`id`) ON UPDATE no action ON DELETE cascade
+	FOREIGN KEY (`transaction_hash`) REFERENCES `transactions`(`transaction_hash`) ON UPDATE no action ON DELETE no action,
+	FOREIGN KEY (`ethscription_id`) REFERENCES `ethscriptions`(`id`) ON UPDATE no action ON DELETE no action
+);
+--> statement-breakpoint
+CREATE TABLE `votes` (
+	`id` text PRIMARY KEY NOT NULL,
+	`ethscription_id` text NOT NULL,
+	`timestamp` integer DEFAULT (unixepoch()),
+	`voter` text NOT NULL,
+	`rank` integer DEFAULT 0,
+	`up` integer NOT NULL,
+	`down` integer NOT NULL,
+	FOREIGN KEY (`ethscription_id`) REFERENCES `ethscriptions`(`id`) ON UPDATE no action ON DELETE no action
 );
