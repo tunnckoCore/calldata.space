@@ -1,10 +1,6 @@
-import { init as initCuidV2 } from '@paralleldrive/cuid2';
-import { relations, sql } from 'drizzle-orm';
 import * as sq from 'drizzle-orm/sqlite-core';
-
 // import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
-
-const createCuidV2 = initCuidV2({ length: 14, fingerprint: crypto.randomUUID() });
+// import { z } from 'zod';
 
 export const transactions = sq.sqliteTable('transactions', {
   block_number: sq.integer().notNull(),
@@ -30,133 +26,7 @@ export const transactions = sq.sqliteTable('transactions', {
   truncated_data_raw: sq.text().notNull(), // raw hex value; 0x if transfer
 });
 
-// const selectTransactionSchema = createSelectSchema(transactions);
-// const insertTransactionSchema = createInsertSchema(transactions);
-// type TransactionSelectType = z.infer<typeof selectTransactionSchema>;
-// type TransactionInsertType = z.infer<typeof insertTransactionSchema>;
-
-export const ethscriptions = sq.sqliteTable('ethscriptions', {
-  id: sq
-    .text()
-    .notNull()
-    .primaryKey()
-    .references(() => transactions.transaction_hash),
-  number: sq.integer(), // Ethscription number in sequence
-
-  block_number: sq.integer().notNull(),
-  block_timestamp: sq.integer().notNull(),
-  transaction_index: sq.integer().notNull(),
-
-  media_type: sq.text().notNull(),
-  media_subtype: sq.text().notNull(),
-  content_type: sq.text().notNull(),
-  content_sha: sq.text().notNull(),
-
-  is_esip0: sq.integer({ mode: 'boolean' }).notNull(),
-  is_esip3: sq.integer({ mode: 'boolean' }).notNull(),
-  is_esip4: sq.integer({ mode: 'boolean' }).notNull(),
-  is_esip6: sq.integer({ mode: 'boolean' }).notNull(),
-  is_esip8: sq.integer({ mode: 'boolean' }).notNull(),
-
-  creator: sq.text().notNull(),
-  initial_owner: sq.text().notNull(),
-  current_owner: sq.text().notNull(),
-  previous_owner: sq.text().notNull(),
-
-  updated_at: sq.integer().default(sql`(unixepoch())`),
-});
-
-// export const selectEthscriptionSchema = createSelectSchema(ethscriptions);
-// export const insertEthscriptionSchema = createInsertSchema(ethscriptions);
-// export type EthscriptionSelectType = z.infer<typeof selectEthscriptionSchema>;
-// export type EthscriptionInsertType = z.infer<typeof insertEthscriptionSchema>;
-
-export const ethscriptionsRelations = relations(ethscriptions, ({ one, many }) => ({
-  metadata: one(transactions, {
-    fields: [ethscriptions.id],
-    references: [transactions.transaction_hash],
-  }),
-  transfers: many(transfers),
-  votes: many(votes),
-}));
-
-export const transfers = sq.sqliteTable('transfers', {
-  // Transfer `transaction_hash` is the hash of the transaction that initiated the transfer
-  transaction_hash: sq
-    .text()
-    .notNull()
-    .references(() => transactions.transaction_hash),
-
-  // And `ethscription_id` is the Ethscription ID that was transferred
-  ethscription_id: sq
-    .text()
-    .notNull()
-    .references(() => ethscriptions.id),
-
-  index: sq.integer().primaryKey({ autoIncrement: true }),
-  event_log_index: sq.integer(),
-
-  block_blockhash: sq.text().notNull(),
-  block_number: sq.integer().notNull(),
-  block_timestamp: sq.integer().notNull(),
-  transaction_index: sq.integer().notNull(),
-
-  from_address: sq.text().notNull(),
-  to_address: sq.text().notNull(),
-});
-
-export const transfersRelations = relations(transfers, ({ one }) => ({
-  metadata: one(transactions, {
-    fields: [transfers.transaction_hash],
-    references: [transactions.transaction_hash],
-  }),
-  ethscription: one(ethscriptions, {
-    fields: [transfers.ethscription_id],
-    references: [ethscriptions.id],
-  }),
-}));
-
-// export const selectTransferSchema = createSelectSchema(transfers);
-// export const insertTransferSchema = createInsertSchema(transfers);
-// export type TransferSelectType = z.infer<typeof selectTransferSchema>;
-// export type TransferInsertType = z.infer<typeof insertTransferSchema>;
-
-export const votes = sq.sqliteTable('votes', {
-  id: sq.text().primaryKey().$defaultFn(createCuidV2),
-
-  // Both `transaction_hash` and `ethscription_id` are the same,
-  // this one is use to link to `metadata` and the `transactions` table
-  // cuz weirdly you cannot make to `one-to-one` relations using the same field?!
-  transaction_hash: sq
-    .text()
-    .notNull()
-    .references(() => transactions.transaction_hash),
-
-  // And `ethscription_id` is the Ethscription ID that was transferred
-  ethscription_id: sq
-    .text()
-    .notNull()
-    .references(() => ethscriptions.id),
-
-  timestamp: sq.integer().notNull(),
-  voter: sq.text().notNull(),
-  rank: sq.integer().default(0),
-  up: sq.integer({ mode: 'boolean' }).notNull(),
-  down: sq.integer({ mode: 'boolean' }).notNull(),
-});
-
-export const votesRelations = relations(votes, ({ one }) => ({
-  metadata: one(transactions, {
-    fields: [votes.transaction_hash],
-    references: [transactions.transaction_hash],
-  }),
-  ethscription: one(ethscriptions, {
-    fields: [votes.ethscription_id],
-    references: [ethscriptions.id],
-  }),
-}));
-
-// export const selectVoteSchema = createSelectSchema(votes);
-// export const insertVoteSchema = createInsertSchema(votes);
-// export type VoteSelectType = z.infer<typeof selectVoteSchema>;
-// export type VoteInsertType = z.infer<typeof insertVoteSchema>;
+// export const selectTransactionSchema = createSelectSchema(transactions);
+// export const insertTransactionSchema = createInsertSchema(transactions);
+// export type TransactionSelectType = z.infer<typeof selectTransactionSchema>;
+// export type TransactionInsertType = z.infer<typeof insertTransactionSchema>;

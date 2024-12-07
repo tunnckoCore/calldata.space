@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "73c8aefe-10a9-482b-a329-38648ef01538",
+  "id": "ace34f76-0b67-4ef2-97b4-83db49adfd63",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "ethscriptions": {
@@ -413,7 +413,8 @@
           "type": "integer",
           "primaryKey": false,
           "notNull": true,
-          "autoincrement": false
+          "autoincrement": false,
+          "default": "(unixepoch())"
         },
         "voter": {
           "name": "voter",

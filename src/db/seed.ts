@@ -31,7 +31,7 @@ import { faker } from '@faker-js/faker';
 import { toHex } from 'viem';
 
 import { db } from './index.ts';
-import { ethscriptions, transactions, transfers, votes } from './schema/transactions.ts';
+import { ethscriptions, transactions, transfers, votes } from './schema/index.ts';
 
 async function main() {
   // First clear all tables (in correct order due to foreign keys)
