@@ -127,11 +127,14 @@ async function main() {
 
   // Insert random votes
   await db.insert(votes).values(
-    Array.from({ length: 200 }, () => {
+    Array.from({ length: 25 }, (_, i) => {
       const voteType = faker.datatype.boolean();
 
       return {
-        ethscription_id: faker.helpers.arrayElement(transactionHashes),
+        transaction_hash: createdEthscriptions[i].id, // Use later transactions
+        ethscription_id: createdEthscriptions[i].id,
+
+        timestamp: faker.number.int({ min: 1600000000, max: 1700000000 }),
         voter: faker.helpers.arrayElement(addresses),
         rank: faker.number.int({ min: 0, max: 200 }),
         up: voteType,

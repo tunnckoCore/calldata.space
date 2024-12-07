@@ -56,11 +56,13 @@ CREATE TABLE `transfers` (
 --> statement-breakpoint
 CREATE TABLE `votes` (
 	`id` text PRIMARY KEY NOT NULL,
+	`transaction_hash` text NOT NULL,
 	`ethscription_id` text NOT NULL,
-	`timestamp` integer DEFAULT (unixepoch()),
+	`timestamp` integer NOT NULL,
 	`voter` text NOT NULL,
 	`rank` integer DEFAULT 0,
 	`up` integer NOT NULL,
 	`down` integer NOT NULL,
+	FOREIGN KEY (`transaction_hash`) REFERENCES `transactions`(`transaction_hash`) ON UPDATE no action ON DELETE no action,
 	FOREIGN KEY (`ethscription_id`) REFERENCES `ethscriptions`(`id`) ON UPDATE no action ON DELETE no action
 );

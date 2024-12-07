@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "255625da-ec8b-4433-94c6-f5a60717f5b2",
+  "id": "73c8aefe-10a9-482b-a329-38648ef01538",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "ethscriptions": {
@@ -394,6 +394,13 @@
           "notNull": true,
           "autoincrement": false
         },
+        "transaction_hash": {
+          "name": "transaction_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
         "ethscription_id": {
           "name": "ethscription_id",
           "type": "text",
@@ -405,9 +412,8 @@
           "name": "timestamp",
           "type": "integer",
           "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false,
-          "default": "(unixepoch())"
+          "notNull": true,
+          "autoincrement": false
         },
         "voter": {
           "name": "voter",
@@ -441,6 +447,19 @@
       },
       "indexes": {},
       "foreignKeys": {
+        "votes_transaction_hash_transactions_transaction_hash_fk": {
+          "name": "votes_transaction_hash_transactions_transaction_hash_fk",
+          "tableFrom": "votes",
+          "tableTo": "transactions",
+          "columnsFrom": [
+            "transaction_hash"
+          ],
+          "columnsTo": [
+            "transaction_hash"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
         "votes_ethscription_id_ethscriptions_id_fk": {
           "name": "votes_ethscription_id_ethscriptions_id_fk",
           "tableFrom": "votes",

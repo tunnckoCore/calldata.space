@@ -12,11 +12,12 @@
     "db:seed": "bun run ./src/db/seed.ts",
     "dev": "next dev --turbopack",
     "dzk": "drizzle-kit",
-    "gql": "bun run ./src/db/graphql/apollo.ts",
-    "gql:watch": "bun run --watch ./src/db/graphql/apollo.ts",
-    "gql:yoga": "bun run ./src/db/graphql/yoga.ts",
+    "gql:apollo": "bun run --watch ./src/db/graphql/apollo.ts",
+    "gql:yoga": "bun run --watch ./src/db/graphql/yoga.ts",
     "lint": "next lint",
-    "start": "next start"
+    "nuke": "rm -rf src/db/migrations && bun dzk generate && bun dzk push && bun db:seed",
+    "start": "next start",
+    "turso:dev": "rm ethsdb-local* && turso dev --db-file ethsdb-local.db"
   },
   "dependencies": {
     "@apollo/server": "^4.11.2",

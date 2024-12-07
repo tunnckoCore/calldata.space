@@ -124,13 +124,21 @@ export const transfersRelations = relations(transfers, ({ one }) => ({
 export const votes = sq.sqliteTable('votes', {
   id: sq.text().primaryKey().$defaultFn(createCuidV2),
 
-  // And `ethscription_id` is the Ethscription ID that was voted for
+  // Both `transaction_hash` and `ethscription_id` are the same,
+  // this one is use to link to `metadata` and the `transactions` table
+  // cuz weirdly you cannot make to `one-to-one` relations using the same field?!
+  transaction_hash: sq
+    .text()
+    .notNull()
+    .references(() => transactions.transaction_hash),
+
+  // And `ethscription_id` is the Ethscription ID that was transferred
   ethscription_id: sq
     .text()
     .notNull()
     .references(() => ethscriptions.id),
 
-  timestamp: sq.integer().default(sql`(unixepoch())`),
+  timestamp: sq.integer().notNull(),
   voter: sq.text().notNull(),
   rank: sq.integer().default(0),
   up: sq.integer({ mode: 'boolean' }).notNull(),
@@ -139,7 +147,7 @@ export const votes = sq.sqliteTable('votes', {
 
 export const votesRelations = relations(votes, ({ one }) => ({
   metadata: one(transactions, {
-    fields: [votes.ethscription_id],
+    fields: [votes.transaction_hash],
     references: [transactions.transaction_hash],
   }),
   ethscription: one(ethscriptions, {
@@ -152,16 +160,3 @@ export const votesRelations = relations(votes, ({ one }) => ({
 // export const insertVoteSchema = createInsertSchema(votes);
 // export type VoteSelectType = z.infer<typeof selectVoteSchema>;
 // export type VoteInsertType = z.infer<typeof insertVoteSchema>;
-
-// export const voters = sq.sqliteTable('voters', {
-//   id: sq.text().primaryKey().$defaultFn(createCuidV2),
-//   voter: sq.text().notNull(),
-//   votes: sq.integer({ mode: 'boolean' }).default(false),
-// });
-
-// // export const selectVoterSchema = createSelectSchema(voters);
-// // export const insertVoterSchema = createInsertSchema(voters);
-// // export type VoterSelectType = z.infer<typeof selectVoterSchema>;
-// // export type VoterInsertType = z.infer<typeof insertVoterSchema>;
-
-// export const votersRelations = relations(voters, ({ one }) => ({}));
