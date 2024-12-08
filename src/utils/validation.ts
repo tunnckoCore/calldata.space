@@ -2,51 +2,6 @@ import { NextResponse } from 'next/server';
 import { parse as qsParse } from 'qs-esm';
 import { z } from 'zod';
 
-// Make WhereClause more explicit
-// export type WhereClause<T> = {
-//   [K in keyof T]?: OperatorRecord<T[K]>;
-// };
-
-// Define what each field's where clause looks like
-// export type FieldWhereClause<T> = {
-//   [P in Operator]?: T;
-// };
-
-// // Define the complete where clause type
-// export type WhereClause<T> = {
-//   [K in keyof T]?: FieldWhereClause<T[K]>;
-// };
-
-// // The final validation result type
-// export type ValidationResult<T extends z.ZodSchema> = z.infer<T> & {
-//   where?: {
-//     [K in keyof z.infer<T>]?: FieldWhereClause<z.infer<T>[K]>;
-//   };
-// };
-
-// export type WhereClause<T> = {
-//   [K in keyof T]: Record<Operator, T[K]> & {
-//     eq?: number;
-//     gt?: number;
-//     lt?: number;
-//     gte?: number;
-//     lte?: number;
-//     like?: string;
-//   };
-// };
-
-// // Then our ValidationResult type
-// export type ValidationResult<T extends z.ZodSchema> = z.infer<T> & {
-//   where?: {
-//     // [K in keyof z.infer<T>]?: OperatorRecord<z.infer<T>[K]>;
-//     [K in keyof z.infer<T>]?: {
-//       [P in Operator]?: {
-//         [Q in keyof WhereClause<T>[K]]?: WhereClause<T>[K][Q]
-//       }
-//     }
-//   };
-// };
-
 export type ErrorResult = {
   message: string;
   status: number;
@@ -54,74 +9,11 @@ export type ErrorResult = {
   details?: z.ZodIssue[];
 };
 
-// // Define operators
-// export const Operators = ['eq', 'gt', 'lt', 'gte', 'lte', 'like'] as const;
-// export type Operator = (typeof Operators)[number];
-
-// // Define the where clause type that maintains schema inference
-// export type WhereClause<T> = {
-//   [K in keyof T]?: {
-//     [P in Operator]?: T[K];
-//   };
-// };
-
-// // Define the complete validation result type
-// export type ValidationResult<T extends z.ZodSchema> = z.infer<T> & {
-//   where?: WhereClause<z.infer<T>>;
-// };
-
-// Helper function to convert where values
-// function convertWhereValues<T extends z.ZodSchema>(
-//   where: Record<string, Record<string, any>>,
-//   schema: T,
-// ): WhereClause<z.infer<T>> {
-//   if (!where) return where;
-
-//   const result = {} as WhereClause<z.infer<T>>;
-//   const shape = (schema as any).shape as Record<string, z.ZodType>;
-
-//   for (const [key, conditions] of Object.entries(where)) {
-//     if (key in shape) {
-//       result[key as keyof z.infer<T>] = {};
-
-//       for (const [op, value] of Object.entries(conditions)) {
-//         if (Operators.includes(op as Operator)) {
-//           try {
-//             const parsed = shape[key].parse(value);
-//             (result[key as keyof z.infer<T>] as any)[op] = parsed;
-//           } catch {
-//             (result[key as keyof z.infer<T>] as any)[op] = value;
-//           }
-//         }
-//       }
-//     }
-//   }
-
-//   return result;
-// }
-
-// // The final validation result type with fully expanded where clause
-// export type ValidationResult<T extends z.ZodSchema> = z.infer<T> & {
-//   where?: {
-//     [K in keyof z.infer<T>]?: {
-//       eq?: number;
-//       gt?: number;
-//       lt?: number;
-//       gte?: number;
-//       lte?: number;
-//       like?: string;
-//     };
-//   };
-// };
-
-// export const Operators = ['eq', 'gt', 'lt', 'gte', 'lte', 'like'] as const;
-// type Operator = typeof Operators[number];
-
 export const operators = ['eq', 'gt', 'lt', 'gte', 'lte', 'like'] as const;
 export type Operator = (typeof operators)[number];
 
 // All fields get all operators, with 'like' always returning string
-type FieldOperators<T> = {
+export type FieldOperators<T> = {
   eq?: T;
   gt?: T;
   lt?: T;
@@ -137,37 +29,7 @@ export type ValidationResult<T extends z.ZodSchema> = z.infer<T> & {
   };
 };
 
-// // Helper function to convert where values
-// function convertWhereValues<T extends z.ZodSchema>(
-//   where: Record<string, Record<string, any>>,
-//   schema: T,
-// ): ValidationResult<T>['where'] {
-//   if (!where) return undefined;
-
-//   const result = {} as ValidationResult<T>['where'];
-//   const shape = (schema as any).shape as Record<string, z.ZodType>;
-
-//   for (const [key, conditions] of Object.entries(where)) {
-//     if (key in shape) {
-//       result[key] = {};
-
-//       for (const [op, value] of Object.entries(conditions)) {
-//         if (Operators.includes(op as Operator)) {
-//           try {
-//             const parsed = shape[key].parse(value);
-//             (result[key] as any)[op] = parsed;
-//           } catch {
-//             (result[key] as any)[op] = value;
-//           }
-//         }
-//       }
-//     }
-//   }
-
-//   return result;
-// }
-
-function convertWhereValues<T extends z.ZodSchema>(
+export function convertWhereValues<T extends z.ZodSchema>(
   where: Record<string, Record<string, any>>,
   schema: T,
 ): ValidationResult<T>['where'] {
@@ -180,32 +42,12 @@ function convertWhereValues<T extends z.ZodSchema>(
     if (key in shape) {
       result[key] = {};
 
-      // const fieldType = shape[key];
-      // const isNumber = fieldType instanceof z.ZodNumber;
-      // const isString = fieldType instanceof z.ZodString;
-      // const isBoolean = fieldType instanceof z.ZodBoolean;
-
       for (const [operator, value] of Object.entries(conditions)) {
-        // const isValidOperator = (
-        //   (isNumber && NumericOperators.includes(op as NumericOperator)) ||
-        //   (isString && StringOperators.includes(op as StringOperator)) ||
-        //   (isBoolean && BooleanOperators.includes(op as BooleanOperator))
-        // );
-
         if ((schema as any).shape[key]) {
           result[key][operator] = (schema as any).shape[key].parse(value);
         } else {
           result[key][operator] = value;
         }
-
-        // if (operators.includes(op as Operator)) {
-        //   try {
-        //     const parsed = shape[key].parse(value);
-        //     (result[key] as any)[op] = parsed;
-        //   } catch {
-        //     (result[key] as any)[op] = value;
-        //   }
-        // }
       }
     }
   }

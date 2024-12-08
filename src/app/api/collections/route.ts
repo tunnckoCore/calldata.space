@@ -13,31 +13,25 @@ export const GET = withValidation(collectionParamsSchema, async (req, { searchQu
   const searchParams = new URL(req.url).searchParams;
   const offset = searchQuery.page_key ? 0 : (searchQuery.page - 1) * searchQuery.page_size;
 
-  const collectionColumns = {
-    created_at: collections.created_at,
-    id: collections.id,
-    supply: collections.supply,
-    slug: collections.slug,
-    name: collections.name,
-    description: collections.description,
-    logo: collections.logo,
-    banner: collections.banner,
-    links: collections.links,
-    team: collections.team,
-    royalties: collections.royalties,
-    verified: collections.verified,
-  };
-
   const query = db
     .select({
-      ...collectionColumns,
+      created_at: collections.created_at,
+      id: collections.id,
+      supply: collections.supply,
+      slug: collections.slug,
+      name: collections.name,
+      description: collections.description,
+      logo: collections.logo,
+      banner: collections.banner,
+      links: collections.links,
+      team: collections.team,
+      royalties: collections.royalties,
+      verified: collections.verified,
       total: sql<number>`COUNT(*) OVER()`,
     })
     .from(collections);
 
   const conditions: any = [];
-
-  // console.log('searchQuery.where in route:', searchQuery.where);
 
   // Text fields - exact match or contains
   ['id', 'slug', 'name', 'description', 'logo', 'banner'].forEach((field) => {
@@ -52,13 +46,6 @@ export const GET = withValidation(collectionParamsSchema, async (req, { searchQu
         value.includes('*') ? like(collections[field], val) : eq(collections[field], val),
       );
     }
-    // if (searchParams.has(field)) {
-    //   const value = searchParams.get(field)!;
-    //   const val = value.includes('*') ? value.replace(/\*/g, '') : value;
-    //   conditions.push(
-    //     value.includes('*') ? like(collections[field], `%${val}%`) : eq(collections[field], value),
-    //   );
-    // }
   });
 
   // Number field with comparison operators
@@ -94,15 +81,6 @@ export const GET = withValidation(collectionParamsSchema, async (req, { searchQu
     conditions.push(eq(collections.verified, searchQuery.verified));
   }
 
-  // NOTE: Not needed for filtering probably.
-  // Array fields (links, team)
-  // ['links', 'team'].forEach((field) => {
-  //   if (searchParams.has(field)) {
-  //     const value = searchQuery[field];
-  //     conditions.push(like(collections[field], `%${value}%`));
-  //   }
-  // });
-
   const isAscending = searchQuery.order === 'asc';
   const order = isAscending ? asc : desc;
 
@@ -115,9 +93,6 @@ export const GET = withValidation(collectionParamsSchema, async (req, { searchQu
   if (!searchQuery.where && conditions.length) {
     query.where(and(...conditions));
   } else if (searchQuery.where) {
-    // NOTE: the autocompletion for `searchQuery.where.block_number.gt` works,
-    // but the type of `searchQuery.where` on hover is not inferred correctly (it's `searchQuery.where: ZodSchema`
-    // instead of `searchQuery.where: Record<Operators, any>`)
     for (const [key, spec] of Object.entries(searchQuery.where)) {
       for (const [op, value] of Object.entries(spec)) {
         // console.log({ op, key, value, spec });

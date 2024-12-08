@@ -276,16 +276,6 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, { search
   } else if (searchQuery.where) {
     const conds: any = [];
 
-    // searchQuery.where.block_number?.eq;
-    // searchQuery.where.number?.eq;
-    // searchQuery.where.block_number?.gt;
-    // searchQuery.where.block_number?.like;
-    // searchQuery.where.content_sha?.like;
-    // searchQuery.where.content_sha?.eq;
-
-    // NOTE: the autocompletion for `searchQuery.where.block_number.gt` works,
-    // but the type of `searchQuery.where` on hover is not inferred correctly (it's `searchQuery.where: ZodSchema`
-    // instead of `searchQuery.where: Record<Operators, any>`)
     for (const [key, spec] of Object.entries(searchQuery.where)) {
       for (const [op, value] of Object.entries(spec) as [string, any][]) {
         const val = value.includes('*') ? value.replace(/\*/g, '%') : value;

@@ -10,10 +10,8 @@ import { withIncludesExcludes, withValidation } from '@/utils/validation.ts';
 // GET /ethscriptions/:id - Get a single collection by ID (ethscriptions.id or ethscriptions.slug)
 export const GET = withValidation(
   ethscriptionParamsSchema,
-  async (req, { params, searchQuery }) => {
+  async (_req, { params, searchQuery }) => {
     const segments = await params;
-    const searchParams = new URL(req.url).searchParams;
-    console.log('the /ethscriptions/:id endpoint', searchQuery, segments);
     const query = db
       .select()
       .from(ethscriptions)

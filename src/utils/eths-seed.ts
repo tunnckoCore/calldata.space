@@ -38,7 +38,7 @@ export async function getAllEthscriptionsByType({
   const endpointUrl = `https://${baseURL}/ethscriptions?max_results=50&media_type=${mediaType}&reverse=true&with=ethscription_number,current_owner`;
   const res = await fetch(endpointUrl).then((x) => x.json());
 
-  let results = [];
+  let results: any = [];
 
   for (const tx of res.result) {
     results = await reducer(results, tx as Ethscription, mediaType);

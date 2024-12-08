@@ -10,8 +10,6 @@ import { withIncludesExcludes, withValidation } from '@/utils/validation.ts';
 // GET /collections/:id - Get a single collection by ID (collections.id or collections.slug)
 export const GET = withValidation(collectionParamsSchema, async (req, { params, searchQuery }) => {
   const segments = await params;
-  const searchParams = new URL(req.url).searchParams;
-  console.log('the /collections/:id endpoint');
   const query = db
     .select()
     .from(collections)

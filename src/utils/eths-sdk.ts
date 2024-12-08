@@ -70,8 +70,8 @@ export async function getEthsMeta() {
   const dir = resolve(process.cwd(), './public/txs');
   const hashes = await readdir(dir);
 
-  const toprocess = [];
-  const processed = [];
+  const toprocess: any = [];
+  const processed: any = [];
 
   await pMap(
     hashes,
@@ -199,7 +199,7 @@ export async function getAllEthscriptionHashesForType({
     `https://${baseURL}/ethscriptions?media_type=${mediaType}&transaction_hash_only=true&max_results=1000&reverse=true`,
   ).then((x) => x.json());
 
-  let results = [];
+  let results: any = [];
 
   for (const tx of res.result) {
     results = await reducer(results, tx as Ethscription, mediaType);
