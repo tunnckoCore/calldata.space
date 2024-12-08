@@ -149,28 +149,26 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, params) 
   ['number', 'block_number', 'block_timestamp', 'transaction_index', 'updated_at'].forEach(
     (field) => {
       if (searchParams.has(field)) {
-        const value = searchParams.get(field)!;
-        const [op, num] = value.includes(':') ? value.split(':') : ['eq', value];
+        const val = params[field];
+        const value = (val as any).value ?? val;
+        const [op, num] = searchParams.get(field)?.includes(':') ? [val.op, value] : ['eq', value];
 
         switch (op) {
           case 'gt':
-            conditions.push(gt(ethscriptions[field], parseInt(num)));
+            conditions.push(gt(ethscriptions[field], num));
             break;
           case 'lt':
-            conditions.push(lt(ethscriptions[field], parseInt(num)));
+            conditions.push(lt(ethscriptions[field], num));
             break;
           case 'gte':
-            conditions.push(gte(ethscriptions[field], parseInt(num)));
+            conditions.push(gte(ethscriptions[field], num));
             break;
           case 'lte':
-            conditions.push(lte(ethscriptions[field], parseInt(num)));
+            conditions.push(lte(ethscriptions[field], num));
             break;
           case 'range':
-            const [min, max] = num.split(',');
-            conditions.push(
-              gte(ethscriptions[field], parseInt(min)),
-              lte(ethscriptions[field], parseInt(max)),
-            );
+            const { min, max } = val;
+            conditions.push(gte(ethscriptions[field], min), lte(ethscriptions[field], max));
             break;
           default:
             conditions.push(eq(ethscriptions[field], parseInt(value)));
@@ -225,7 +223,7 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, params) 
   // Boolean ESIP filters
   ['is_esip0', 'is_esip3', 'is_esip4', 'is_esip6', 'is_esip8'].forEach((field) => {
     if (searchParams.has(field)) {
-      conditions.push(eq(ethscriptions[field], searchParams.get(field) === 'true'));
+      conditions.push(eq(ethscriptions[field], params[field]));
     }
   });
 
@@ -235,7 +233,7 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, params) 
   }
 
   const isCursor = params.page_key ? params.page_key.length > 0 : false;
-  const isAscending = searchParams.get('order') === 'asc';
+  const isAscending = params.order === 'asc';
   const order = isAscending ? asc : desc;
 
   if (isCursor) {
@@ -278,8 +276,8 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, params) 
   // Process include/exclude filters with nested support
   let filteredData = results.map(({ total, ...item }) => item);
 
-  const include = searchParams.get('include')?.split(',').filter(Boolean);
-  const exclude = searchParams.get('exclude')?.split(',').filter(Boolean);
+  const include = params.include?.split(',').filter(Boolean);
+  const exclude = params.exclude?.split(',').filter(Boolean);
 
   if (include || exclude) {
     filteredData = filteredData.map((item: any): any => {
@@ -334,22 +332,22 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, params) 
   return {
     pagination: isCursor
       ? {
-          total,
-          items_left: left < 0 ? 0 : left,
-          page_size: params.page_size,
-          page_key: nextCursor || null,
-          has_more: left > 0,
-        }
+        total,
+        items_left: left < 0 ? 0 : left,
+        page_size: params.page_size,
+        page_key: nextCursor || null,
+        has_more: left > 0,
+      }
       : {
-          total,
-          limit: params.page_size,
-          pages: Math.ceil(total / params.page_size),
-          page: params.page,
-          prev: params.page > 1 ? params.page - 1 : null,
-          next: has_next,
-          page_key: nextCursor || null,
-          has_more: Boolean(has_next),
-        },
+        total,
+        limit: params.page_size,
+        pages: Math.ceil(total / params.page_size),
+        page: params.page,
+        prev: params.page > 1 ? params.page - 1 : null,
+        next: has_next,
+        page_key: nextCursor || null,
+        has_more: Boolean(has_next),
+      },
     data: filteredData,
     status: 200,
   };

@@ -169,7 +169,7 @@ export const collectionParamsSchema = z
 
     // Text filters
     id: createWildcardSchema(z.string()),
-    slug: createWildcardSchema(z.string().regex(/^[a-z0-9-]+$/)),
+    slug: createWildcardSchema(z.string().regex(/^[a-z0-9-]+$/i)),
     name: createWildcardSchema(z.string()),
     description: createWildcardSchema(z.string()),
     logo: createWildcardSchema(z.string().url()),
@@ -185,8 +185,8 @@ export const collectionParamsSchema = z
       .optional(),
 
     // Array filters
-    links: z.string().optional(),
-    team: z.string().optional(),
+    links: z.array(z.string().url()).optional(),
+    team: z.array(z.string()).optional(),
   })
   .strict();
 

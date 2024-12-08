@@ -37,38 +37,49 @@ export const GET = withValidation(collectionParamsSchema, async (req, params) =>
   // Text fields - exact match or contains
   ['id', 'slug', 'name', 'description', 'logo', 'banner'].forEach((field) => {
     if (searchParams.has(field)) {
-      const value = searchParams.get(field)!;
-      const val = value.includes('*') ? value.replace(/\*/g, '') : value;
+      let value = params[field];
+      let val = value.includes('*') ? value.replace(/\*/g, '') : value;
+      if (field === 'slug') {
+        val = val.toLowerCase();
+        value = value.toLowerCase();
+      }
       conditions.push(
-        value.includes('*') ? like(collections[field], `%${val}%`) : eq(collections[field], value),
+        value.includes('*')
+          ? like(collections[field], `%${val}%`)
+          : eq(collections[field], value),
       );
     }
+    // if (searchParams.has(field)) {
+    //   const value = searchParams.get(field)!;
+    //   const val = value.includes('*') ? value.replace(/\*/g, '') : value;
+    //   conditions.push(
+    //     value.includes('*') ? like(collections[field], `%${val}%`) : eq(collections[field], value),
+    //   );
+    // }
   });
 
   // Number field with comparison operators
   if (searchParams.has('supply')) {
-    const value = searchParams.get('supply')!;
-    const [op, num] = value.split(':');
+    const val = params.supply;
+    const value = (val as any).value ?? val;
+    const [op, num] = searchParams.get('supply')?.includes(':') ? [val.op, value] : ['eq', value];
 
     switch (op) {
       case 'gt':
-        conditions.push(gt(collections.supply, parseInt(num)));
+        conditions.push(gt(collections.supply, num));
         break;
       case 'lt':
-        conditions.push(lt(collections.supply, parseInt(num)));
+        conditions.push(lt(collections.supply, num));
         break;
       case 'gte':
-        conditions.push(gte(collections.supply, parseInt(num)));
+        conditions.push(gte(collections.supply, num));
         break;
       case 'lte':
-        conditions.push(lte(collections.supply, parseInt(num)));
+        conditions.push(lte(collections.supply, num));
         break;
       case 'range':
-        const [min, max] = num.split(',');
-        conditions.push(
-          gte(collections.supply, parseInt(min)),
-          lte(collections.supply, parseInt(max)),
-        );
+        const { min, max } = val;
+        conditions.push(gte(collections.supply, min), lte(collections.supply, max));
         break;
       default:
         conditions.push(eq(collections.supply, parseInt(value)));
@@ -76,17 +87,17 @@ export const GET = withValidation(collectionParamsSchema, async (req, params) =>
   }
 
   // Boolean field
-  if (searchParams.has('verified')) {
-    conditions.push(eq(collections.verified, searchParams.get('verified') === 'true'));
+  if (params.verified) {
+    conditions.push(eq(collections.verified, params.verified));
   }
 
   // Array fields (links, team)
-  ['links', 'team'].forEach((field) => {
-    if (searchParams.has(field)) {
-      const value = searchParams.get(field)!;
-      conditions.push(like(collections[field], `%${value}%`));
-    }
-  });
+  // ['links', 'team'].forEach((field) => {
+  //   if (searchParams.has(field)) {
+  //     const value = params[field];
+  //     conditions.push(like(collections[field], `%${value}%`));
+  //   }
+  // });
 
   const isAscending = params.order === 'asc';
   const order = isAscending ? asc : desc;
@@ -110,7 +121,6 @@ export const GET = withValidation(collectionParamsSchema, async (req, params) =>
   const res = await query;
   const results = res.map(({ total, ...row }) => ({ ...row }));
   const total = res[0]?.total ?? 0;
-  const isPageKey = searchParams.has('page_key');
   const left = total - params.page_size;
   const has_next = total > offset + params.page_size ? params.page + 1 : null;
   const nextCursor = has_next ? res[res.length - 1]?.created_at : null;
@@ -118,22 +128,22 @@ export const GET = withValidation(collectionParamsSchema, async (req, params) =>
   return {
     pagination: params.page_key
       ? {
-          total,
-          items_left: left < 0 ? 0 : left,
-          page_size: params.page_size,
-          [isPageKey ? 'page_key' : 'cursor']: nextCursor || null,
-          has_more: left > 0,
-        }
+        total,
+        items_left: left < 0 ? 0 : left,
+        page_size: params.page_size,
+        page_key: nextCursor || null,
+        has_more: left > 0,
+      }
       : {
-          total,
-          page_size: params.page_size,
-          pages: Math.ceil(total / params.page_size),
-          page: params.page,
-          prev: params.page > 1 ? params.page - 1 : null,
-          next: has_next,
-          [isPageKey ? 'page_key' : 'cursor']: nextCursor || null,
-          has_more: Boolean(has_next),
-        },
+        total,
+        page_size: params.page_size,
+        pages: Math.ceil(total / params.page_size),
+        page: params.page,
+        prev: params.page > 1 ? params.page - 1 : null,
+        next: has_next,
+        page_key: nextCursor || null,
+        has_more: Boolean(has_next),
+      },
     data: results,
     status: 200,
   };
