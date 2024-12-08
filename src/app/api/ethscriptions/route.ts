@@ -7,10 +7,20 @@ import { ethscriptionParamsSchema } from '@/utils/params-validation';
 import { withValidation } from '@/utils/validation';
 
 // /api/ethscriptions?limit=50
+
 // &expand=collection,transfers,votes
 // &exclude=is*,media*,*owner,collection.*,transfers.*
 // &include=current_owner,collection.name,collection.desc*,transfers.*address,transfers.transaction_hash
 // &collection_id=true
+// &block_number=range:4000,5000
+// &transaction_index=gt:10
+// &content_sha=1DF4*
+// &creator=0xa20c*
+
+// can have cursor-based pagination with `page_key={1}_{2}` where first is block_number, second is transaction_index
+// &page_key=4000_10
+
+// can have page-based pagination too, just use `page=3`, there's also `next` and `prev` for navigation
 
 export const GET = withValidation(ethscriptionParamsSchema, async (req, params) => {
   const searchParams = new URL(req.url).searchParams;
