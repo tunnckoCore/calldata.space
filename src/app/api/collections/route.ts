@@ -7,7 +7,7 @@ import { z } from 'zod';
 import { db } from '@/db';
 import { collections, insertCollectionSchema } from '@/db/schema';
 import { collectionParamsSchema } from '@/utils/params-validation';
-import { withValidation } from '@/utils/validation';
+import { withIncludesExcludes, withValidation } from '@/utils/validation';
 
 export const GET = withValidation(collectionParamsSchema, async (req, { searchQuery }) => {
   const searchParams = new URL(req.url).searchParams;
@@ -135,64 +135,11 @@ export const GET = withValidation(collectionParamsSchema, async (req, { searchQu
   }
 
   const res = await query;
-  let results = res.map(({ total, ...row }) => ({ ...row }));
+  const results = res.map(({ total, ...row }) => ({ ...row }));
   const total = res[0]?.total ?? 0;
   const left = total - searchQuery.page_size;
   const has_next = total > offset + searchQuery.page_size ? searchQuery.page + 1 : null;
   const nextCursor = has_next ? res[res.length - 1]?.created_at : null;
-
-  const include = searchQuery.include?.split(',').filter(Boolean);
-  const exclude = searchQuery.exclude?.split(',').filter(Boolean);
-
-  if (include || exclude) {
-    results = results.map((item: any): any => {
-      const processObject = (obj: any, prefix = ''): any => {
-        if (!obj || typeof obj !== 'object') return obj;
-
-        const result: Record<string, any> = {};
-        Object.entries(obj).forEach(([key, value]) => {
-          const fullPath = prefix ? `${prefix}.${key}` : key;
-          let shouldInclude = true;
-
-          if (exclude) {
-            // Check if field or its parent should be excluded
-            const isExcluded = exclude.some((pattern) => {
-              if (pattern.includes('*')) {
-                const regexPattern = pattern.replace(/\./g, '\\.').replace(/\*/g, '.*');
-                const regex = new RegExp(`^${regexPattern}$`);
-                return regex.test(fullPath);
-              }
-              return fullPath === pattern || pattern === `${fullPath}.*`;
-            });
-            shouldInclude = !isExcluded;
-          }
-
-          if (include) {
-            // Include can override exclude for specific fields
-            const isIncluded = include.some((pattern) => {
-              if (pattern.includes('*')) {
-                const regexPattern = pattern.replace(/\./g, '\\.').replace(/\*/g, '.*');
-                const regex = new RegExp(`^${regexPattern}$`);
-                return regex.test(fullPath);
-              }
-              return fullPath === pattern;
-            });
-            if (isIncluded) {
-              shouldInclude = true;
-            }
-          }
-
-          if (shouldInclude) {
-            result[key] =
-              typeof value === 'object' && value !== null ? processObject(value, fullPath) : value;
-          }
-        });
-        return result;
-      };
-
-      return processObject(item);
-    });
-  }
 
   return {
     pagination: searchQuery.page_key
@@ -213,7 +160,7 @@ export const GET = withValidation(collectionParamsSchema, async (req, { searchQu
           page_key: nextCursor || null,
           has_more: Boolean(has_next),
         },
-    data: results,
+    data: withIncludesExcludes(results, searchQuery),
     status: 200,
   };
 });

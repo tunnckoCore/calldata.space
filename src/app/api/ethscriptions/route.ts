@@ -6,7 +6,7 @@ import { db } from '@/db';
 import { collections, transactions, transfers, votes } from '@/db/schema';
 import { ethscriptions } from '@/db/schema/index.ts';
 import { ethscriptionParamsSchema } from '@/utils/params-validation';
-import { withValidation } from '@/utils/validation';
+import { withIncludesExcludes, withValidation } from '@/utils/validation';
 
 // /api/ethscriptions?limit=50
 
@@ -313,62 +313,6 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, { search
     ? `${results[results.length - 1]?.block_number}_${results[results.length - 1]?.transaction_index}`
     : null;
 
-  // Process include/exclude filters with nested support
-  let filteredData = results.map(({ total, ...item }) => item);
-
-  const include = searchQuery.include?.split(',').filter(Boolean);
-  const exclude = searchQuery.exclude?.split(',').filter(Boolean);
-
-  if (include || exclude) {
-    filteredData = filteredData.map((item: any): any => {
-      const processObject = (obj: any, prefix = ''): any => {
-        if (!obj || typeof obj !== 'object') return obj;
-
-        const result: Record<string, any> = {};
-        Object.entries(obj).forEach(([key, value]) => {
-          const fullPath = prefix ? `${prefix}.${key}` : key;
-          let shouldInclude = true;
-
-          if (exclude) {
-            // Check if field or its parent should be excluded
-            const isExcluded = exclude.some((pattern) => {
-              if (pattern.includes('*')) {
-                const regexPattern = pattern.replace(/\./g, '\\.').replace(/\*/g, '.*');
-                const regex = new RegExp(`^${regexPattern}$`);
-                return regex.test(fullPath);
-              }
-              return fullPath === pattern || pattern === `${fullPath}.*`;
-            });
-            shouldInclude = !isExcluded;
-          }
-
-          if (include) {
-            // Include can override exclude for specific fields
-            const isIncluded = include.some((pattern) => {
-              if (pattern.includes('*')) {
-                const regexPattern = pattern.replace(/\./g, '\\.').replace(/\*/g, '.*');
-                const regex = new RegExp(`^${regexPattern}$`);
-                return regex.test(fullPath);
-              }
-              return fullPath === pattern;
-            });
-            if (isIncluded) {
-              shouldInclude = true;
-            }
-          }
-
-          if (shouldInclude) {
-            result[key] =
-              typeof value === 'object' && value !== null ? processObject(value, fullPath) : value;
-          }
-        });
-        return result;
-      };
-
-      return processObject(item);
-    });
-  }
-
   return {
     pagination: isCursor
       ? {
@@ -388,7 +332,10 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, { search
           page_key: nextCursor || null,
           has_more: Boolean(has_next),
         },
-    data: filteredData,
+    data: withIncludesExcludes(
+      results.map(({ total, ...item }) => item),
+      searchQuery,
+    ),
     status: 200,
   };
 });
