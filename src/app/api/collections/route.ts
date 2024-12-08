@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { and, asc, desc, eq, gt, gte, like, lt, lte, sql } from 'drizzle-orm';
+// NOTE: used for selecting proper operators for the where clause
+import * as orm from 'drizzle-orm';
 import { z } from 'zod';
 
 import { db } from '@/db';
@@ -32,21 +34,22 @@ export const GET = withValidation(collectionParamsSchema, async (req, params) =>
       total: sql<number>`COUNT(*) OVER()`,
     })
     .from(collections);
+
   const conditions: any = [];
+
+  // console.log('params.where in route:', params.where);
 
   // Text fields - exact match or contains
   ['id', 'slug', 'name', 'description', 'logo', 'banner'].forEach((field) => {
     if (searchParams.has(field)) {
       let value = params[field];
-      let val = value.includes('*') ? value.replace(/\*/g, '') : value;
+      let val = value.includes('*') ? value.replace(/\*/g, '%') : value;
       if (field === 'slug') {
         val = val.toLowerCase();
         value = value.toLowerCase();
       }
       conditions.push(
-        value.includes('*')
-          ? like(collections[field], `%${val}%`)
-          : eq(collections[field], value),
+        value.includes('*') ? like(collections[field], val) : eq(collections[field], val),
       );
     }
     // if (searchParams.has(field)) {
@@ -82,7 +85,7 @@ export const GET = withValidation(collectionParamsSchema, async (req, params) =>
         conditions.push(gte(collections.supply, min), lte(collections.supply, max));
         break;
       default:
-        conditions.push(eq(collections.supply, parseInt(value)));
+        conditions.push(eq(collections.supply, num));
     }
   }
 
@@ -91,6 +94,7 @@ export const GET = withValidation(collectionParamsSchema, async (req, params) =>
     conditions.push(eq(collections.verified, params.verified));
   }
 
+  // NOTE: Not needed for filtering probably.
   // Array fields (links, team)
   // ['links', 'team'].forEach((field) => {
   //   if (searchParams.has(field)) {
@@ -106,9 +110,18 @@ export const GET = withValidation(collectionParamsSchema, async (req, params) =>
     conditions.push((isAscending ? gt : lt)(collections.created_at, params.page_key));
   }
 
-  // Apply conditions and ordering
-  if (conditions.length) {
+  // Apply conditions and ordering, if it's not a `where` query param clause
+  // if it is a `where` clause, then we construct the query based on the `where` object
+  if (!params.where && conditions.length) {
     query.where(and(...conditions));
+  } else if (params.where) {
+    for (const [key, spec] of Object.entries(params.where)) {
+      for (const [op, value] of Object.entries(spec)) {
+        // console.log({ op, key, value, spec });
+        const val = value.includes('*') ? value.replace(/\*/g, '%') : value;
+        query.where(orm[op](collections[key], val));
+      }
+    }
   }
 
   query.orderBy(order(collections.created_at));
@@ -128,22 +141,22 @@ export const GET = withValidation(collectionParamsSchema, async (req, params) =>
   return {
     pagination: params.page_key
       ? {
-        total,
-        items_left: left < 0 ? 0 : left,
-        page_size: params.page_size,
-        page_key: nextCursor || null,
-        has_more: left > 0,
-      }
+          total,
+          items_left: left < 0 ? 0 : left,
+          page_size: params.page_size,
+          page_key: nextCursor || null,
+          has_more: left > 0,
+        }
       : {
-        total,
-        page_size: params.page_size,
-        pages: Math.ceil(total / params.page_size),
-        page: params.page,
-        prev: params.page > 1 ? params.page - 1 : null,
-        next: has_next,
-        page_key: nextCursor || null,
-        has_more: Boolean(has_next),
-      },
+          total,
+          page_size: params.page_size,
+          pages: Math.ceil(total / params.page_size),
+          page: params.page,
+          prev: params.page > 1 ? params.page - 1 : null,
+          next: has_next,
+          page_key: nextCursor || null,
+          has_more: Boolean(has_next),
+        },
     data: results,
     status: 200,
   };

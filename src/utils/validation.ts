@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { parse as qsParse } from 'qs-esm';
 import { z } from 'zod';
 
 export type ErrorResult = {
@@ -8,17 +9,87 @@ export type ErrorResult = {
   details?: z.ZodIssue[];
 };
 
-export function validateInput<TT, T extends z.ZodSchema = z.ZodSchema>(
-  { req, request, input }: any,
+// First define our operator types
+type Operators = 'eq' | 'gt' | 'lt' | 'gte' | 'lte' | 'like';
+
+// // Define what a comparison value looks like
+// type ComparisonValue<T> =
+//   | {
+//     operator: ComparisonOperator;
+//     value: T;
+//   }
+//   | {
+//     operator: 'range';
+//     min: T;
+//     max: T;
+//   };
+
+// // Type for wildcard text search
+// type WildcardValue = {
+//   wildcard: true;
+//   value: string;
+// };
+
+/*
+
+where[block_number][gt]=123
+
+*/
+
+type ConvertValue<T> = T extends number ? string | number : T;
+
+type WhereClause<T extends z.ZodSchema> = {
+  [K in keyof z.infer<T>]?: {
+    [P in Operators]?: ConvertValue<z.infer<T>[K]>;
+  };
+};
+
+// Add a function to convert values based on schema
+function convertWhereValues<T extends z.ZodSchema>(
+  where: WhereClause<T>,
   schema: T,
-  handler: (req: NextRequest & { params: z.infer<T> }, params: z.infer<T>) => TT,
+): WhereClause<T> {
+  if (!where) return where;
+
+  const result: any = {};
+  for (const [key, conditions] of Object.entries(where)) {
+    result[key] = {};
+
+    for (const [operator, value] of Object.entries(conditions)) {
+      // Convert string numbers to actual numbers if the schema expects a number
+
+      if ((schema as any).shape[key]) {
+        result[key][operator] = (schema as any).shape[key].parse(value);
+      } else {
+        result[key][operator] = value;
+      }
+
+      // console.log('convertWhereValues:', key, operator, result[key][operator])
+    }
+  }
+  return result;
+}
+
+export function validateInput<TT, TSchema extends z.ZodSchema = z.ZodSchema>(
+  { req, request, input, where }: any,
+  schema: TSchema,
+  handler: (
+    req: NextRequest & { params: z.infer<TSchema> },
+    params: z.infer<TSchema> & { where: WhereClause<TSchema> },
+  ) => TT,
 ) {
   try {
     const $req = req || request || {};
     const params = schema.parse(input);
 
+    if (where) {
+      params.where = convertWhereValues(where, schema);
+    }
+
     // @ts-ignore bruh
     $req.params = params;
+    // @ts-ignore bruh
+    $req.where = where;
 
     return handler($req, params) as TT;
   } catch (error: any) {
@@ -42,13 +113,20 @@ export function validateInput<TT, T extends z.ZodSchema = z.ZodSchema>(
   }
 }
 
-export function withValidation<T extends z.ZodSchema = z.ZodSchema>(
-  schema: T,
-  handler: (req: NextRequest & { params: z.infer<T> }, params: z.infer<T>) => any,
+export function withValidation<TSchema extends z.ZodSchema = z.ZodSchema>(
+  schema: TSchema,
+  handler: (
+    req: NextRequest & { params: z.infer<TSchema> },
+    params: z.infer<TSchema> & { where: WhereClause<TSchema> },
+  ) => any,
 ) {
   return async function (req: NextRequest) {
-    const input = Object.fromEntries(new URL(req.url).searchParams);
-    const result = await validateInput({ req, input }, schema, handler);
+    const url = new URL(req.url);
+    const input = qsParse(url.search.slice(1));
+
+    const { where } = input;
+    delete input.where;
+    const result = await validateInput({ req, input, where }, schema, handler);
 
     if (result instanceof NextResponse || result instanceof Response) {
       return result;

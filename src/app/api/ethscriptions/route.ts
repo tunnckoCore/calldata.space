@@ -1,4 +1,6 @@
 import { and, asc, desc, eq, gt, gte, like, lt, lte, sql } from 'drizzle-orm';
+// NOTE: used for selecting proper operators for the where clause
+import * as orm from 'drizzle-orm';
 
 import { db } from '@/db';
 import { collections, transactions, transfers, votes } from '@/db/schema';
@@ -16,6 +18,13 @@ import { withValidation } from '@/utils/validation';
 // &transaction_index=gt:10
 // &content_sha=1DF4*
 // &creator=0xa20c*
+
+// can use nested `where` clause too
+// &where[block_number][gt]=4535&where[block_number][lt]=4545
+// &where[content_sha][like]=*F591*
+// &where[content_sha][like]=0x*73e*
+// &where[content_sha][like]=0xF591*
+// &where[media_subtype][like]=vnd.*
 
 // can have cursor-based pagination with `page_key={1}_{2}` where first is block_number, second is transaction_index
 // &page_key=4000_10
@@ -181,7 +190,7 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, params) 
             conditions.push(gte(ethscriptions[field], min), lte(ethscriptions[field], max));
             break;
           default:
-            conditions.push(eq(ethscriptions[field], parseInt(value)));
+            conditions.push(eq(ethscriptions[field], num));
         }
       }
     },
@@ -198,11 +207,11 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, params) 
       conditions.push(sql`${ethscriptions.collection_id} IS NULL`);
     } else {
       // Regular text search with wildcard support
-      const val = value.includes('*') ? value.replace(/\*/g, '') : value;
+      const val = value.includes('*') ? value.replace(/\*/g, '%') : value;
       conditions.push(
         value.includes('*')
-          ? like(ethscriptions.collection_id, `%${val}%`)
-          : eq(ethscriptions.collection_id, value),
+          ? like(ethscriptions.collection_id, val)
+          : eq(ethscriptions.collection_id, val),
       );
     }
   }
@@ -221,11 +230,9 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, params) 
   ].forEach((field) => {
     if (searchParams.has(field)) {
       const value = params[field];
-      const val = value.includes('*') ? value.replace(/\*/g, '') : value;
+      const val = value.includes('*') ? value.replace(/\*/g, '%') : value;
       conditions.push(
-        value.includes('*')
-          ? like(ethscriptions[field], `%${val}%`)
-          : eq(ethscriptions[field], value),
+        value.includes('*') ? like(ethscriptions[field], val) : eq(ethscriptions[field], val),
       );
     }
   });
@@ -262,9 +269,20 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, params) 
     }
   }
 
-  // Apply all conditions
-  if (conditions.length) {
+  // Apply conditions and ordering, if it's not a `where` query param clause
+  // if it is a `where` clause, then we construct the query based on the `where` object
+  if (!params.where && conditions.length) {
     query.where(and(...conditions));
+  } else if (params.where) {
+    const conds: any = [];
+    for (const [key, spec] of Object.entries(params.where)) {
+      for (const [op, value] of Object.entries(spec)) {
+        // console.log({ op, key, value, spec });
+        const val = value.includes('*') ? value.replace(/\*/g, '%') : value;
+        conds.push(orm[op](ethscriptions[key], val));
+      }
+    }
+    query.where(and(...conds));
   }
 
   // Order by both block_number and transaction_index
@@ -342,22 +360,22 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, params) 
   return {
     pagination: isCursor
       ? {
-        total,
-        items_left: left < 0 ? 0 : left,
-        page_size: params.page_size,
-        page_key: nextCursor || null,
-        has_more: left > 0,
-      }
+          total,
+          items_left: left < 0 ? 0 : left,
+          page_size: params.page_size,
+          page_key: nextCursor || null,
+          has_more: left > 0,
+        }
       : {
-        total,
-        limit: params.page_size,
-        pages: Math.ceil(total / params.page_size),
-        page: params.page,
-        prev: params.page > 1 ? params.page - 1 : null,
-        next: has_next,
-        page_key: nextCursor || null,
-        has_more: Boolean(has_next),
-      },
+          total,
+          limit: params.page_size,
+          pages: Math.ceil(total / params.page_size),
+          page: params.page,
+          prev: params.page > 1 ? params.page - 1 : null,
+          next: has_next,
+          page_key: nextCursor || null,
+          has_more: Boolean(has_next),
+        },
     data: filteredData,
     status: 200,
   };
