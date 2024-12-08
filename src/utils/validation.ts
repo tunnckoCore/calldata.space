@@ -296,7 +296,7 @@ export function withValidation<TSchema extends z.ZodSchema>(
           message: result.message,
           error: result.error,
         },
-        { status: result.status },
+        { status: result.status, headers: result.headers || new Headers() },
       );
     }
 
@@ -305,7 +305,7 @@ export function withValidation<TSchema extends z.ZodSchema>(
         pagination: result.pagination,
         data: result.data,
       },
-      { status: result.status || 200 },
+      { status: result.status || 200, headers: result.headers || new Headers() },
     );
   };
 }
