@@ -115,6 +115,9 @@ export const GET = withValidation(collectionParamsSchema, async (req, params) =>
   if (!params.where && conditions.length) {
     query.where(and(...conditions));
   } else if (params.where) {
+    // NOTE: the autocompletion for `params.where.block_number.gt` works,
+    // but the type of `params.where` on hover is not inferred correctly (it's `params.where: ZodSchema`
+    // instead of `params.where: Record<Operators, any>`)
     for (const [key, spec] of Object.entries(params.where)) {
       for (const [op, value] of Object.entries(spec)) {
         // console.log({ op, key, value, spec });

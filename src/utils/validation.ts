@@ -2,6 +2,51 @@ import { NextRequest, NextResponse } from 'next/server';
 import { parse as qsParse } from 'qs-esm';
 import { z } from 'zod';
 
+// Make WhereClause more explicit
+// export type WhereClause<T> = {
+//   [K in keyof T]?: OperatorRecord<T[K]>;
+// };
+
+// Define what each field's where clause looks like
+// export type FieldWhereClause<T> = {
+//   [P in Operator]?: T;
+// };
+
+// // Define the complete where clause type
+// export type WhereClause<T> = {
+//   [K in keyof T]?: FieldWhereClause<T[K]>;
+// };
+
+// // The final validation result type
+// export type ValidationResult<T extends z.ZodSchema> = z.infer<T> & {
+//   where?: {
+//     [K in keyof z.infer<T>]?: FieldWhereClause<z.infer<T>[K]>;
+//   };
+// };
+
+// export type WhereClause<T> = {
+//   [K in keyof T]: Record<Operator, T[K]> & {
+//     eq?: number;
+//     gt?: number;
+//     lt?: number;
+//     gte?: number;
+//     lte?: number;
+//     like?: string;
+//   };
+// };
+
+// // Then our ValidationResult type
+// export type ValidationResult<T extends z.ZodSchema> = z.infer<T> & {
+//   where?: {
+//     // [K in keyof z.infer<T>]?: OperatorRecord<z.infer<T>[K]>;
+//     [K in keyof z.infer<T>]?: {
+//       [P in Operator]?: {
+//         [Q in keyof WhereClause<T>[K]]?: WhereClause<T>[K][Q]
+//       }
+//     }
+//   };
+// };
+
 export type ErrorResult = {
   message: string;
   status: number;
@@ -9,89 +54,191 @@ export type ErrorResult = {
   details?: z.ZodIssue[];
 };
 
-// First define our operator types
-type Operators = 'eq' | 'gt' | 'lt' | 'gte' | 'lte' | 'like';
+// // Define operators
+// export const Operators = ['eq', 'gt', 'lt', 'gte', 'lte', 'like'] as const;
+// export type Operator = (typeof Operators)[number];
 
-// // Define what a comparison value looks like
-// type ComparisonValue<T> =
-//   | {
-//     operator: ComparisonOperator;
-//     value: T;
-//   }
-//   | {
-//     operator: 'range';
-//     min: T;
-//     max: T;
+// // Define the where clause type that maintains schema inference
+// export type WhereClause<T> = {
+//   [K in keyof T]?: {
+//     [P in Operator]?: T[K];
 //   };
-
-// // Type for wildcard text search
-// type WildcardValue = {
-//   wildcard: true;
-//   value: string;
 // };
 
-/*
+// // Define the complete validation result type
+// export type ValidationResult<T extends z.ZodSchema> = z.infer<T> & {
+//   where?: WhereClause<z.infer<T>>;
+// };
 
-where[block_number][gt]=123
+// Helper function to convert where values
+// function convertWhereValues<T extends z.ZodSchema>(
+//   where: Record<string, Record<string, any>>,
+//   schema: T,
+// ): WhereClause<z.infer<T>> {
+//   if (!where) return where;
 
-*/
+//   const result = {} as WhereClause<z.infer<T>>;
+//   const shape = (schema as any).shape as Record<string, z.ZodType>;
 
-type ConvertValue<T> = T extends number ? string | number : T;
+//   for (const [key, conditions] of Object.entries(where)) {
+//     if (key in shape) {
+//       result[key as keyof z.infer<T>] = {};
 
-type WhereClause<T extends z.ZodSchema> = {
-  [K in keyof z.infer<T>]?: {
-    [P in Operators]?: ConvertValue<z.infer<T>[K]>;
+//       for (const [op, value] of Object.entries(conditions)) {
+//         if (Operators.includes(op as Operator)) {
+//           try {
+//             const parsed = shape[key].parse(value);
+//             (result[key as keyof z.infer<T>] as any)[op] = parsed;
+//           } catch {
+//             (result[key as keyof z.infer<T>] as any)[op] = value;
+//           }
+//         }
+//       }
+//     }
+//   }
+
+//   return result;
+// }
+
+// // The final validation result type with fully expanded where clause
+// export type ValidationResult<T extends z.ZodSchema> = z.infer<T> & {
+//   where?: {
+//     [K in keyof z.infer<T>]?: {
+//       eq?: number;
+//       gt?: number;
+//       lt?: number;
+//       gte?: number;
+//       lte?: number;
+//       like?: string;
+//     };
+//   };
+// };
+
+// export const Operators = ['eq', 'gt', 'lt', 'gte', 'lte', 'like'] as const;
+// type Operator = typeof Operators[number];
+
+export const operators = ['eq', 'gt', 'lt', 'gte', 'lte', 'like'] as const;
+export type Operator = (typeof operators)[number];
+
+// All fields get all operators, with 'like' always returning string
+type FieldOperators<T> = {
+  eq?: T;
+  gt?: T;
+  lt?: T;
+  gte?: T;
+  lte?: T;
+  like?: string;
+};
+
+// The final validation result type
+export type ValidationResult<T extends z.ZodSchema> = z.infer<T> & {
+  where?: {
+    [K in keyof z.infer<T>]?: FieldOperators<z.infer<T>[K]>;
   };
 };
 
-// Add a function to convert values based on schema
+// // Helper function to convert where values
+// function convertWhereValues<T extends z.ZodSchema>(
+//   where: Record<string, Record<string, any>>,
+//   schema: T,
+// ): ValidationResult<T>['where'] {
+//   if (!where) return undefined;
+
+//   const result = {} as ValidationResult<T>['where'];
+//   const shape = (schema as any).shape as Record<string, z.ZodType>;
+
+//   for (const [key, conditions] of Object.entries(where)) {
+//     if (key in shape) {
+//       result[key] = {};
+
+//       for (const [op, value] of Object.entries(conditions)) {
+//         if (Operators.includes(op as Operator)) {
+//           try {
+//             const parsed = shape[key].parse(value);
+//             (result[key] as any)[op] = parsed;
+//           } catch {
+//             (result[key] as any)[op] = value;
+//           }
+//         }
+//       }
+//     }
+//   }
+
+//   return result;
+// }
+
 function convertWhereValues<T extends z.ZodSchema>(
-  where: WhereClause<T>,
+  where: Record<string, Record<string, any>>,
   schema: T,
-): WhereClause<T> {
-  if (!where) return where;
+): ValidationResult<T>['where'] {
+  if (!where) return undefined;
 
-  const result: any = {};
+  const result = {} as ValidationResult<T>['where'];
+  const shape = (schema as any).shape as Record<string, z.ZodType>;
+
   for (const [key, conditions] of Object.entries(where)) {
-    result[key] = {};
+    if (key in shape) {
+      result[key] = {};
 
-    for (const [operator, value] of Object.entries(conditions)) {
-      // Convert string numbers to actual numbers if the schema expects a number
+      // const fieldType = shape[key];
+      // const isNumber = fieldType instanceof z.ZodNumber;
+      // const isString = fieldType instanceof z.ZodString;
+      // const isBoolean = fieldType instanceof z.ZodBoolean;
 
-      if ((schema as any).shape[key]) {
-        result[key][operator] = (schema as any).shape[key].parse(value);
-      } else {
-        result[key][operator] = value;
+      for (const [operator, value] of Object.entries(conditions)) {
+        // const isValidOperator = (
+        //   (isNumber && NumericOperators.includes(op as NumericOperator)) ||
+        //   (isString && StringOperators.includes(op as StringOperator)) ||
+        //   (isBoolean && BooleanOperators.includes(op as BooleanOperator))
+        // );
+
+        if ((schema as any).shape[key]) {
+          result[key][operator] = (schema as any).shape[key].parse(value);
+        } else {
+          result[key][operator] = value;
+        }
+
+        // if (operators.includes(op as Operator)) {
+        //   try {
+        //     const parsed = shape[key].parse(value);
+        //     (result[key] as any)[op] = parsed;
+        //   } catch {
+        //     (result[key] as any)[op] = value;
+        //   }
+        // }
       }
-
-      // console.log('convertWhereValues:', key, operator, result[key][operator])
     }
   }
+
   return result;
 }
 
-export function validateInput<TT, TSchema extends z.ZodSchema = z.ZodSchema>(
-  { req, request, input, where }: any,
+// Main validation function with proper typing
+export function validateInput<TSchema extends z.ZodSchema>(
+  {
+    req,
+    input,
+    where,
+  }: {
+    req: NextRequest;
+    input: any;
+    where?: Record<string, Record<string, any>>;
+  },
   schema: TSchema,
   handler: (
-    req: NextRequest & { params: z.infer<TSchema> },
-    params: z.infer<TSchema> & { where: WhereClause<TSchema> },
-  ) => TT,
+    req: NextRequest & { params: ValidationResult<TSchema> },
+    params: ValidationResult<TSchema>,
+  ) => Promise<any>,
 ) {
   try {
-    const $req = req || request || {};
-    const params = schema.parse(input);
+    const validatedInput = schema.parse(input);
+    const params = {
+      ...validatedInput,
+      where: where ? convertWhereValues(where, schema) : undefined,
+    } as ValidationResult<TSchema>;
 
-    if (where) {
-      params.where = convertWhereValues(where, schema);
-    }
-
-    // @ts-ignore bruh
-    $req.params = params;
-    // @ts-ignore bruh
-    $req.where = where;
-
-    return handler($req, params) as TT;
+    const request = Object.assign(req, { params });
+    return handler(request, params);
   } catch (error: any) {
     if (error instanceof z.ZodError) {
       return {
@@ -101,45 +248,55 @@ export function validateInput<TT, TSchema extends z.ZodSchema = z.ZodSchema>(
       } as ErrorResult;
     }
 
-    // Handle any errors
-    console.error('Failure:', error);
-    const msg = error.toString();
-    const err = {
-      name: error.name,
-      code: error.code,
-      message: error.code === 'SQLITE_CONSTRAINT' ? msg.split('SQLITE_CONSTRAINT: ')?.[1] : msg,
-    };
-    return { status: 500, message: 'Fatal server failure', error: err } as ErrorResult;
+    return {
+      status: 500,
+      message: 'Fatal server failure',
+      error: {
+        name: error.name,
+        code: error.code,
+        message:
+          error.code === 'SQLITE_CONSTRAINT'
+            ? error.message.split('SQLITE_CONSTRAINT: ')[1]
+            : error.message,
+      },
+    } as ErrorResult;
   }
 }
 
-export function withValidation<TSchema extends z.ZodSchema = z.ZodSchema>(
+// Route handler wrapper with proper typing
+export function withValidation<TSchema extends z.ZodSchema>(
   schema: TSchema,
   handler: (
-    req: NextRequest & { params: z.infer<TSchema> },
-    params: z.infer<TSchema> & { where: WhereClause<TSchema> },
-  ) => any,
+    req: NextRequest & { params: ValidationResult<TSchema> },
+    params: ValidationResult<TSchema>,
+  ) => Promise<any>,
 ) {
   return async function (req: NextRequest) {
     const url = new URL(req.url);
-    const input = qsParse(url.search.slice(1));
+    const { where, ...input } = qsParse(url.search.slice(1));
 
-    const { where } = input;
-    delete input.where;
-    const result = await validateInput({ req, input, where }, schema, handler);
+    const result = await validateInput(
+      {
+        req,
+        input,
+        where: where as Record<string, Record<string, any>>,
+      },
+      schema,
+      handler,
+    );
 
     if (result instanceof NextResponse || result instanceof Response) {
       return result;
     }
 
-    if (result.error) {
+    if ('error' in result) {
       return NextResponse.json(
         {
           status: result.status,
           message: result.message,
           error: result.error,
         },
-        { status: result.status, headers: result.headers || new Headers() },
+        { status: result.status },
       );
     }
 
@@ -148,10 +305,7 @@ export function withValidation<TSchema extends z.ZodSchema = z.ZodSchema>(
         pagination: result.pagination,
         data: result.data,
       },
-      {
-        status: result.status,
-        headers: result.headers || new Headers(),
-      },
+      { status: result.status || 200 },
     );
   };
 }

@@ -48,7 +48,7 @@ const createWildcardSchema = (schema: z.ZodSchema) => {
 
 export const numberSchema = z.string().transform(Number).pipe(z.number().int().positive());
 
-export const ethscriptionParamsSchema = z.object({
+export const baseEthscriptionSchema = z.object({
   // Pagination
   page: z.coerce.number().int().positive().min(1).default(1),
   page_key: z
@@ -156,6 +156,54 @@ export const ethscriptionParamsSchema = z.object({
     .transform((value) => value === 'true')
     .optional(),
 });
+
+const Operators = ['eq', 'gt', 'lt', 'gte', 'lte', 'like'] as const;
+type Operator = (typeof Operators)[number];
+
+const whereOperatorSchema = <T extends z.ZodTypeAny>(valueSchema: T) =>
+  z.record(z.enum(Operators), valueSchema);
+
+export const ethscriptionParamsSchema = baseEthscriptionSchema;
+// export const ethscriptionParamsSchema = baseEthscriptionSchema.extend({
+//   where: z.record(
+//     z.enum(Object.keys(baseEthscriptionSchema.shape) as [string, ...string[]]),
+//     whereOperatorSchema(z.any())
+//   ).optional(),
+// });
+
+// Export the final type
+// export type EthscriptionParams = z.infer<typeof baseEthscriptionSchema> & {
+//   where?: WhereClauseType<z.infer<typeof baseEthscriptionSchema>>;
+// };
+
+// Then create the where operator schema type
+// const whereOperatorSchema = <T extends z.ZodTypeAny>(valueSchema: T) =>
+//   z.record(
+//     z.enum(['eq', 'gt', 'lt', 'gte', 'lte', 'like']),
+//     valueSchema
+//   );
+
+// Create the complete schema with where clause using z.lazy()
+// export const ethscriptionParamsSchema = z.lazy(() =>
+//   baseEthscriptionSchema.extend({
+//     where: z.record(
+//       // Keys are the same as the base schema
+//       z.enum(Object.keys(baseEthscriptionSchema.shape) as [string, ...string[]]),
+//       // Values are operator objects with corresponding value types
+//       whereOperatorSchema(z.any())
+//     ).optional()
+//   })
+// );
+
+// const ethsKeys = Object.keys(baseEthscriptionSchema.shape);
+// export const ethscriptionParamsSchema = z.lazy(() => baseEthscriptionSchema.extend({
+//   where: z.record(
+//     // Keys are the same as the base schema
+//     z.enum(ethsKeys as [string, ...string[]]),
+//     // Values are operator objects with corresponding value types
+//     whereOperatorSchema(z.any())
+//   ).optional()
+// }));
 
 export const collectionParamsSchema = z
   .object({
