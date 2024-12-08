@@ -235,6 +235,9 @@ export const collectionParamsSchema = z
     // Array filters
     links: z.array(z.string().url()).optional(),
     team: z.array(z.string()).optional(),
+
+    include: z.string().optional(),
+    exclude: z.string().optional(),
   })
   .strict();
 
