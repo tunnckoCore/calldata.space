@@ -1,9 +1,10 @@
 import { relations, sql } from 'drizzle-orm';
 import * as sq from 'drizzle-orm/sqlite-core';
+
 // import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
 // import { z } from 'zod';
 
-import { transactions, transfers, votes } from './index.ts';
+import { collections, transactions, transfers, votes } from './index.ts';
 
 export const ethscriptions = sq.sqliteTable('ethscriptions', {
   id: sq
@@ -33,7 +34,12 @@ export const ethscriptions = sq.sqliteTable('ethscriptions', {
   current_owner: sq.text().notNull(),
   previous_owner: sq.text().notNull(),
 
-  updated_at: sq.integer().default(sql`(unixepoch())`),
+  updated_at: sq
+    .integer()
+    .notNull()
+    .default(sql`(unixepoch())`),
+
+  collection_id: sq.text().references(() => collections.id),
 });
 
 // export const selectEthscriptionSchema = createSelectSchema(ethscriptions);
@@ -45,6 +51,10 @@ export const ethscriptionsRelations = relations(ethscriptions, ({ one, many }) =
   metadata: one(transactions, {
     fields: [ethscriptions.id],
     references: [transactions.transaction_hash],
+  }),
+  collection: one(collections, {
+    fields: [ethscriptions.collection_id],
+    references: [collections.id],
   }),
   transfers: many(transfers),
   votes: many(votes),

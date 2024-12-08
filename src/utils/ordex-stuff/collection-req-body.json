@@ -1,0 +1,11 @@
+{
+  "size": 24,
+  "filter": {
+    "blockchains": ["ETHEREUM_ETHSCRIPTION"],
+    "collections": ["ETHEREUM_ETHSCRIPTION:mfpurrs"],
+    "owners": [],
+    "traits": [],
+    "names": []
+  },
+  "sort": "LOWEST_SELL"
+}

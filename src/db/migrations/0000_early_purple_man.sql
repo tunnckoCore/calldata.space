@@ -1,3 +1,20 @@
+CREATE TABLE `collections` (
+	`id` text PRIMARY KEY NOT NULL,
+	`supply` integer NOT NULL,
+	`slug` text NOT NULL,
+	`name` text NOT NULL,
+	`description` text NOT NULL,
+	`logo` text DEFAULT 'https://example.com/logo.png' NOT NULL,
+	`banner` text DEFAULT 'https://example.com/banner.png' NOT NULL,
+	`links` text DEFAULT '[]' NOT NULL,
+	`team` text DEFAULT '[]' NOT NULL,
+	`royalties` text DEFAULT '{}' NOT NULL,
+	`verified` integer DEFAULT false NOT NULL,
+	`created_at` integer DEFAULT (unixepoch()) NOT NULL
+);
+--> statement-breakpoint
+CREATE UNIQUE INDEX `collections_slug_unique` ON `collections` (`slug`);--> statement-breakpoint
+CREATE UNIQUE INDEX `collections_name_unique` ON `collections` (`name`);--> statement-breakpoint
 CREATE TABLE `ethscriptions` (
 	`id` text PRIMARY KEY NOT NULL,
 	`number` integer,
@@ -17,8 +34,10 @@ CREATE TABLE `ethscriptions` (
 	`initial_owner` text NOT NULL,
 	`current_owner` text NOT NULL,
 	`previous_owner` text NOT NULL,
-	`updated_at` integer DEFAULT (unixepoch()),
-	FOREIGN KEY (`id`) REFERENCES `transactions`(`transaction_hash`) ON UPDATE no action ON DELETE no action
+	`updated_at` integer DEFAULT (unixepoch()) NOT NULL,
+	`collection_id` text,
+	FOREIGN KEY (`id`) REFERENCES `transactions`(`transaction_hash`) ON UPDATE no action ON DELETE no action,
+	FOREIGN KEY (`collection_id`) REFERENCES `collections`(`id`) ON UPDATE no action ON DELETE no action
 );
 --> statement-breakpoint
 CREATE TABLE `transactions` (

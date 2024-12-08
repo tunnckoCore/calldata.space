@@ -1,20 +1,24 @@
 import type { Metadata } from 'next';
-import localFont from 'next/font/local';
+// import localFont from 'next/font/local';
+import { Inter } from 'next/font/google';
 
 import { ThemeProvider } from '@/components/theme-provider';
+import Providers from '@/lib/providers.tsx';
 
 import './globals.css';
 
-const geistSans = localFont({
-  src: './fonts/GeistVF.woff',
-  variable: '--font-geist-sans',
-  weight: '100 900',
-});
-const geistMono = localFont({
-  src: './fonts/GeistMonoVF.woff',
-  variable: '--font-geist-mono',
-  weight: '100 900',
-});
+const inter = Inter({ subsets: ['latin'] });
+
+// const geistSans = localFont({
+//   src: './fonts/GeistVF.woff',
+//   variable: '--font-geist-sans',
+//   weight: '100 900',
+// });
+// const geistMono = localFont({
+//   src: './fonts/GeistMonoVF.woff',
+//   variable: '--font-geist-mono',
+//   weight: '100 900',
+// });
 
 export const metadata: Metadata = {
   title: 'Eths likes',
@@ -29,11 +33,13 @@ export default function RootLayout({
   return (
     <>
       <html lang="en" suppressHydrationWarning>
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-          <ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
-            {children}
-          </ThemeProvider>
-        </body>
+        <Providers>
+          <body className={`${inter.className} antialiased`}>
+            <ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
+              {children}
+            </ThemeProvider>
+          </body>
+        </Providers>
       </html>
     </>
   );
