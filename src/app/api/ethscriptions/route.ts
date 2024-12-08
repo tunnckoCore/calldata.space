@@ -31,9 +31,9 @@ import { withValidation } from '@/utils/validation';
 
 // can have page-based pagination too, just use `page=3`, there's also `next` and `prev` for navigation
 
-export const GET = withValidation(ethscriptionParamsSchema, async (req, params) => {
+export const GET = withValidation(ethscriptionParamsSchema, async (req, { searchQuery }) => {
   const searchParams = new URL(req.url).searchParams;
-  const offset = params.page_key ? 0 : (params.page - 1) * params.page_size;
+  const offset = searchQuery.page_key ? 0 : (searchQuery.page - 1) * searchQuery.page_size;
 
   // Base query with ethscriptions fields
   const baseQuery = {
@@ -66,8 +66,8 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, params) 
   };
 
   // Add expanded relations to query
-  if (params.expand) {
-    if (params.expand.includes('collection')) {
+  if (searchQuery.expand) {
+    if (searchQuery.expand.includes('collection')) {
       Object.assign(baseQuery, {
         collection: {
           id: collections.id,
@@ -86,7 +86,7 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, params) 
       });
     }
 
-    if (params.expand.includes('metadata')) {
+    if (searchQuery.expand.includes('metadata')) {
       Object.assign(baseQuery, {
         metadata: {
           block_number: transactions.block_number,
@@ -108,7 +108,7 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, params) 
       });
     }
 
-    if (params.expand.includes('transfers')) {
+    if (searchQuery.expand.includes('transfers')) {
       Object.assign(baseQuery, {
         transfers: {
           transaction_hash: transfers.transaction_hash,
@@ -125,7 +125,7 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, params) 
       });
     }
 
-    if (params.expand.includes('votes')) {
+    if (searchQuery.expand.includes('votes')) {
       Object.assign(baseQuery, {
         votes: {
           id: votes.id,
@@ -144,20 +144,20 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, params) 
   const query = db.select(baseQuery).from(ethscriptions);
 
   // Add joins for expanded relations
-  if (params.expand) {
-    if (params.expand.includes('collection')) {
+  if (searchQuery.expand) {
+    if (searchQuery.expand.includes('collection')) {
       query.leftJoin(collections, eq(ethscriptions.collection_id, collections.id));
     }
 
-    if (params.expand.includes('metadata')) {
+    if (searchQuery.expand.includes('metadata')) {
       query.leftJoin(transactions, eq(ethscriptions.id, transactions.transaction_hash));
     }
 
-    if (params.expand.includes('transfers')) {
+    if (searchQuery.expand.includes('transfers')) {
       query.leftJoin(transfers, eq(ethscriptions.id, transfers.ethscription_id));
     }
 
-    if (params.expand.includes('votes')) {
+    if (searchQuery.expand.includes('votes')) {
       query.leftJoin(votes, eq(ethscriptions.id, votes.ethscription_id));
     }
   }
@@ -168,7 +168,7 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, params) 
   ['number', 'block_number', 'block_timestamp', 'transaction_index', 'updated_at'].forEach(
     (field) => {
       if (searchParams.has(field)) {
-        const val = params[field];
+        const val = searchQuery[field];
         const value = (val as any).value ?? val;
         const [op, num] = searchParams.get(field)?.includes(':') ? [val.op, value] : ['eq', value];
 
@@ -196,8 +196,8 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, params) 
     },
   );
 
-  if (params.collection_id) {
-    const value = params.collection_id;
+  if (searchQuery.collection_id) {
+    const value = searchQuery.collection_id;
 
     if (value === 'true') {
       // Filter for non-null collection_ids
@@ -229,7 +229,7 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, params) 
     'previous_owner',
   ].forEach((field) => {
     if (searchParams.has(field)) {
-      const value = params[field];
+      const value = searchQuery[field];
       const val = value.includes('*') ? value.replace(/\*/g, '%') : value;
       conditions.push(
         value.includes('*') ? like(ethscriptions[field], val) : eq(ethscriptions[field], val),
@@ -240,7 +240,7 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, params) 
   // Boolean ESIP filters
   ['is_esip0', 'is_esip3', 'is_esip4', 'is_esip6', 'is_esip8'].forEach((field) => {
     if (searchParams.has(field)) {
-      conditions.push(eq(ethscriptions[field], params[field]));
+      conditions.push(eq(ethscriptions[field], searchQuery[field]));
     }
   });
 
@@ -249,13 +249,13 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, params) 
     query.where(and(...conditions));
   }
 
-  const isCursor = params.page_key ? params.page_key.length > 0 : false;
-  const isAscending = params.order === 'asc';
+  const isCursor = searchQuery.page_key ? searchQuery.page_key.length > 0 : false;
+  const isAscending = searchQuery.order === 'asc';
   const order = isAscending ? asc : desc;
 
   if (isCursor) {
     // Parse the composite cursor
-    const [blockNumber, txIndex] = params.page_key?.split('_').map(Number) as [number, number];
+    const [blockNumber, txIndex] = searchQuery.page_key?.split('_').map(Number) as [number, number];
 
     // Add cursor conditions using block_number and transaction_index
     if (isAscending) {
@@ -271,22 +271,22 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, params) 
 
   // Apply conditions and ordering, if it's not a `where` query param clause
   // if it is a `where` clause, then we construct the query based on the `where` object
-  if (!params.where && conditions.length) {
+  if (!searchQuery.where && conditions.length) {
     query.where(and(...conditions));
-  } else if (params.where) {
+  } else if (searchQuery.where) {
     const conds: any = [];
 
-    // params.where.block_number?.eq;
-    // params.where.number?.eq;
-    // params.where.block_number?.gt;
-    // params.where.block_number?.like;
-    // params.where.content_sha?.like;
-    // params.where.content_sha?.eq;
+    // searchQuery.where.block_number?.eq;
+    // searchQuery.where.number?.eq;
+    // searchQuery.where.block_number?.gt;
+    // searchQuery.where.block_number?.like;
+    // searchQuery.where.content_sha?.like;
+    // searchQuery.where.content_sha?.eq;
 
-    // NOTE: the autocompletion for `params.where.block_number.gt` works,
-    // but the type of `params.where` on hover is not inferred correctly (it's `params.where: ZodSchema`
-    // instead of `params.where: Record<Operators, any>`)
-    for (const [key, spec] of Object.entries(params.where)) {
+    // NOTE: the autocompletion for `searchQuery.where.block_number.gt` works,
+    // but the type of `searchQuery.where` on hover is not inferred correctly (it's `searchQuery.where: ZodSchema`
+    // instead of `searchQuery.where: Record<Operators, any>`)
+    for (const [key, spec] of Object.entries(searchQuery.where)) {
       for (const [op, value] of Object.entries(spec) as [string, any][]) {
         const val = value.includes('*') ? value.replace(/\*/g, '%') : value;
 
@@ -299,7 +299,7 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, params) 
 
   // Order by both block_number and transaction_index
   query.orderBy(order(ethscriptions.block_number), order(ethscriptions.transaction_index));
-  query.limit(params.page_size);
+  query.limit(searchQuery.page_size);
 
   if (!isCursor) {
     query.offset(offset);
@@ -307,8 +307,8 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, params) 
 
   const results = await query;
   const total = results[0]?.total ?? 0;
-  const left = total - params.page_size;
-  const has_next = total > offset + params.page_size ? params.page + 1 : null;
+  const left = total - searchQuery.page_size;
+  const has_next = total > offset + searchQuery.page_size ? searchQuery.page + 1 : null;
   const nextCursor = has_next
     ? `${results[results.length - 1]?.block_number}_${results[results.length - 1]?.transaction_index}`
     : null;
@@ -316,8 +316,8 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, params) 
   // Process include/exclude filters with nested support
   let filteredData = results.map(({ total, ...item }) => item);
 
-  const include = params.include?.split(',').filter(Boolean);
-  const exclude = params.exclude?.split(',').filter(Boolean);
+  const include = searchQuery.include?.split(',').filter(Boolean);
+  const exclude = searchQuery.exclude?.split(',').filter(Boolean);
 
   if (include || exclude) {
     filteredData = filteredData.map((item: any): any => {
@@ -374,16 +374,16 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, params) 
       ? {
           total,
           items_left: left < 0 ? 0 : left,
-          page_size: params.page_size,
+          page_size: searchQuery.page_size,
           page_key: nextCursor || null,
           has_more: left > 0,
         }
       : {
           total,
-          limit: params.page_size,
-          pages: Math.ceil(total / params.page_size),
-          page: params.page,
-          prev: params.page > 1 ? params.page - 1 : null,
+          limit: searchQuery.page_size,
+          pages: Math.ceil(total / searchQuery.page_size),
+          page: searchQuery.page,
+          prev: searchQuery.page > 1 ? searchQuery.page - 1 : null,
           next: has_next,
           page_key: nextCursor || null,
           has_more: Boolean(has_next),

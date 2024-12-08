@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { parse as qsParse } from 'qs-esm';
 import { z } from 'zod';
 
@@ -219,26 +219,24 @@ export function validateInput<TSchema extends z.ZodSchema>(
     req,
     input,
     where,
+    params,
   }: {
-    req: NextRequest;
+    req: Request;
     input: any;
     where?: Record<string, Record<string, any>>;
-  },
+  } & BasicHandlerContext<TSchema>,
   schema: TSchema,
-  handler: (
-    req: NextRequest & { params: ValidationResult<TSchema> },
-    params: ValidationResult<TSchema>,
-  ) => Promise<any>,
+  handler: (req: Request, ctx: BasicHandlerContext<TSchema>) => Promise<any>,
 ) {
   try {
     const validatedInput = schema.parse(input);
-    const params = {
+    console.log('validateInput:', { input, validatedInput });
+    const searchQuery = {
       ...validatedInput,
       where: where ? convertWhereValues(where, schema) : undefined,
     } as ValidationResult<TSchema>;
 
-    const request = Object.assign(req, { params });
-    return handler(request, params);
+    return handler(req, { params, searchQuery });
   } catch (error: any) {
     if (error instanceof z.ZodError) {
       return {
@@ -263,20 +261,25 @@ export function validateInput<TSchema extends z.ZodSchema>(
   }
 }
 
+export type BasicHandlerContext<TSchema extends z.ZodSchema> = {
+  params: Promise<{ [key: string]: string | number }>;
+  searchQuery: ValidationResult<TSchema>;
+};
+
 // Route handler wrapper with proper typing
 export function withValidation<TSchema extends z.ZodSchema>(
   schema: TSchema,
-  handler: (
-    req: NextRequest & { params: ValidationResult<TSchema> },
-    params: ValidationResult<TSchema>,
-  ) => Promise<any>,
+  handler: (req: Request, ctx: BasicHandlerContext<TSchema>) => Promise<any>,
 ) {
-  return async function (req: NextRequest) {
+  return async function (req: Request, ctx: BasicHandlerContext<TSchema>) {
     const url = new URL(req.url);
+
     const { where, ...input } = qsParse(url.search.slice(1));
 
+    console.log('withValidation:', { ctx, input });
     const result = await validateInput(
       {
+        ...ctx,
         req,
         input,
         where: where as Record<string, Record<string, any>>,

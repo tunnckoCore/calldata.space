@@ -9,9 +9,9 @@ import { collections, insertCollectionSchema } from '@/db/schema';
 import { collectionParamsSchema } from '@/utils/params-validation';
 import { withValidation } from '@/utils/validation';
 
-export const GET = withValidation(collectionParamsSchema, async (req, params) => {
+export const GET = withValidation(collectionParamsSchema, async (req, { searchQuery }) => {
   const searchParams = new URL(req.url).searchParams;
-  const offset = params.page_key ? 0 : (params.page - 1) * params.page_size;
+  const offset = searchQuery.page_key ? 0 : (searchQuery.page - 1) * searchQuery.page_size;
 
   const collectionColumns = {
     created_at: collections.created_at,
@@ -37,12 +37,12 @@ export const GET = withValidation(collectionParamsSchema, async (req, params) =>
 
   const conditions: any = [];
 
-  // console.log('params.where in route:', params.where);
+  // console.log('searchQuery.where in route:', searchQuery.where);
 
   // Text fields - exact match or contains
   ['id', 'slug', 'name', 'description', 'logo', 'banner'].forEach((field) => {
     if (searchParams.has(field)) {
-      let value = params[field];
+      let value = searchQuery[field];
       let val = value.includes('*') ? value.replace(/\*/g, '%') : value;
       if (field === 'slug') {
         val = val.toLowerCase();
@@ -63,7 +63,7 @@ export const GET = withValidation(collectionParamsSchema, async (req, params) =>
 
   // Number field with comparison operators
   if (searchParams.has('supply')) {
-    const val = params.supply;
+    const val = searchQuery.supply;
     const value = (val as any).value ?? val;
     const [op, num] = searchParams.get('supply')?.includes(':') ? [val.op, value] : ['eq', value];
 
@@ -90,35 +90,35 @@ export const GET = withValidation(collectionParamsSchema, async (req, params) =>
   }
 
   // Boolean field
-  if (params.verified) {
-    conditions.push(eq(collections.verified, params.verified));
+  if (searchQuery.verified) {
+    conditions.push(eq(collections.verified, searchQuery.verified));
   }
 
   // NOTE: Not needed for filtering probably.
   // Array fields (links, team)
   // ['links', 'team'].forEach((field) => {
   //   if (searchParams.has(field)) {
-  //     const value = params[field];
+  //     const value = searchQuery[field];
   //     conditions.push(like(collections[field], `%${value}%`));
   //   }
   // });
 
-  const isAscending = params.order === 'asc';
+  const isAscending = searchQuery.order === 'asc';
   const order = isAscending ? asc : desc;
 
-  if (params.page_key) {
-    conditions.push((isAscending ? gt : lt)(collections.created_at, params.page_key));
+  if (searchQuery.page_key) {
+    conditions.push((isAscending ? gt : lt)(collections.created_at, searchQuery.page_key));
   }
 
   // Apply conditions and ordering, if it's not a `where` query param clause
   // if it is a `where` clause, then we construct the query based on the `where` object
-  if (!params.where && conditions.length) {
+  if (!searchQuery.where && conditions.length) {
     query.where(and(...conditions));
-  } else if (params.where) {
-    // NOTE: the autocompletion for `params.where.block_number.gt` works,
-    // but the type of `params.where` on hover is not inferred correctly (it's `params.where: ZodSchema`
-    // instead of `params.where: Record<Operators, any>`)
-    for (const [key, spec] of Object.entries(params.where)) {
+  } else if (searchQuery.where) {
+    // NOTE: the autocompletion for `searchQuery.where.block_number.gt` works,
+    // but the type of `searchQuery.where` on hover is not inferred correctly (it's `searchQuery.where: ZodSchema`
+    // instead of `searchQuery.where: Record<Operators, any>`)
+    for (const [key, spec] of Object.entries(searchQuery.where)) {
       for (const [op, value] of Object.entries(spec)) {
         // console.log({ op, key, value, spec });
         const val = value.includes('*') ? value.replace(/\*/g, '%') : value;
@@ -128,34 +128,34 @@ export const GET = withValidation(collectionParamsSchema, async (req, params) =>
   }
 
   query.orderBy(order(collections.created_at));
-  query.limit(params.page_size);
+  query.limit(searchQuery.page_size);
 
-  if (!Boolean(params.page_key)) {
+  if (!Boolean(searchQuery.page_key)) {
     query.offset(offset);
   }
 
   const res = await query;
   const results = res.map(({ total, ...row }) => ({ ...row }));
   const total = res[0]?.total ?? 0;
-  const left = total - params.page_size;
-  const has_next = total > offset + params.page_size ? params.page + 1 : null;
+  const left = total - searchQuery.page_size;
+  const has_next = total > offset + searchQuery.page_size ? searchQuery.page + 1 : null;
   const nextCursor = has_next ? res[res.length - 1]?.created_at : null;
 
   return {
-    pagination: params.page_key
+    pagination: searchQuery.page_key
       ? {
           total,
           items_left: left < 0 ? 0 : left,
-          page_size: params.page_size,
+          page_size: searchQuery.page_size,
           page_key: nextCursor || null,
           has_more: left > 0,
         }
       : {
           total,
-          page_size: params.page_size,
-          pages: Math.ceil(total / params.page_size),
-          page: params.page,
-          prev: params.page > 1 ? params.page - 1 : null,
+          page_size: searchQuery.page_size,
+          pages: Math.ceil(total / searchQuery.page_size),
+          page: searchQuery.page,
+          prev: searchQuery.page > 1 ? searchQuery.page - 1 : null,
           next: has_next,
           page_key: nextCursor || null,
           has_more: Boolean(has_next),
