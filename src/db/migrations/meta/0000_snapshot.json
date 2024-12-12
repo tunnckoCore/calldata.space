@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "510e7e09-958b-41f0-a65a-ec90e622090c",
+  "id": "0821de13-8588-42cf-94c3-9b26d484eb48",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "collections": {
@@ -544,8 +544,8 @@
           "notNull": true,
           "autoincrement": false
         },
-        "timestamp": {
-          "name": "timestamp",
+        "voted_at": {
+          "name": "voted_at",
           "type": "integer",
           "primaryKey": false,
           "notNull": true,

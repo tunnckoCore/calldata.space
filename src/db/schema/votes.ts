@@ -7,7 +7,7 @@ import * as sq from 'drizzle-orm/sqlite-core';
 
 import { ethscriptions, transactions } from './index.ts';
 
-const createCuidV2 = initCuidV2({ length: 14, fingerprint: crypto.randomUUID() });
+const createCuidV2 = initCuidV2({ length: 32, fingerprint: crypto.randomUUID() });
 
 export const votes = sq.sqliteTable('votes', {
   id: sq.text().primaryKey().$defaultFn(createCuidV2),
@@ -26,7 +26,7 @@ export const votes = sq.sqliteTable('votes', {
     .notNull()
     .references(() => ethscriptions.id),
 
-  timestamp: sq
+  voted_at: sq
     .integer()
     .notNull()
     .default(sql`(unixepoch())`),

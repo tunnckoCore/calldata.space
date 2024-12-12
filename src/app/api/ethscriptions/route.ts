@@ -35,6 +35,10 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, { search
   const searchParams = new URL(req.url).searchParams;
   const offset = searchQuery.page_key ? 0 : (searchQuery.page - 1) * searchQuery.page_size;
 
+  const [{ total }] = await db
+    .select({ total: orm.sql<number>`COUNT(*) OVER()` })
+    .from(ethscriptions);
+
   // Base query with ethscriptions fields
   const baseQuery = {
     id: ethscriptions.id,
@@ -61,8 +65,6 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, { search
 
     updated_at: ethscriptions.updated_at,
     collection_id: ethscriptions.collection_id,
-
-    total: sql<number>`COUNT(*) OVER()`,
   };
 
   // Add expanded relations to query
@@ -131,7 +133,7 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, { search
           id: votes.id,
           transaction_hash: votes.transaction_hash,
           ethscription_id: votes.ethscription_id,
-          timestamp: votes.timestamp,
+          voted_at: votes.voted_at,
           voter: votes.voter,
           rank: votes.rank,
           up: votes.up,
@@ -296,7 +298,6 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, { search
   }
 
   const results = await query;
-  const total = results[0]?.total ?? 0;
   const left = total - searchQuery.page_size;
   const has_next = total > offset + searchQuery.page_size ? searchQuery.page + 1 : null;
   const nextCursor = has_next
@@ -306,26 +307,22 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, { search
   return {
     pagination: isCursor
       ? {
-          total,
-          items_left: left < 0 ? 0 : left,
-          page_size: searchQuery.page_size,
-          page_key: nextCursor || null,
-          has_more: left > 0,
-        }
+        total,
+        page_size: searchQuery.page_size,
+        page_key: nextCursor || null,
+        has_more: left > 0,
+      }
       : {
-          total,
-          limit: searchQuery.page_size,
-          pages: Math.ceil(total / searchQuery.page_size),
-          page: searchQuery.page,
-          prev: searchQuery.page > 1 ? searchQuery.page - 1 : null,
-          next: has_next,
-          page_key: nextCursor || null,
-          has_more: Boolean(has_next),
-        },
-    data: withIncludesExcludes(
-      results.map(({ total, ...item }) => item),
-      searchQuery,
-    ),
+        total,
+        pages: Math.ceil(total / searchQuery.page_size),
+        page: searchQuery.page,
+        prev: searchQuery.page > 1 ? searchQuery.page - 1 : null,
+        next: has_next,
+        page_size: searchQuery.page_size,
+        page_key: nextCursor || null,
+        has_more: Boolean(has_next),
+      },
+    data: withIncludesExcludes(results, searchQuery),
     status: 200,
   };
 });

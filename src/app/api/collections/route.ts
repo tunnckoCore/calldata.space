@@ -13,6 +13,10 @@ export const GET = withValidation(collectionParamsSchema, async (req, { searchQu
   const searchParams = new URL(req.url).searchParams;
   const offset = searchQuery.page_key ? 0 : (searchQuery.page - 1) * searchQuery.page_size;
 
+  const [{ total }] = await db
+    .select({ total: orm.sql<number>`COUNT(*) OVER()` })
+    .from(collections);
+
   const query = db
     .select({
       created_at: collections.created_at,
@@ -27,7 +31,6 @@ export const GET = withValidation(collectionParamsSchema, async (req, { searchQu
       team: collections.team,
       royalties: collections.royalties,
       verified: collections.verified,
-      total: sql<number>`COUNT(*) OVER()`,
     })
     .from(collections);
 
@@ -85,7 +88,7 @@ export const GET = withValidation(collectionParamsSchema, async (req, { searchQu
   const order = isAscending ? asc : desc;
 
   if (searchQuery.page_key) {
-    conditions.push((isAscending ? gt : lt)(collections.created_at, searchQuery.page_key));
+    conditions.push((isAscending ? gt : lt)(collections.id, searchQuery.page_key));
   }
 
   // Apply conditions and ordering, if it's not a `where` query param clause
@@ -102,39 +105,37 @@ export const GET = withValidation(collectionParamsSchema, async (req, { searchQu
     }
   }
 
-  query.orderBy(order(collections.created_at));
+  query.orderBy(order(collections.id));
   query.limit(searchQuery.page_size);
 
   if (!Boolean(searchQuery.page_key)) {
     query.offset(offset);
   }
 
-  const res = await query;
-  const results = res.map(({ total, ...row }) => ({ ...row }));
-  const total = res[0]?.total ?? 0;
+  const results = await query;
+  // const results = res.map(({ total, ...row }) => ({ ...row }));
   const left = total - searchQuery.page_size;
   const has_next = total > offset + searchQuery.page_size ? searchQuery.page + 1 : null;
-  const nextCursor = has_next ? res[res.length - 1]?.created_at : null;
+  const nextCursor = has_next ? results[results.length - 1]?.id : null;
 
   return {
     pagination: searchQuery.page_key
       ? {
-          total,
-          items_left: left < 0 ? 0 : left,
-          page_size: searchQuery.page_size,
-          page_key: nextCursor || null,
-          has_more: left > 0,
-        }
+        total,
+        page_size: searchQuery.page_size,
+        page_key: nextCursor || null,
+        has_more: left > 0,
+      }
       : {
-          total,
-          page_size: searchQuery.page_size,
-          pages: Math.ceil(total / searchQuery.page_size),
-          page: searchQuery.page,
-          prev: searchQuery.page > 1 ? searchQuery.page - 1 : null,
-          next: has_next,
-          page_key: nextCursor || null,
-          has_more: Boolean(has_next),
-        },
+        total,
+        pages: Math.ceil(total / searchQuery.page_size),
+        page: searchQuery.page,
+        prev: searchQuery.page > 1 ? searchQuery.page - 1 : null,
+        next: has_next,
+        page_size: searchQuery.page_size,
+        page_key: nextCursor || null,
+        has_more: Boolean(has_next),
+      },
     data: withIncludesExcludes(results, searchQuery),
     status: 200,
   };

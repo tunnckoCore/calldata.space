@@ -10,6 +10,11 @@ import { sha256, toHex } from 'viem';
 //   console.log(tx);
 // });
 
+// const collection = await fetchCollectionMeta('mickey-mouse');
+// collection.items = await getCollectionMetdata('mickey-mouse', (acc, item) => acc.concat(item));
+
+// console.log('mickey-mouse', collection);
+
 export async function getCollectionMetdata(collectioName: string, reducer: any) {
   const res = await fetchCollectionPage(collectioName);
 
@@ -46,15 +51,18 @@ export async function fetchCollectionMeta(collectionName: string) {
   );
 
   const {
-    meta: { name: _name, slug, description, socialLinks, royalty, content },
+    meta: { name: _name, slug, description, socialLinks, royalty, content, ...bruh },
+    ...rest
   } = await resp.json();
   const name = _name.replace(/-/g, ' ');
   const links = socialLinks.map(({ link }) => link);
-  const royalties = { [royalty.account]: royalty.value / 100 };
+  // console.log({ royalty, rest, bruh });
+
+  const royalties = royalty.account ? { [royalty.account]: royalty.value / 100 } : {};
   const logo = content[0]?.url || '';
   const team = [royalty?.account].filter(Boolean);
 
-  return { name, slug, description, links, royalties, team, logo };
+  return { name, slug, description, links, royalties, team, logo, items: [] };
 }
 
 export async function fetchCollectionPage(collectioName: string, continuation = '') {

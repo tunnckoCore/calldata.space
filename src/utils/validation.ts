@@ -72,7 +72,7 @@ export function validateInput<TSchema extends z.ZodSchema>(
 ) {
   try {
     const validatedInput = schema.parse(input);
-    console.log('validateInput:', { input, validatedInput });
+    // console.log('validateInput:', { input, validatedInput });
     const searchQuery = {
       ...validatedInput,
       where: where ? convertWhereValues(where, schema) : undefined,
@@ -118,7 +118,7 @@ export function withValidation<TSchema extends z.ZodSchema>(
 
     const { where, ...input } = qsParse(url.search.slice(1));
 
-    console.log('withValidation:', { ctx, input });
+    // console.log('withValidation:', { ctx, input });
     const result = await validateInput(
       {
         ...ctx,

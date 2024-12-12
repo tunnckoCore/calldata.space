@@ -157,7 +157,7 @@ export const collectionParamsSchema = z
   .object({
     // Pagination
     page: z.coerce.number().int().positive().min(1).default(1),
-    page_key: z.number().int().positive().optional(), // timestamp in ms
+    page_key: z.string().optional(), // 32-byte long CUIDv2, they are unique and sequential
     page_size: z.coerce.number().int().positive().min(1).max(100).default(25),
 
     // Sorting
@@ -191,3 +191,51 @@ export const collectionParamsSchema = z
 
 export type EthscriptionParams = z.infer<typeof ethscriptionParamsSchema>;
 export type CollectionParams = z.infer<typeof collectionParamsSchema>;
+
+export const voteParamsSchema = z.object({
+  // Pagination
+  page: z.coerce.number().int().positive().min(1).default(1),
+  page_key: z.string().optional(), // 32-byte long CUIDv2, they are unique and sequential
+  page_size: z.coerce.number().int().positive().min(1).max(100).default(25),
+
+  // Sorting
+  order: z.enum(['asc', 'desc']).default('desc'),
+  sort_by: z.enum(['voted_at', 'rank']).default('rank'),
+
+  transaction_hash: createWildcardSchema(
+    z
+      .string()
+      .length(66)
+      .regex(/^0x[a-fA-F0-9]{64}$/, {
+        message: `Invalid transaction_hash format. Must be a hex string`,
+      }),
+  ),
+  ethscription_id: createWildcardSchema(
+    z
+      .string()
+      .length(66)
+      .regex(/^0x[a-fA-F0-9]{64}$/, {
+        message: `Invalid ethscription_id format. Must be a hex string, usually the transaction_hash`,
+      }),
+  ),
+  voter: createWildcardSchema(addressSchema),
+
+  // numeric filters
+  voted_at: createComparisonSchema(numberSchema),
+  rank: createComparisonSchema(numberSchema.default('0')),
+
+  // Boolean filters
+  up: z
+    .enum(['true', 'false'])
+    .transform((value) => value === 'true')
+    .optional(),
+  down: z
+    .enum(['true', 'false'])
+    .transform((value) => value === 'true')
+    .optional(),
+
+  include: z.string().optional(),
+  exclude: z.string().optional(),
+});
+
+export type VoteParams = z.infer<typeof voteParamsSchema>;

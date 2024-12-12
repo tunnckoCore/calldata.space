@@ -4,7 +4,7 @@ import * as sq from 'drizzle-orm/sqlite-core';
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
 import { z } from 'zod';
 
-const createCuidV2 = initCuidV2({ length: 14, fingerprint: crypto.randomUUID() });
+const createCuidV2 = initCuidV2({ length: 32, fingerprint: crypto.randomUUID() });
 
 export const collections = sq.sqliteTable('collections', {
   id: sq.text().notNull().primaryKey().$defaultFn(createCuidV2),
