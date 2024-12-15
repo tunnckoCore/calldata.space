@@ -1,10 +1,8 @@
 import { relations, sql } from 'drizzle-orm';
 import * as sq from 'drizzle-orm/sqlite-core';
-import { collections } from './collections.ts';
-import { transactions } from './transactions.ts';
 
 // eslint-disable-next-line import/no-cycle
-import { transfers, votes } from './index.ts';
+import { collections, transactions, transfers, votes } from './index.ts';
 
 // import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
 // import { z } from 'zod';

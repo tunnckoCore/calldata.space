@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
-const createComparisonSchema = (baseSchema: z.ZodSchema) =>
-  z
+export function createComparisonSchema(baseSchema: z.ZodSchema) {
+  return z
     .union([
       baseSchema,
       z
@@ -29,19 +29,21 @@ const createComparisonSchema = (baseSchema: z.ZodSchema) =>
         }),
     ])
     .optional();
+}
 
 // Helper for address-like strings (0x... or ENS)
-const addressSchema = z.string().regex(/^(0x[\dA-Fa-f]{40}|.*\.eth)$/);
+export const addressSchema = z.string().regex(/^(0x[\dA-Fa-f]{40}|.*\.eth)$/);
 
 // Helper for wildcard text search
-const createWildcardSchema = (schema: z.ZodSchema) =>
-  z
+export function createWildcardSchema(schema: z.ZodSchema) {
+  return z
     .union([
       schema,
       z.string().includes('*'),
       // .transform((s) => ({ wildcard: true, value: s.replace(/\*/g, '') })),
     ])
     .optional();
+}
 
 export const numberSchema = z.string().transform(Number).pipe(z.number().int().positive());
 

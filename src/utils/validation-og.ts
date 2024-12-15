@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { parse as qsParse } from 'qs-esm';
 import { z } from 'zod';
 
-import { ethscriptionParamsSchema } from './params-validation';
+import { ethscriptionParamsSchema } from './params-validation.ts';
 
 export type ErrorResult = {
   message: string;
@@ -138,22 +138,22 @@ export function validateInput<TT, TSchema extends z.ZodSchema = z.ZodSchema>(
     $req.where = params.where;
 
     return handler($req, params) as TT;
-  } catch (error: any) {
-    if (error instanceof z.ZodError) {
+  } catch (err_: any) {
+    if (err_ instanceof z.ZodError) {
       return {
         status: 400,
         message: 'Input parameters validation failed',
-        error,
+        error: err_,
       } as ErrorResult;
     }
 
     // Handle any errors
-    console.error('Failure:', error);
-    const msg = error.toString();
+    console.error('Failure:', err_);
+    const msg = err_.toString();
     const err = {
-      name: error.name,
-      code: error.code,
-      message: error.code === 'SQLITE_CONSTRAINT' ? msg.split('SQLITE_CONSTRAINT: ')?.[1] : msg,
+      name: err_.name,
+      code: err_.code,
+      message: err_.code === 'SQLITE_CONSTRAINT' ? msg.split('SQLITE_CONSTRAINT: ')?.[1] : msg,
     };
     return { status: 500, message: 'Fatal server failure', error: err } as ErrorResult;
   }
