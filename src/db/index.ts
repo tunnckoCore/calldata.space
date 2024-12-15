@@ -2,7 +2,7 @@ import { createClient } from '@libsql/client';
 import dotenv from 'dotenv';
 import { drizzle } from 'drizzle-orm/libsql';
 
-import * as dbSchema from './schema/index.ts';
+import * as schema from './schema/index.ts';
 
 dotenv.config();
 
@@ -15,6 +15,6 @@ export const client = createClient({
   authToken: process.env.TURSO_AUTH_TOKEN || '',
 });
 
-export const schema = dbSchema;
+export const db = drizzle(client, { schema });
 
-export const db = drizzle(client, { schema: dbSchema });
+export * as schema from './schema/index.ts';

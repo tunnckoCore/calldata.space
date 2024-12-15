@@ -1,13 +1,72 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { and, asc, desc, eq, gt, gte, like, lt, lte, sql } from 'drizzle-orm';
 // NOTE: used for selecting proper operators for the where clause
 import * as orm from 'drizzle-orm';
 import { z } from 'zod';
 
-import { db } from '@/db';
-import { collections, insertCollectionSchema } from '@/db/schema';
-import { collectionParamsSchema } from '@/utils/params-validation';
-import { withIncludesExcludes, withValidation } from '@/utils/validation';
+import { db } from '@/db/index.ts';
+import { collections, insertCollectionSchema } from '@/db/schema/index.ts';
+import { collectionParamsSchema } from '@/utils/params-validation.ts';
+import { withIncludesExcludes, withValidation } from '@/utils/validation.ts';
+
+function handleSearchParams(searchQuery, searchParams: URLSearchParams) {
+  const conditions: any = [];
+
+  // Text fields - exact match or contains
+  for (const field of ['id', 'slug', 'name', 'description', 'logo', 'banner']) {
+    if (searchParams.has(field)) {
+      let value = searchQuery[field];
+      let val = value.includes('*') ? value.replaceAll('*', '%') : value;
+      if (field === 'slug') {
+        val = val.toLowerCase();
+        value = value.toLowerCase();
+      }
+      conditions.push(
+        value.includes('*') ? orm.like(collections[field], val) : orm.eq(collections[field], val),
+      );
+    }
+  }
+
+  // Number field with comparison operators
+  if (searchParams.has('supply')) {
+    const val = searchQuery.supply;
+    const value = (val as any).value ?? val;
+    const [op, num] = searchParams.get('supply')?.includes(':') ? [val.op, value] : ['eq', value];
+
+    switch (op) {
+      case 'gt': {
+        conditions.push(orm.gt(collections.supply, num));
+        break;
+      }
+      case 'lt': {
+        conditions.push(orm.lt(collections.supply, num));
+        break;
+      }
+      case 'gte': {
+        conditions.push(orm.gte(collections.supply, num));
+        break;
+      }
+      case 'lte': {
+        conditions.push(orm.lte(collections.supply, num));
+        break;
+      }
+      case 'range': {
+        const { min, max } = val;
+        conditions.push(orm.gte(collections.supply, min), orm.lte(collections.supply, max));
+        break;
+      }
+      default: {
+        conditions.push(orm.eq(collections.supply, num));
+      }
+    }
+  }
+
+  // Boolean field
+  if (searchQuery.verified) {
+    conditions.push(orm.eq(collections.verified, searchQuery.verified));
+  }
+
+  return conditions;
+}
 
 export const GET = withValidation(collectionParamsSchema, async (req, { searchQuery }) => {
   const searchParams = new URL(req.url).searchParams;
@@ -34,72 +93,24 @@ export const GET = withValidation(collectionParamsSchema, async (req, { searchQu
     })
     .from(collections);
 
-  const conditions: any = [];
-
-  // Text fields - exact match or contains
-  ['id', 'slug', 'name', 'description', 'logo', 'banner'].forEach((field) => {
-    if (searchParams.has(field)) {
-      let value = searchQuery[field];
-      let val = value.includes('*') ? value.replace(/\*/g, '%') : value;
-      if (field === 'slug') {
-        val = val.toLowerCase();
-        value = value.toLowerCase();
-      }
-      conditions.push(
-        value.includes('*') ? like(collections[field], val) : eq(collections[field], val),
-      );
-    }
-  });
-
-  // Number field with comparison operators
-  if (searchParams.has('supply')) {
-    const val = searchQuery.supply;
-    const value = (val as any).value ?? val;
-    const [op, num] = searchParams.get('supply')?.includes(':') ? [val.op, value] : ['eq', value];
-
-    switch (op) {
-      case 'gt':
-        conditions.push(gt(collections.supply, num));
-        break;
-      case 'lt':
-        conditions.push(lt(collections.supply, num));
-        break;
-      case 'gte':
-        conditions.push(gte(collections.supply, num));
-        break;
-      case 'lte':
-        conditions.push(lte(collections.supply, num));
-        break;
-      case 'range':
-        const { min, max } = val;
-        conditions.push(gte(collections.supply, min), lte(collections.supply, max));
-        break;
-      default:
-        conditions.push(eq(collections.supply, num));
-    }
-  }
-
-  // Boolean field
-  if (searchQuery.verified) {
-    conditions.push(eq(collections.verified, searchQuery.verified));
-  }
+  const conditions = handleSearchParams(searchQuery, searchParams);
 
   const isAscending = searchQuery.order === 'asc';
-  const order = isAscending ? asc : desc;
+  const order = isAscending ? orm.asc : orm.desc;
 
   if (searchQuery.page_key) {
-    conditions.push((isAscending ? gt : lt)(collections.id, searchQuery.page_key));
+    conditions.push((isAscending ? orm.gt : orm.lt)(collections.id, searchQuery.page_key));
   }
 
   // Apply conditions and ordering, if it's not a `where` query param clause
   // if it is a `where` clause, then we construct the query based on the `where` object
-  if (!searchQuery.where && conditions.length) {
-    query.where(and(...conditions));
+  if (!searchQuery.where && conditions.length > 0) {
+    query.where(orm.and(...conditions));
   } else if (searchQuery.where) {
     for (const [key, spec] of Object.entries(searchQuery.where)) {
       for (const [op, value] of Object.entries(spec)) {
         // console.log({ op, key, value, spec });
-        const val = value.includes('*') ? value.replace(/\*/g, '%') : value;
+        const val = value.includes('*') ? value.replaceAll('*', '%') : value;
         query.where(orm[op](collections[key], val));
       }
     }
@@ -108,7 +119,7 @@ export const GET = withValidation(collectionParamsSchema, async (req, { searchQu
   query.orderBy(order(collections.id));
   query.limit(searchQuery.page_size);
 
-  if (!Boolean(searchQuery.page_key)) {
+  if (!searchQuery.page_key) {
     query.offset(offset);
   }
 
@@ -116,7 +127,7 @@ export const GET = withValidation(collectionParamsSchema, async (req, { searchQu
   // const results = res.map(({ total, ...row }) => ({ ...row }));
   const left = total - searchQuery.page_size;
   const has_next = total > offset + searchQuery.page_size ? searchQuery.page + 1 : null;
-  const nextCursor = has_next ? results[results.length - 1]?.id : null;
+  const nextCursor = has_next ? results.at(-1)?.id : null;
 
   return {
     pagination: searchQuery.page_key
@@ -154,25 +165,25 @@ export async function POST(req: NextRequest) {
 
     // Return the created collection
     return NextResponse.json({ data: newCollection }, { status: 201 });
-  } catch (error: any) {
+  } catch (err_: any) {
     // Handle validation errors specifically
-    if (error instanceof z.ZodError) {
+    if (err_ instanceof z.ZodError) {
       return NextResponse.json(
         {
           message: 'Request body validation failed',
           status: 400,
-          error,
+          error: err_,
         },
         { status: 400 },
       );
     }
 
     // Handle any errors
-    const msg = error.toString();
+    const msg = err_.toString();
     const err = {
-      name: error.name,
-      code: error.code,
-      message: error.code === 'SQLITE_CONSTRAINT' ? msg.split('SQLITE_CONSTRAINT: ')?.[1] : msg,
+      name: err_.name,
+      code: err_.code,
+      message: err_.code === 'SQLITE_CONSTRAINT' ? msg.split('SQLITE_CONSTRAINT: ')?.[1] : msg,
     };
 
     return NextResponse.json(

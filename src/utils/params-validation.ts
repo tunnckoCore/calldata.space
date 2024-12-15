@@ -1,25 +1,25 @@
 import { z } from 'zod';
 
-const createComparisonSchema = (baseSchema: z.ZodSchema) => {
-  return z
+const createComparisonSchema = (baseSchema: z.ZodSchema) =>
+  z
     .union([
       baseSchema,
       z
         .string()
         .regex(/^gt:\d+$/)
-        .transform((s) => ({ op: 'gt', value: parseInt(s.split(':')[1]) })),
+        .transform((s) => ({ op: 'gt', value: Number.parseInt(s.split(':')[1], 10) })),
       z
         .string()
         .regex(/^lt:\d+$/)
-        .transform((s) => ({ op: 'lt', value: parseInt(s.split(':')[1]) })),
+        .transform((s) => ({ op: 'lt', value: Number.parseInt(s.split(':')[1], 10) })),
       z
         .string()
         .regex(/^gte:\d+$/)
-        .transform((s) => ({ op: 'gte', value: parseInt(s.split(':')[1]) })),
+        .transform((s) => ({ op: 'gte', value: Number.parseInt(s.split(':')[1], 10) })),
       z
         .string()
         .regex(/^lte:\d+$/)
-        .transform((s) => ({ op: 'lte', value: parseInt(s.split(':')[1]) })),
+        .transform((s) => ({ op: 'lte', value: Number.parseInt(s.split(':')[1], 10) })),
       z
         .string()
         .regex(/^range:\d+,\d+$/)
@@ -29,21 +29,19 @@ const createComparisonSchema = (baseSchema: z.ZodSchema) => {
         }),
     ])
     .optional();
-};
 
 // Helper for address-like strings (0x... or ENS)
-const addressSchema = z.string().regex(/^(0x[a-fA-F0-9]{40}|.*\.eth)$/);
+const addressSchema = z.string().regex(/^(0x[\dA-Fa-f]{40}|.*\.eth)$/);
 
 // Helper for wildcard text search
-const createWildcardSchema = (schema: z.ZodSchema) => {
-  return z
+const createWildcardSchema = (schema: z.ZodSchema) =>
+  z
     .union([
       schema,
       z.string().includes('*'),
       // .transform((s) => ({ wildcard: true, value: s.replace(/\*/g, '') })),
     ])
     .optional();
-};
 
 export const numberSchema = z.string().transform(Number).pipe(z.number().int().positive());
 
@@ -85,7 +83,7 @@ export const baseEthscriptionSchema = z.object({
     z
       .string()
       .length(66)
-      .regex(/^0x[a-fA-F0-9]{64}$/, {
+      .regex(/^0x[\dA-Fa-f]{64}$/, {
         message: 'Invalid ID format. Must be a hex string, usually the transaction_hash',
       }),
   ),
@@ -107,7 +105,7 @@ export const baseEthscriptionSchema = z.object({
       .max(66)
       .transform((x) => (x.startsWith('0x') ? x : `0x${x}`))
       .pipe(
-        z.string().regex(/0x[a-fA-F0-9]{64,}/, {
+        z.string().regex(/0x[\dA-Fa-f]{64,}/, {
           message: 'Invalid content SHA format. Must be a hex string of 32 bytes (64 characters)',
         }),
       ),
@@ -165,7 +163,7 @@ export const collectionParamsSchema = z
 
     // Text filters
     id: createWildcardSchema(z.string()),
-    slug: createWildcardSchema(z.string().regex(/^[a-z0-9-]+$/i)),
+    slug: createWildcardSchema(z.string().regex(/^[\da-z-]+$/i)),
     name: createWildcardSchema(z.string()),
     description: createWildcardSchema(z.string()),
     logo: createWildcardSchema(z.string().url()),
@@ -206,7 +204,7 @@ export const voteParamsSchema = z.object({
     z
       .string()
       .length(66)
-      .regex(/^0x[a-fA-F0-9]{64}$/, {
+      .regex(/^0x[\dA-Fa-f]{64}$/, {
         message: `Invalid transaction_hash format. Must be a hex string`,
       }),
   ),
@@ -214,7 +212,7 @@ export const voteParamsSchema = z.object({
     z
       .string()
       .length(66)
-      .regex(/^0x[a-fA-F0-9]{64}$/, {
+      .regex(/^0x[\dA-Fa-f]{64}$/, {
         message: `Invalid ethscription_id format. Must be a hex string, usually the transaction_hash`,
       }),
   ),

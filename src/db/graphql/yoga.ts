@@ -1,7 +1,7 @@
-import { createServer } from 'node:http';
 import { useResponseCache } from '@graphql-yoga/plugin-response-cache';
 import { buildSchema } from 'drizzle-graphql';
 import { createYoga } from 'graphql-yoga';
+import { createServer } from 'node:http';
 
 import { db } from '../index.ts';
 
@@ -15,6 +15,7 @@ const yoga = createYoga({
   graphqlEndpoint: '/graphql',
   fetchAPI: { Request, Response },
   plugins: [
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     useResponseCache({ session: () => null }),
     // useSofa({
     //   basePath: '/rest',

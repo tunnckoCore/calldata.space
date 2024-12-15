@@ -21,7 +21,7 @@ export const GET = withValidation(
           orm.eq(ethscriptions.number, segments.id as number),
         ),
       );
-    let results = await query;
+    const results = await query;
 
     if (results.length === 0) {
       return {

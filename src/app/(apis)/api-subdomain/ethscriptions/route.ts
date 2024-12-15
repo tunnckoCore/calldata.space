@@ -2,11 +2,10 @@ import { and, asc, desc, eq, gt, gte, like, lt, lte, sql } from 'drizzle-orm';
 // NOTE: used for selecting proper operators for the where clause
 import * as orm from 'drizzle-orm';
 
-import { db } from '@/db';
-import { collections, transactions, transfers, votes } from '@/db/schema';
-import { ethscriptions } from '@/db/schema/index.ts';
-import { ethscriptionParamsSchema } from '@/utils/params-validation';
-import { withIncludesExcludes, withValidation } from '@/utils/validation';
+import { db } from '@/db/index.ts';
+import { collections, ethscriptions, transactions, transfers, votes } from '@/db/schema/index.ts';
+import { ethscriptionParamsSchema } from '@/utils/params-validation.ts';
+import { withIncludesExcludes, withValidation } from '@/utils/validation.ts';
 
 // /api/ethscriptions?limit=50
 
@@ -167,36 +166,46 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, { search
   const conditions: any[] = [];
 
   // Number-based filters with comparison operators
-  ['number', 'block_number', 'block_timestamp', 'transaction_index', 'updated_at'].forEach(
-    (field) => {
-      if (searchParams.has(field)) {
-        const val = searchQuery[field];
-        const value = (val as any).value ?? val;
-        const [op, num] = searchParams.get(field)?.includes(':') ? [val.op, value] : ['eq', value];
+  for (const field of [
+    'number',
+    'block_number',
+    'block_timestamp',
+    'transaction_index',
+    'updated_at',
+  ]) {
+    if (searchParams.has(field)) {
+      const val = searchQuery[field];
+      const value = (val as any).value ?? val;
+      const [op, num] = searchParams.get(field)?.includes(':') ? [val.op, value] : ['eq', value];
 
-        switch (op) {
-          case 'gt':
-            conditions.push(gt(ethscriptions[field], num));
-            break;
-          case 'lt':
-            conditions.push(lt(ethscriptions[field], num));
-            break;
-          case 'gte':
-            conditions.push(gte(ethscriptions[field], num));
-            break;
-          case 'lte':
-            conditions.push(lte(ethscriptions[field], num));
-            break;
-          case 'range':
-            const { min, max } = val;
-            conditions.push(gte(ethscriptions[field], min), lte(ethscriptions[field], max));
-            break;
-          default:
-            conditions.push(eq(ethscriptions[field], num));
+      switch (op) {
+        case 'gt': {
+          conditions.push(gt(ethscriptions[field], num));
+          break;
+        }
+        case 'lt': {
+          conditions.push(lt(ethscriptions[field], num));
+          break;
+        }
+        case 'gte': {
+          conditions.push(gte(ethscriptions[field], num));
+          break;
+        }
+        case 'lte': {
+          conditions.push(lte(ethscriptions[field], num));
+          break;
+        }
+        case 'range': {
+          const { min, max } = val;
+          conditions.push(gte(ethscriptions[field], min), lte(ethscriptions[field], max));
+          break;
+        }
+        default: {
+          conditions.push(eq(ethscriptions[field], num));
         }
       }
-    },
-  );
+    }
+  }
 
   if (searchQuery.collection_id) {
     const value = searchQuery.collection_id;
@@ -209,7 +218,7 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, { search
       conditions.push(sql`${ethscriptions.collection_id} IS NULL`);
     } else {
       // Regular text search with wildcard support
-      const val = value.includes('*') ? value.replace(/\*/g, '%') : value;
+      const val = value.includes('*') ? value.replaceAll('*', '%') : value;
       conditions.push(
         value.includes('*')
           ? like(ethscriptions.collection_id, val)
@@ -219,7 +228,7 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, { search
   }
 
   // Text-based filters with support for like operator
-  [
+  for (const field of [
     'id',
     'media_type',
     'media_subtype',
@@ -229,25 +238,25 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, { search
     'initial_owner',
     'current_owner',
     'previous_owner',
-  ].forEach((field) => {
+  ]) {
     if (searchParams.has(field)) {
       const value = searchQuery[field];
-      const val = value.includes('*') ? value.replace(/\*/g, '%') : value;
+      const val = value.includes('*') ? value.replaceAll('*', '%') : value;
       conditions.push(
         value.includes('*') ? like(ethscriptions[field], val) : eq(ethscriptions[field], val),
       );
     }
-  });
+  }
 
   // Boolean ESIP filters
-  ['is_esip0', 'is_esip3', 'is_esip4', 'is_esip6', 'is_esip8'].forEach((field) => {
+  for (const field of ['is_esip0', 'is_esip3', 'is_esip4', 'is_esip6', 'is_esip8']) {
     if (searchParams.has(field)) {
       conditions.push(eq(ethscriptions[field], searchQuery[field]));
     }
-  });
+  }
 
   // Apply conditions and pagination
-  if (conditions.length) {
+  if (conditions.length > 0) {
     query.where(and(...conditions));
   }
 
@@ -273,14 +282,14 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, { search
 
   // Apply conditions and ordering, if it's not a `where` query param clause
   // if it is a `where` clause, then we construct the query based on the `where` object
-  if (!searchQuery.where && conditions.length) {
+  if (!searchQuery.where && conditions.length > 0) {
     query.where(and(...conditions));
   } else if (searchQuery.where) {
     const conds: any = [];
 
     for (const [key, spec] of Object.entries(searchQuery.where)) {
       for (const [op, value] of Object.entries(spec) as [string, any][]) {
-        const val = value.includes('*') ? value.replace(/\*/g, '%') : value;
+        const val = value.includes('*') ? value.replaceAll('*', '%') : value;
 
         console.log({ op, key, val, value, spec });
         conds.push(orm[op](ethscriptions[key], val));
@@ -301,7 +310,7 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, { search
   const left = total - searchQuery.page_size;
   const has_next = total > offset + searchQuery.page_size ? searchQuery.page + 1 : null;
   const nextCursor = has_next
-    ? `${results[results.length - 1]?.block_number}_${results[results.length - 1]?.transaction_index}`
+    ? `${results.at(-1)?.block_number}_${results.at(-1)?.transaction_index}`
     : null;
 
   return {

@@ -1,3 +1,10 @@
+/* eslint-disable unicorn/no-process-exit */
+/* eslint-disable unicorn/prefer-top-level-await */
+/* eslint-disable promise/prefer-await-to-callbacks */
+/* eslint-disable no-promise-executor-return */
+/* eslint-disable no-await-in-loop */
+/* eslint-disable drizzle/enforce-delete-with-where */
+
 // import { reset, seed } from 'drizzle-seed';
 
 // import { db, schema } from './index.ts';
@@ -74,7 +81,7 @@ async function main() {
       return {
         // created_at: Date.now(),
         supply: faker.number.int({ min: 30, max: 200 }),
-        slug: name.toLowerCase().replace(/\s/g, '-'),
+        slug: name.toLowerCase().replaceAll(/\s/g, '-'),
         name,
         description: faker.lorem.sentence(),
         logo: faker.internet.url(),
@@ -137,11 +144,11 @@ async function main() {
         return {
           block_number: faker.helpers.arrayElement(blockNumbers),
           block_blockhash: faker.helpers.arrayElement(blockHashes),
-          block_timestamp: faker.number.int({ min: 1600000000, max: 1700000000 }),
+          block_timestamp: faker.number.int({ min: 1_600_000_000, max: 1_700_000_000 }),
           transaction_type: faker.number.int({ min: 0, max: 2 }),
           transaction_hash: transactionHashes[i],
           transaction_index: faker.number.int({ min: 0, max: 1000 }),
-          transaction_value: faker.number.int({ min: 0, max: 1000000 }),
+          transaction_value: faker.number.int({ min: 0, max: 1_000_000 }),
           transaction_fee: BigInt('1000000000000000'),
           gas_price: '50000000000',
           gas_used: '21000',
@@ -194,7 +201,7 @@ async function main() {
       event_log_index: faker.number.int({ min: 0, max: 10 }),
       block_blockhash: faker.helpers.arrayElement(blockHashes),
       block_number: faker.helpers.arrayElement(blockNumbers),
-      block_timestamp: faker.number.int({ min: 1600000000, max: 1700000000 }),
+      block_timestamp: faker.number.int({ min: 1_600_000_000, max: 1_700_000_000 }),
       transaction_index: faker.number.int({ min: 0, max: 1000 }),
       from_address: faker.helpers.arrayElement(addresses),
       to_address: faker.helpers.arrayElement(addresses),
@@ -223,7 +230,7 @@ async function main() {
         transaction_hash: createdEthscriptions[0].id,
         ethscription_id: createdEthscriptions[0].id,
         voter: '0xbeb26bbee20ffc42769efaa8ecd84a3ded774d2a',
-        voted_at: 1668970692,
+        voted_at: 1_668_970_692,
         rank: 195,
         up: true,
         down: false,
@@ -233,7 +240,7 @@ async function main() {
         transaction_hash: createdEthscriptions[3].id,
         ethscription_id: createdEthscriptions[3].id,
         voter: '0xaeba1fc12fe4b894c42ce5fa606821d2f4c522cb',
-        voted_at: 1638563694,
+        voted_at: 1_638_563_694,
         rank: 189,
         up: true,
         down: false,
@@ -243,7 +250,7 @@ async function main() {
         transaction_hash: createdEthscriptions[1].id,
         ethscription_id: createdEthscriptions[1].id,
         voter: '0x0f5ecce3b57cecbe57e8f8c0bf54fadfeeb4edbc',
-        voted_at: 1649749700,
+        voted_at: 1_649_749_700,
         rank: 185,
         up: true,
         down: false,
@@ -253,7 +260,7 @@ async function main() {
         transaction_hash: createdEthscriptions[3].id,
         ethscription_id: createdEthscriptions[3].id,
         voter: '0x0f5ecce3b57cecbe57e8f8c0bf54fadfeeb4edbc',
-        voted_at: 1653345757,
+        voted_at: 1_653_345_757,
         rank: 183,
         up: false,
         down: true,
@@ -273,7 +280,7 @@ async function main() {
         transaction_hash: createdEthscriptions[3].id,
         ethscription_id: createdEthscriptions[3].id,
         voter: '0xf9ee29bbb8a7abbf66cfaefb7e9be375cad3dccf',
-        voted_at: 1679847385,
+        voted_at: 1_679_847_385,
         rank: 175,
         up: true,
         down: false,

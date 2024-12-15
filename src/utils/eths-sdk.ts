@@ -1,3 +1,4 @@
+/* eslint-disable no-await-in-loop */
 import 'server-only';
 
 import { readdir } from 'node:fs/promises';
@@ -94,7 +95,7 @@ export async function getEthsMeta() {
   let cnt = 0;
 
   for (const hash of hashes) {
-    cnt++;
+    cnt += 1;
     const res = await fetch(
       `https://api.wgw.lol/ethscriptions/${hash}?with=ethscription_number`,
     ).then((x) => x.json());
@@ -107,11 +108,7 @@ export async function getEthsMeta() {
         resp = await fetch(`https://api.ethscriptions.com/v2/ethscriptions/${hash}`);
         console.log('resp:', resp.status, resp.statusText);
 
-        if (resp.status === 200) {
-          resp = await resp.json();
-        } else {
-          resp = false;
-        }
+        resp = resp.status === 200 ? await resp.json() : false;
       } catch (err: any) {
         console.log('error fetching...', err);
         return;
@@ -191,7 +188,7 @@ export async function getAllEthscriptionHashesForType({
   mediaType = 'image',
   baseURL = 'api.wgw.lol',
 }: {
-  reducer: (results: any[], tx: Ethscription, mediaType: string) => Promise<any[]>;
+  reducer: (results: any[], tx: Ethscription, _mediaType: string) => Promise<any[]>;
   mediaType?: string;
   baseURL?: string;
 }) {

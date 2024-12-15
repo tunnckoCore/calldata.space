@@ -29,6 +29,11 @@ export type ValidationResult<T extends z.ZodSchema> = z.infer<T> & {
   };
 };
 
+export type BasicHandlerContext<TSchema extends z.ZodSchema> = {
+  params: Promise<{ [key: string]: string | number }>;
+  searchQuery: ValidationResult<TSchema>;
+};
+
 export function convertWhereValues<T extends z.ZodSchema>(
   where: Record<string, Record<string, any>>,
   schema: T,
@@ -43,11 +48,9 @@ export function convertWhereValues<T extends z.ZodSchema>(
       result[key] = {};
 
       for (const [operator, value] of Object.entries(conditions)) {
-        if ((schema as any).shape[key]) {
-          result[key][operator] = (schema as any).shape[key].parse(value);
-        } else {
-          result[key][operator] = value;
-        }
+        result[key][operator] = (schema as any).shape[key]
+          ? (schema as any).shape[key].parse(value)
+          : value;
       }
     }
   }
@@ -68,7 +71,7 @@ export function validateInput<TSchema extends z.ZodSchema>(
     where?: Record<string, Record<string, any>>;
   } & BasicHandlerContext<TSchema>,
   schema: TSchema,
-  handler: (req: Request, ctx: BasicHandlerContext<TSchema>) => Promise<any>,
+  handler: (_req: Request, _ctx: BasicHandlerContext<TSchema>) => Promise<any>,
 ) {
   try {
     const validatedInput = schema.parse(input);
@@ -79,12 +82,12 @@ export function validateInput<TSchema extends z.ZodSchema>(
     } as ValidationResult<TSchema>;
 
     return handler(req, { params, searchQuery });
-  } catch (error: any) {
-    if (error instanceof z.ZodError) {
+  } catch (err: any) {
+    if (err instanceof z.ZodError) {
       return {
         status: 400,
         message: 'Input parameters validation failed',
-        error,
+        error: err,
       } as ErrorResult;
     }
 
@@ -92,28 +95,23 @@ export function validateInput<TSchema extends z.ZodSchema>(
       status: 500,
       message: 'Fatal server failure',
       error: {
-        name: error.name,
-        code: error.code,
+        name: err.name,
+        code: err.code,
         message:
-          error.code === 'SQLITE_CONSTRAINT'
-            ? error.message.split('SQLITE_CONSTRAINT: ')[1]
-            : error.message,
+          err.code === 'SQLITE_CONSTRAINT'
+            ? err.message.split('SQLITE_CONSTRAINT: ')[1]
+            : err.message,
       },
     } as ErrorResult;
   }
 }
-
-export type BasicHandlerContext<TSchema extends z.ZodSchema> = {
-  params: Promise<{ [key: string]: string | number }>;
-  searchQuery: ValidationResult<TSchema>;
-};
 
 // Route handler wrapper with proper typing
 export function withValidation<TSchema extends z.ZodSchema>(
   schema: TSchema,
   handler: (req: Request, ctx: BasicHandlerContext<TSchema>) => Promise<any>,
 ) {
-  return async function (req: Request, ctx: BasicHandlerContext<TSchema>) {
+  return async function withValidate(req: Request, ctx: BasicHandlerContext<TSchema>) {
     const url = new URL(req.url);
 
     const { where, ...input } = qsParse(url.search.slice(1));
@@ -165,7 +163,7 @@ export function withIncludesExcludes(results: any[], searchQuery: any) {
         if (!obj || typeof obj !== 'object') return obj;
 
         const result: Record<string, any> = {};
-        Object.entries(obj).forEach(([key, value]) => {
+        for (const [key, value] of Object.entries(obj)) {
           const fullPath = prefix ? `${prefix}.${key}` : key;
           let shouldInclude = true;
 
@@ -173,7 +171,7 @@ export function withIncludesExcludes(results: any[], searchQuery: any) {
             // Check if field or its parent should be excluded
             const isExcluded = exclude.some((pattern) => {
               if (pattern.includes('*')) {
-                const regexPattern = pattern.replace(/\./g, '\\.').replace(/\*/g, '.*');
+                const regexPattern = pattern.replaceAll('.', '\\.').replaceAll('*', '.*');
                 const regex = new RegExp(`^${regexPattern}$`);
                 return regex.test(fullPath);
               }
@@ -186,7 +184,7 @@ export function withIncludesExcludes(results: any[], searchQuery: any) {
             // Include can override exclude for specific fields
             const isIncluded = include.some((pattern) => {
               if (pattern.includes('*')) {
-                const regexPattern = pattern.replace(/\./g, '\\.').replace(/\*/g, '.*');
+                const regexPattern = pattern.replaceAll('.', '\\.').replaceAll('*', '.*');
                 const regex = new RegExp(`^${regexPattern}$`);
                 return regex.test(fullPath);
               }
@@ -201,7 +199,7 @@ export function withIncludesExcludes(results: any[], searchQuery: any) {
             result[key] =
               typeof value === 'object' && value !== null ? processObject(value, fullPath) : value;
           }
-        });
+        }
         return result;
       };
 

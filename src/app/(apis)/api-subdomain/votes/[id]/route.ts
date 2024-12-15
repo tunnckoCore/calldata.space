@@ -8,7 +8,7 @@ import { voteParamsSchema } from '@/utils/params-validation.ts';
 import { withIncludesExcludes, withValidation } from '@/utils/validation.ts';
 
 // GET /collections/:id - Get a single collection by ID (collections.id or collections.slug)
-export const GET = withValidation(voteParamsSchema, async (req, { params, searchQuery }) => {
+export const GET = withValidation(voteParamsSchema, async (_req, { params, searchQuery }) => {
   const segments = await params;
   const query = db
     .select()
@@ -20,7 +20,7 @@ export const GET = withValidation(voteParamsSchema, async (req, { params, search
       ),
     );
 
-  let results = await query;
+  const results = await query;
 
   if (results.length === 0) {
     return {

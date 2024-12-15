@@ -1,10 +1,11 @@
 import { relations } from 'drizzle-orm';
 import * as sq from 'drizzle-orm/sqlite-core';
 
+// eslint-disable-next-line import/no-cycle
+import { ethscriptions, transactions } from './index.ts';
+
 // import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
 // import { z } from 'zod';
-
-import { ethscriptions, transactions } from './index.ts';
 
 export const transfers = sq.sqliteTable('transfers', {
   // Transfer `transaction_hash` is the hash of the transaction that initiated the transfer

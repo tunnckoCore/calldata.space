@@ -1,10 +1,8 @@
-import Image from 'next/image';
-import Link from 'next/link';
-
 // import { ArrowRight } from 'lucide-react';
-import { CustomCard } from '@/components/CustomCard.tsx';
-import { ThemeToggler } from '@/components/Theme.tsx';
-import { features } from './features';
+import { CustomCard } from '@/components/custom-card.tsx';
+import { ThemeToggler } from '@/components/theme.tsx';
+import Link from 'next/link';
+import { features } from './features.ts';
 
 export default function Home() {
   return (
@@ -17,7 +15,7 @@ export default function Home() {
                 id="brand"
                 className="inline-flex animate-rainbow bg-gradient-to-br from-purple-400 to-orange-500 box-decoration-clone bg-size-2x bg-clip-text text-3xl font-extrabold tracking-wide text-transparent sm:tracking-wider md:text-5xl"
               >
-                <a href="/">calldata.space</a>
+                <Link href="/">calldata.space</Link>
               </h1>
               <div className="flex items-center justify-center gap-3 pt-2">
                 <a

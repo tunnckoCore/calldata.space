@@ -3,10 +3,10 @@ import * as orm from 'drizzle-orm';
 
 // NOTE: used for selecting proper operators for the where clause
 
-import { db } from '@/db';
-import { votes } from '@/db/schema';
-import { voteParamsSchema } from '@/utils/params-validation';
-import { withIncludesExcludes, withValidation } from '@/utils/validation';
+import { db } from '@/db/index.ts';
+import { votes } from '@/db/schema/index.ts';
+import { voteParamsSchema } from '@/utils/params-validation.ts';
+import { withIncludesExcludes, withValidation } from '@/utils/validation.ts';
 
 // page_size=5&sort_by=rank&order=desc - default sort by rank & vote time, order by desc
 // page_size=5&sort_by=voted_at - sort by vote time, order by desc
@@ -33,53 +33,59 @@ export const GET = withValidation(voteParamsSchema, async (req, { searchQuery })
   const conditions: any = [];
 
   // Text fields - exact match or contains
-  ['transaction_hash', 'ethscription_id', 'voter'].forEach((field) => {
+  for (const field of ['transaction_hash', 'ethscription_id', 'voter']) {
     if (searchParams.has(field)) {
-      let value = searchQuery[field];
-      let val = value.includes('*') ? value.replace(/\*/g, '%') : value;
+      const value = searchQuery[field];
+      const val = value.includes('*') ? value.replaceAll('*', '%') : value;
 
       conditions.push(
         value.includes('*') ? orm.like(votes[field], val) : orm.eq(votes[field], val),
       );
     }
-  });
+  }
 
   // Number-based filters with comparison operators
-  ['voted_at', 'rank'].forEach((field) => {
+  for (const field of ['voted_at', 'rank']) {
     if (searchParams.has(field)) {
       const val = searchQuery[field];
       const value = (val as any).value ?? val;
       const [op, num] = searchParams.get(field)?.includes(':') ? [val.op, value] : ['eq', value];
 
       switch (op) {
-        case 'gt':
+        case 'gt': {
           conditions.push(orm.gt(votes[field], num));
           break;
-        case 'lt':
+        }
+        case 'lt': {
           conditions.push(orm.lt(votes[field], num));
           break;
-        case 'gte':
+        }
+        case 'gte': {
           conditions.push(orm.gte(votes[field], num));
           break;
-        case 'lte':
+        }
+        case 'lte': {
           conditions.push(orm.lte(votes[field], num));
           break;
-        case 'range':
+        }
+        case 'range': {
           const { min, max } = val;
           conditions.push(orm.gte(votes[field], min), orm.lte(votes[field], max));
           break;
-        default:
+        }
+        default: {
           conditions.push(orm.eq(votes[field], num));
+        }
       }
     }
-  });
+  }
 
   // Boolean ESIP filters
-  ['up', 'down'].forEach((field) => {
+  for (const field of ['up', 'down']) {
     if (searchParams.has(field)) {
       conditions.push(orm.eq(votes[field], searchQuery[field]));
     }
-  });
+  }
 
   const isAscending = searchQuery.order === 'asc';
   const order = isAscending ? orm.asc : orm.desc;
@@ -87,7 +93,7 @@ export const GET = withValidation(voteParamsSchema, async (req, { searchQuery })
   // !FIXED! LOVELY!
   if (searchQuery.page_key) {
     // Parse the composite cursor
-    let [rankNumber, timeVoted] = searchQuery.page_key?.split('_');
+    let [rankNumber, timeVoted] = searchQuery.page_key?.split('_') || [];
     let cond;
 
     if (searchQuery.sort_by === 'rank') {
@@ -106,13 +112,13 @@ export const GET = withValidation(voteParamsSchema, async (req, { searchQuery })
 
   // Apply conditions and ordering, if it's not a `where` query param clause
   // if it is a `where` clause, then we construct the query based on the `where` object
-  if (!searchQuery.where && conditions.length) {
+  if (!searchQuery.where && conditions.length > 0) {
     query.where(orm.and(...conditions));
   } else if (searchQuery.where) {
     for (const [key, spec] of Object.entries(searchQuery.where)) {
       for (const [op, value] of Object.entries(spec)) {
         // console.log({ op, key, value, spec });
-        const val = value.includes('*') ? value.replace(/\*/g, '%') : value;
+        const val = value.includes('*') ? value.replaceAll('*', '%') : value;
         query.where(orm[op](votes[key], val));
       }
     }
@@ -127,7 +133,7 @@ export const GET = withValidation(voteParamsSchema, async (req, { searchQuery })
 
   query.limit(searchQuery.page_size);
 
-  if (!Boolean(searchQuery.page_key)) {
+  if (!searchQuery.page_key) {
     query.offset(offset);
   }
 
@@ -141,13 +147,9 @@ export const GET = withValidation(voteParamsSchema, async (req, { searchQuery })
   let nextCursor;
 
   if (searchQuery.sort_by === 'rank') {
-    nextCursor = has_next
-      ? `${results[results.length - 1]?.rank}_${results[results.length - 1]?.voted_at}`
-      : null;
+    nextCursor = has_next ? `${results.at(-1)?.rank}_${results.at(-1)?.voted_at}` : null;
   } else {
-    nextCursor = has_next
-      ? `${results[results.length - 1]?.voted_at}_${results[results.length - 1]?.rank}`
-      : null;
+    nextCursor = has_next ? `${results.at(-1)?.voted_at}_${results.at(-1)?.rank}` : null;
   }
 
   return {

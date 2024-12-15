@@ -1,9 +1,8 @@
 import type { Metadata, Viewport } from 'next';
 // import localFont from 'next/font/local';
-import { Inter, Roboto } from 'next/font/google';
+import { Roboto } from 'next/font/google';
 
-import { ThemeProvider, ThemeToggler } from '@/components/Theme';
-import Providers from '@/lib/providers.tsx';
+import { ThemeProvider, ThemeToggler } from '@/components/theme.tsx';
 
 import '@/app/(root)/globals.css';
 
@@ -123,7 +122,7 @@ export default function RootLayout({
             </div>
           </ThemeProvider>
         </body>
-      </html >
+      </html>
     </>
   );
 }

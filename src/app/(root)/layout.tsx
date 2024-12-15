@@ -1,9 +1,8 @@
 import type { Metadata, Viewport } from 'next';
 // import localFont from 'next/font/local';
-import { Inter, Roboto } from 'next/font/google';
+import { Roboto } from 'next/font/google';
 
-import { ThemeProvider } from '@/components/Theme.tsx';
-import Providers from '@/lib/providers.tsx';
+import { ThemeProvider } from '@/components/theme.tsx';
 
 import './globals.css';
 

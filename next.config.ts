@@ -10,9 +10,13 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
+        source: '/api/:path*',
+        destination: '/api-proxy/:path*',
+      },
+      {
         source: '/:path*',
         has: [{ type: 'host', value: 'api.calldata.space' }],
-        destination: '/api/:path*',
+        destination: '/api-subdomain/:path*',
       },
       {
         source: '/:path*',

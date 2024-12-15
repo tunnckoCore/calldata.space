@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import { init as initCuidV2 } from '@paralleldrive/cuid2';
 import { relations, sql } from 'drizzle-orm';
 import * as sq from 'drizzle-orm/sqlite-core';

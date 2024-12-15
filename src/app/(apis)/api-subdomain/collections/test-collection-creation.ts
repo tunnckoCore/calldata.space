@@ -1,3 +1,5 @@
+/* eslint-disable unicorn/prefer-top-level-await */
+
 async function testCollectionCreation() {
   const validCollection = {
     supply: 100,
@@ -37,8 +39,8 @@ async function testCollectionCreation() {
       body: JSON.stringify(invalidCollection),
     });
     console.log('Invalid collection response:', await invalidResponse.json());
-  } catch (error) {
-    console.error('Error:', error);
+  } catch (err) {
+    console.error('Error:', err);
   }
 }
 

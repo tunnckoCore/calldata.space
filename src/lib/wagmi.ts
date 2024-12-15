@@ -14,7 +14,6 @@ export const config = createConfig({
 // Why we even need that?! 🤔
 declare module 'wagmi' {
   interface Register {
-    // @ts-ignore bruh wtf is this err
     config: typeof config;
   }
 }

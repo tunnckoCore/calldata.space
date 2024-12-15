@@ -36,7 +36,7 @@ export const insertCollectionSchema = createInsertSchema(collections, {
   slug: z
     .string()
     .min(1)
-    .regex(/^[a-z0-9-]+$/),
+    .regex(/^[\da-z-]+$/),
   name: z.string().min(1).max(100),
   description: z.string().min(1).max(1000),
   logo: z.string().url(),
@@ -49,9 +49,9 @@ export const insertCollectionSchema = createInsertSchema(collections, {
         .transform((url): `https://${string}` => url as `https://${string}`),
     )
     .default([]),
-  team: z.array(z.string().regex(/^(0x[a-fA-F0-9]{40}|.*\.eth)$/)).default([]),
+  team: z.array(z.string().regex(/^(0x[\dA-Fa-f]{40}|.*\.eth)$/)).default([]),
   royalties: z
-    .record(z.string().regex(/^(0x[a-fA-F0-9]{40}|.*\.eth)$/), z.number().min(0).max(100))
+    .record(z.string().regex(/^(0x[\dA-Fa-f]{40}|.*\.eth)$/), z.number().min(0).max(100))
     .default({}),
   verified: z.boolean().default(false),
 });

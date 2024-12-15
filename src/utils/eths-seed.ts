@@ -30,7 +30,7 @@ export async function getAllEthscriptionsByType({
   baseURL = 'api.wgw.lol',
   mediaType = 'image',
 }: {
-  reducer: (results: any[], tx: Ethscription, mediaType: string) => Promise<any[]>;
+  reducer: (results: any[], tx: Ethscription, _mediaType: string) => Promise<any[]>;
   mediaType?: string;
   baseURL?: string;
 }) {
@@ -41,17 +41,20 @@ export async function getAllEthscriptionsByType({
   let results: any = [];
 
   for (const tx of res.result) {
+    // eslint-disable-next-line no-await-in-loop
     results = await reducer(results, tx as Ethscription, mediaType);
   }
 
   while (res.pagination.has_more) {
     console.log('has more... page_key:', res.pagination.page_key);
 
+    // eslint-disable-next-line no-await-in-loop
     const next = await fetch(`${endpointUrl}&page_key=${res.pagination.page_key}`).then((x) =>
       x.json(),
     );
 
     for (const tx of next.result) {
+      // eslint-disable-next-line no-await-in-loop
       results = await reducer(results, tx as Ethscription, mediaType);
     }
 
