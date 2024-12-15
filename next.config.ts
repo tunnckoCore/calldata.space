@@ -16,7 +16,7 @@ const nextConfig: NextConfig = {
       {
         source: '/:path*',
         has: [{ type: 'host', value: 'api.calldata.space' }],
-        destination: '/api-subdomain/:path*',
+        destination: '/api-main/:path*',
       },
       {
         source: '/:path*',
