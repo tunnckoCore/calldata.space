@@ -307,21 +307,21 @@ export const GET = withValidation(ethscriptionParamsSchema, async (req, { search
   return {
     pagination: isCursor
       ? {
-        total,
-        page_size: searchQuery.page_size,
-        page_key: nextCursor || null,
-        has_more: left > 0,
-      }
+          total,
+          page_size: searchQuery.page_size,
+          page_key: nextCursor || null,
+          has_more: left > 0,
+        }
       : {
-        total,
-        pages: Math.ceil(total / searchQuery.page_size),
-        page: searchQuery.page,
-        prev: searchQuery.page > 1 ? searchQuery.page - 1 : null,
-        next: has_next,
-        page_size: searchQuery.page_size,
-        page_key: nextCursor || null,
-        has_more: Boolean(has_next),
-      },
+          total,
+          pages: Math.ceil(total / searchQuery.page_size),
+          page: searchQuery.page,
+          prev: searchQuery.page > 1 ? searchQuery.page - 1 : null,
+          next: has_next,
+          page_size: searchQuery.page_size,
+          page_key: nextCursor || null,
+          has_more: Boolean(has_next),
+        },
     data: withIncludesExcludes(results, searchQuery),
     status: 200,
   };

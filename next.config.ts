@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   experimental: {
     dynamicIO: true,
     ppr: true,
-    reactCompiler: true
+    reactCompiler: true,
   },
   reactStrictMode: true,
   async rewrites() {
@@ -18,9 +18,9 @@ const nextConfig: NextConfig = {
         source: '/:path*',
         has: [{ type: 'host', value: 'wallet.calldata.space' }],
         destination: '/wallet/:path*',
-      }
-    ]
-  }
+      },
+    ];
+  },
 };
 
 export default nextConfig;

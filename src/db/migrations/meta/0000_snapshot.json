@@ -102,16 +102,12 @@
       "indexes": {
         "collections_slug_unique": {
           "name": "collections_slug_unique",
-          "columns": [
-            "slug"
-          ],
+          "columns": ["slug"],
           "isUnique": true
         },
         "collections_name_unique": {
           "name": "collections_name_unique",
-          "columns": [
-            "name"
-          ],
+          "columns": ["name"],
           "isUnique": true
         }
       },
@@ -271,12 +267,8 @@
           "name": "ethscriptions_id_transactions_transaction_hash_fk",
           "tableFrom": "ethscriptions",
           "tableTo": "transactions",
-          "columnsFrom": [
-            "id"
-          ],
-          "columnsTo": [
-            "transaction_hash"
-          ],
+          "columnsFrom": ["id"],
+          "columnsTo": ["transaction_hash"],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -284,12 +276,8 @@
           "name": "ethscriptions_collection_id_collections_id_fk",
           "tableFrom": "ethscriptions",
           "tableTo": "collections",
-          "columnsFrom": [
-            "collection_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["collection_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -493,12 +481,8 @@
           "name": "transfers_transaction_hash_transactions_transaction_hash_fk",
           "tableFrom": "transfers",
           "tableTo": "transactions",
-          "columnsFrom": [
-            "transaction_hash"
-          ],
-          "columnsTo": [
-            "transaction_hash"
-          ],
+          "columnsFrom": ["transaction_hash"],
+          "columnsTo": ["transaction_hash"],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -506,12 +490,8 @@
           "name": "transfers_ethscription_id_ethscriptions_id_fk",
           "tableFrom": "transfers",
           "tableTo": "ethscriptions",
-          "columnsFrom": [
-            "ethscription_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["ethscription_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -588,12 +568,8 @@
           "name": "votes_transaction_hash_transactions_transaction_hash_fk",
           "tableFrom": "votes",
           "tableTo": "transactions",
-          "columnsFrom": [
-            "transaction_hash"
-          ],
-          "columnsTo": [
-            "transaction_hash"
-          ],
+          "columnsFrom": ["transaction_hash"],
+          "columnsTo": ["transaction_hash"],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -601,12 +577,8 @@
           "name": "votes_ethscription_id_ethscriptions_id_fk",
           "tableFrom": "votes",
           "tableTo": "ethscriptions",
-          "columnsFrom": [
-            "ethscription_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["ethscription_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }

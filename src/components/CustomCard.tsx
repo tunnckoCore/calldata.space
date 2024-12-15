@@ -1,11 +1,7 @@
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { ArrowRight } from "lucide-react";
-import Link from "next/link";
+import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
+
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface CardProps {
   title: string;
@@ -17,12 +13,12 @@ interface CardProps {
 }
 
 export function CustomCard({ title, text, to, href, external = false, icon }: CardProps) {
-  const target = external ? { target: "_blank" } : {};
-  const _href = to || href || "#";
+  const target = external ? { target: '_blank' } : {};
+  const _href = to || href || '#';
 
   return (
     <Link href={_href} {...target}>
-      <Card className="feature group w-full h-full rounded-xl border border-[#673d94] bg-purple-400/10 bg-clip-padding p-6 shadow-md shadow-[#673d94]/50 backdrop-blur-lg backdrop-filter transition hover:border-purple-500">
+      <Card className="feature group h-full w-full rounded-xl border border-[#673d94] bg-purple-400/10 bg-clip-padding p-6 shadow-md shadow-[#673d94]/50 backdrop-blur-lg backdrop-filter transition hover:border-purple-500">
         <CardHeader className="mx-auto w-full p-0">
           <CardTitle className="flex w-full items-center justify-between text-lg font-semibold">
             <div className="flex items-center gap-3">
@@ -39,8 +35,8 @@ export function CustomCard({ title, text, to, href, external = false, icon }: Ca
             </div>
           </CardTitle>
         </CardHeader>
-        <CardContent className="p-0 mt-4">
-          <p className="leading-relaxed text-slate-200 text-base">{text}</p>
+        <CardContent className="mt-4 p-0">
+          <p className="text-base leading-relaxed text-slate-200">{text}</p>
         </CardContent>
       </Card>
       {/* <ShadCard className="feature group flex h-full rounded-xl border border-[#673d94] bg-purple-400/10 bg-clip-padding p-0 shadow-md shadow-[#673d94]/50 backdrop-blur-lg backdrop-filter transition hover:border-purple-500">

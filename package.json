@@ -3,6 +3,9 @@
   "name": "next15-rsc-drizzle-turso-app",
   "version": "0.1.0",
   "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "build": "next build",
     "db:gen": "drizzle-kit generate --config ./drizzle.config.ts",
@@ -24,9 +27,6 @@
   },
   "dependencies": {
     "@apollo/server": "^4.11.2",
-    "@dynamic-labs/ethereum": "^3.9.0",
-    "@dynamic-labs/sdk-react-core": "^3.9.0",
-    "@dynamic-labs/wagmi-connector": "^3.9.0",
     "@graphql-yoga/plugin-response-cache": "^3.12.4",
     "@hookform/resolvers": "^3.9.1",
     "@libsql/client": "0.14.0",
@@ -103,7 +103,7 @@
     "drizzle-seed": "^0.1.2",
     "eslint": "8.57.0",
     "eslint-config-next": "15.0.4",
-    "eslint-config-tunnckocore": "8.2.2",
+    "eslint-config-tunnckocore": "8.2.3",
     "eslint-plugin-drizzle": "^0.2.3",
     "prettier": "3.3.3",
     "tailwindcss": "^3.4.1",

@@ -1,23 +1,19 @@
 'use client';
 
-import { Moon, Sun } from "lucide-react";
-import { useTheme } from "next-themes";
-import { useEffect, useState, ComponentProps } from "react";
-import { ThemeProvider as NextThemesProvider } from 'next-themes';
+import { ComponentProps, useEffect, useState } from 'react';
+import { Moon, Sun } from 'lucide-react';
+import { ThemeProvider as NextThemesProvider, useTheme } from 'next-themes';
 
-export function ThemeProvider({
-  children,
-  ...props
-}: ComponentProps<typeof NextThemesProvider>) {
+export function ThemeProvider({ children, ...props }: ComponentProps<typeof NextThemesProvider>) {
   return <NextThemesProvider {...props}>{children}</NextThemesProvider>;
 }
 
 export function ThemeToggler() {
-  const { theme, setTheme } = useTheme()
+  const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
+    setTheme(theme === 'light' ? 'dark' : 'light');
   };
 
   useEffect(() => {
@@ -36,5 +32,5 @@ export function ThemeToggler() {
         <Moon className="h-6 w-6 text-white" />
       )}
     </button>
-  )
+  );
 }

@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     siteName: 'Calldata.Space',
-  }
+  },
 };
 
 export const viewport: Viewport = {
@@ -41,7 +41,7 @@ export const viewport: Viewport = {
   // themeColor: [
   //   { media: "(prefers-color-scheme: dark)" }
   // ]
-}
+};
 
 export default function RootLayout({
   children,
@@ -51,7 +51,9 @@ export default function RootLayout({
   return (
     <>
       <html lang="en" suppressHydrationWarning>
-        <body className={`${font.className} antialiasedx relative z-10 overflow-auto overflow-x-hidden text-base font-sans`}>
+        <body
+          className={`${font.className} relative z-10 overflow-auto overflow-x-hidden font-sans text-base antialiased`}
+        >
           <div className="starsog animate-pinger"></div>
           <ThemeProvider attribute="class" defaultTheme="dark">
             {children}
