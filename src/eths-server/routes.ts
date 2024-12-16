@@ -12,11 +12,12 @@ import {
 } from '@/eths-library/index.ts';
 import type { EnumAllDetailed } from '@/eths-library/types.ts';
 import { getHeaders, getPrices } from '@/eths-library/utils.ts';
+import { booleanSchema } from '@/utils/params-validation.ts';
 import { type Context } from 'hono';
 import { z } from 'zod';
 import { ENDPOINTS } from './endpoints-docs.ts';
 import { createApp, toHonoHandler, validate } from './helpers.ts';
-import { DataURISchema, FilterSchema, HashSchema, UserSchema } from './schemas.ts';
+import { DataURISchema, FilterSchema, HashSchema, IdSchema, UserSchema } from './schemas.ts';
 
 export function withRoutes(app: ReturnType<typeof createApp>) {
   app.get('/', async (ctx: Context) => {
@@ -77,9 +78,7 @@ export function withRoutes(app: ReturnType<typeof createApp>) {
     '/optimize/:modifiers/:data{.+}',
     validate(
       'param',
-      z
-        .object({ data: DataURISchema.or(z.string().startsWith('http')), modifiers: z.string() })
-        .strict(),
+      z.object({ data: DataURISchema.or(z.string().url()), modifiers: z.string() }).strict(),
     ),
     async (ctx: Context) => {
       const modifiers = ctx.req.param('modifiers');
@@ -232,8 +231,8 @@ export function withRoutes(app: ReturnType<typeof createApp>) {
       'query',
       z
         .object({
-          checkCreator: z.coerce.boolean().or(z.literal('1')).optional(),
-          creator: z.coerce.boolean().or(z.literal('1')).optional(),
+          checkCreator: booleanSchema.optional(),
+          creator: booleanSchema.optional(),
         })
         .strict(),
     ),
@@ -312,7 +311,9 @@ export function withRoutes(app: ReturnType<typeof createApp>) {
             z.literal('blobscriptions'),
             z.literal('blobs'),
           ]),
-          id: HashSchema.or(z.coerce.number()).optional(),
+
+          id: IdSchema.optional(),
+
           mode: z
             .union([
               z.literal('meta'),
@@ -323,6 +324,8 @@ export function withRoutes(app: ReturnType<typeof createApp>) {
               z.literal('transfers'),
               z.literal('index'),
               z.literal('number'),
+              z.literal('numbers'),
+              z.literal('stats'), // alias of `info`
               z.literal('info'),
               z.literal('owner'),
               z.literal('owners'),
@@ -371,6 +374,7 @@ export function withRoutes(app: ReturnType<typeof createApp>) {
         );
       }
       if (!mode) {
+        console.log('ethscription by id:', id);
         return getEthscriptionById(id.replaceAll(',', ''), settings);
       }
 

@@ -31,6 +31,8 @@ export function createComparisonSchema(baseSchema: z.ZodSchema) {
     .optional();
 }
 
+export const booleanSchema = z.enum(['true', 'false']).transform((value) => value === 'true');
+
 // Helper for address-like strings (0x... or ENS)
 export const addressSchema = z.string().regex(/^(0x[\dA-Fa-f]{40}|.*\.eth)$/);
 
@@ -130,26 +132,11 @@ export const baseEthscriptionSchema = z.object({
     .optional(),
 
   // Boolean filters
-  is_esip0: z
-    .enum(['true', 'false'])
-    .transform((value) => value === 'true')
-    .optional(),
-  is_esip3: z
-    .enum(['true', 'false'])
-    .transform((value) => value === 'true')
-    .optional(),
-  is_esip4: z
-    .enum(['true', 'false'])
-    .transform((value) => value === 'true')
-    .optional(),
-  is_esip6: z
-    .enum(['true', 'false'])
-    .transform((value) => value === 'true')
-    .optional(),
-  is_esip8: z
-    .enum(['true', 'false'])
-    .transform((value) => value === 'true')
-    .optional(),
+  is_esip0: booleanSchema.optional(),
+  is_esip3: booleanSchema.optional(),
+  is_esip4: booleanSchema.optional(),
+  is_esip6: booleanSchema.optional(),
+  is_esip8: booleanSchema.optional(),
 });
 
 export const ethscriptionParamsSchema = baseEthscriptionSchema;
@@ -175,10 +162,7 @@ export const collectionParamsSchema = z
     supply: createComparisonSchema(numberSchema.default('1')),
 
     // Boolean filters
-    verified: z
-      .enum(['true', 'false'])
-      .transform((value) => value === 'true')
-      .optional(),
+    verified: booleanSchema.optional(),
 
     // Array filters
     links: z.array(z.string().url()).optional(),
@@ -225,14 +209,8 @@ export const voteParamsSchema = z.object({
   rank: createComparisonSchema(numberSchema.default('0')),
 
   // Boolean filters
-  up: z
-    .enum(['true', 'false'])
-    .transform((value) => value === 'true')
-    .optional(),
-  down: z
-    .enum(['true', 'false'])
-    .transform((value) => value === 'true')
-    .optional(),
+  up: booleanSchema.optional(),
+  down: booleanSchema.optional(),
 
   include: z.string().optional(),
   exclude: z.string().optional(),
