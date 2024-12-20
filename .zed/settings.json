@@ -12,7 +12,10 @@
       "show_inline_completions": true,
       "formatter": {
         "external": {
-          "command": "prettier-eslint",
+          // seems like using `prettier-eslint-cli` leads to bug deleting the whole file on file save,
+          // so using `prettier` only because as what Zed docs imply is that it will always run first, then ESLint/linters anyway.
+          // Or.. could be bug in `prettier-eslint-cli` or the api package.
+          "command": "prettier",
           "arguments": ["--stdin-filepath", "{buffer_path}"]
         }
       }
@@ -21,7 +24,7 @@
       "show_inline_completions": true,
       "formatter": {
         "external": {
-          "command": "prettier-eslint",
+          "command": "prettier",
           "arguments": ["--stdin-filepath", "{buffer_path}"]
         }
       }

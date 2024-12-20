@@ -6,6 +6,8 @@ import { ThemeProvider, ThemeToggler } from '@/components/theme.tsx';
 
 import '@/app/(root)/globals.css';
 
+import Link from 'next/link';
+
 // const font = Paytone_One({ weight: '400', display: 'swap' });
 const font = Roboto({ weight: '400', display: 'swap' });
 // const font = Inter({ subsets: ['latin'] });
@@ -64,7 +66,7 @@ export default function RootLayout({
                         id="brand"
                         className="inline-flex animate-rainbow bg-gradient-to-br from-purple-400 to-orange-500 box-decoration-clone bg-size-2x bg-clip-text text-3xl font-extrabold tracking-wide text-transparent sm:tracking-wider md:text-5xl"
                       >
-                        <a href="/">wallet</a>
+                        <Link href="/">wallet</Link>
                       </h1>
                       <div className="flex items-center justify-center gap-3 pt-2">
                         <a
