@@ -1,0 +1,113 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette
+{
+  "languages": {
+    "TypeScript": {
+      "show_inline_completions": true,
+      "formatter": {
+        "external": {
+          "command": "prettier-eslint",
+          "arguments": ["--stdin-filepath", "{buffer_path}"]
+        }
+      }
+    },
+    "JavaScript": {
+      "show_inline_completions": true,
+      "formatter": {
+        "external": {
+          "command": "prettier-eslint",
+          "arguments": ["--stdin-filepath", "{buffer_path}"]
+        }
+      }
+    }
+  },
+  "soft_wrap": "editor_width",
+  "gutter": {
+    "runnables": false,
+    "code_actions": false,
+    "folds": true
+  },
+  "file_scan_exclusions": [
+    // "**/node_modules", // Exclude node_modules, the rest are default
+    "**/.git",
+    "**/.svn",
+    "**/.hg",
+    "**/CVS",
+    "**/.DS_Store",
+    "**/Thumbs.db",
+    "**/.classpath",
+    "**/.settings"
+  ],
+  "assistant": {
+    "version": "2",
+    "default_model": {
+      "provider": "zed.dev",
+      // "provider": "copilot_chat",
+      // "model": ""
+      // "provider": "zed.dev",
+      "model": "claude-3-5-sonnet-latest"
+    }
+  },
+  "inlay_hints": {
+    "enabled": false,
+    "show_type_hints": false,
+    "show_parameter_hints": false,
+    "show_other_hints": false
+  },
+  // "formatter": {
+  //   "language_server": {
+  //     "name": "biome"
+  //   }
+  // },
+  "code_actions_on_format": {
+    "enabled": true,
+    // "source.fixAll.biome": true,
+    "source.fixAll.eslint": true,
+    "source.fixAll.prettier": true,
+    "source.organizeImports.prettier": true
+    // "source.organizeImports.biome": true
+  },
+  "project_panel": {
+    "show_hidden_files": true,
+    "dock": "right"
+  },
+  "ui_font_size": 16,
+  "buffer_font_size": 14,
+  "autosave": "on_focus_change",
+  "show_completions_on_input": true,
+  "format_on_save": "on",
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "Catppuccin Macchiato"
+  }
+  // "lsp": {
+  //   "eslint": {
+  //     "settings": {
+  //       "codeActionOnSave": {
+  //         "source.fixAll": true
+  //       },
+  //       "config_path": "<path>/.eslintrc.cjs"
+  //     }
+  //   }
+  // }
+  // "lsp": {
+  //   "biome": {
+  //     "settings": {
+  //       // "config_path": "<path>/biome.json", // defaults to biome.json on root of workspace
+  //       "require_config_file": true
+  //     }
+  //   }
+  // }
+  // "features": {
+  // 	"inline_completion_provider": "supermaven"
+  // 	// "copilot": true,
+  // 	// "inline_completion_provider": "copilot"
+  // }
+}

@@ -1,7 +1,8 @@
 // import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
+
 import { CustomCard } from '@/components/custom-card.tsx';
 import { ThemeToggler } from '@/components/theme.tsx';
-import Link from 'next/link';
 import { features } from './features.ts';
 
 export default function Home() {
