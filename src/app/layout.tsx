@@ -4,8 +4,7 @@ import { Roboto } from 'next/font/google';
 
 import { ThemeProvider } from '@/components/theme.tsx';
 
-import '../globals.css';
-import './main.css';
+import '@/app/globals.css';
 
 // const font = Paytone_One({ weight: '400', display: 'swap' });
 const font = Roboto({ weight: '400', display: 'swap' });
@@ -54,7 +53,6 @@ export default function RootLayout({
         <body
           className={`${font.className} relative z-10 overflow-auto overflow-x-hidden font-sans text-base antialiased`}
         >
-          <div className="starsog animate-pinger"></div>
           <ThemeProvider attribute="class" defaultTheme="dark">
             {children}
           </ThemeProvider>
