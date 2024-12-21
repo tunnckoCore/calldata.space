@@ -4,7 +4,7 @@ import { Roboto } from 'next/font/google';
 
 import { ThemeProvider } from '@/components/theme.tsx';
 
-import '@/app/globals.css';
+import './dashboard.css';
 
 // const font = Paytone_One({ weight: '400', display: 'swap' });
 const font = Roboto({ subsets: ['latin'], weight: '400', display: 'swap' });
@@ -22,7 +22,7 @@ const font = Roboto({ subsets: ['latin'], weight: '400', display: 'swap' });
 // });
 
 export const metadata: Metadata = {
-  title: 'Calldata.Space',
+  title: 'Dash - Calldata.Space',
   description: 'The Open Source platform to learn, explore, create, and trade EVM calldata.',
   robots: { index: true, follow: true },
   openGraph: {

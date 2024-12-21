@@ -4,12 +4,12 @@ import { Roboto } from 'next/font/google';
 
 import { ThemeProvider, ThemeToggler } from '@/components/theme.tsx';
 
-import '@/app/(root)/globals.css';
+import '../../(root)/main.css';
 
 import Link from 'next/link';
 
 // const font = Paytone_One({ weight: '400', display: 'swap' });
-const font = Roboto({ weight: '400', display: 'swap' });
+const font = Roboto({ subsets: ['latin'], weight: '400', display: 'swap' });
 // const font = Inter({ subsets: ['latin'] });
 
 // const geistSans = localFont({

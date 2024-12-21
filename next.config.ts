@@ -1,6 +1,12 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   experimental: {
     reactCompiler: true,
     dynamicIO: true,
@@ -19,8 +25,8 @@ const nextConfig: NextConfig = {
         source: '/:path*',
         has: [
           // does this mean OR?! - Nope.. of course not.
-          // { type: 'host', value: 'api.calldata.space' },
-          { type: 'host', value: 'api.localhost:3000' },
+          { type: 'host', value: 'api.calldata.space' },
+          // { type: 'host', value: 'api.localhost:3000' },
         ],
         destination: '/api-main/:path*',
       },

@@ -8,7 +8,7 @@ import '../globals.css';
 import './main.css';
 
 // const font = Paytone_One({ weight: '400', display: 'swap' });
-const font = Roboto({ weight: '400', display: 'swap' });
+const font = Roboto({ subsets: ['latin'], weight: '400', display: 'swap' });
 // const font = Inter({ subsets: ['latin'] });
 
 // const geistSans = localFont({
