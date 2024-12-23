@@ -10,16 +10,19 @@ export * from './helpers.ts';
 export * from './routes.ts';
 export * from './schemas.ts';
 
-export function createNextRouteHandlers(baseURL) {
+export function createRouteHandlers(baseURL = BASE_API_URL, prefix = '/') {
   // Creates Hono app with preconfigured middleware and Ethscriptions routes
   const eths = withRoutes(createApp(), baseURL || BASE_API_URL);
-  const app = new Hono();
+  const app = new Hono().basePath(prefix);
 
   // Mounts the eths app at the root of the new Hono app with `/api` base path
   app.route('/', eths);
 
   const GET = handle(app);
+  const OPTIONS = handle(app);
   const POST = handle(app);
 
-  return { GET, POST };
+  return { eths, app, baseURL, prefix, GET, POST, OPTIONS };
 }
+
+export { handle as honoVercelHandle } from 'hono/vercel';
