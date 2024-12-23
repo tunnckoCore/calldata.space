@@ -1,3 +1,7 @@
+import { type Context } from 'hono';
+import { z } from 'zod';
+
+import { BASE_API_URL } from '@/eths-library/constants.ts';
 import {
   checkExists,
   estimateDataCost,
@@ -13,13 +17,11 @@ import {
 import type { EnumAllDetailed } from '@/eths-library/types.ts';
 import { getHeaders, getPrices } from '@/eths-library/utils.ts';
 import { booleanSchema } from '@/utils/params-validation.ts';
-import { type Context } from 'hono';
-import { z } from 'zod';
 import { ENDPOINTS } from './endpoints-docs.ts';
 import { createApp, toHonoHandler, validate } from './helpers.ts';
 import { DataURISchema, FilterSchema, HashSchema, IdSchema, UserSchema } from './schemas.ts';
 
-export function withRoutes(app: ReturnType<typeof createApp>) {
+export function withRoutes(app: ReturnType<typeof createApp>, baseURL = BASE_API_URL) {
   app.get('/', async (ctx: Context) => {
     const commitsha = ctx.env?.COMMIT_SHA || 'local';
 
@@ -216,12 +218,12 @@ export function withRoutes(app: ReturnType<typeof createApp>) {
   app.get(
     '/check/:sha',
     validate('param', z.object({ sha: HashSchema })),
-    toHonoHandler((ctx: Context) => checkExists(ctx.req.param('sha'))),
+    toHonoHandler((ctx: Context) => checkExists(ctx.req.param('sha'), { baseURL })),
   );
   app.get(
     '/exists/:sha',
     validate('param', z.object({ sha: HashSchema })),
-    toHonoHandler((ctx: Context) => checkExists(ctx.req.param('sha'))),
+    toHonoHandler((ctx: Context) => checkExists(ctx.req.param('sha'), { baseURL })),
   );
 
   app.get(
@@ -239,14 +241,14 @@ export function withRoutes(app: ReturnType<typeof createApp>) {
     toHonoHandler(async (ctx: Context) => {
       const checkCreator = Boolean(ctx.req.query('creator') || ctx.req.query('checkCreator'));
 
-      return resolveUser(ctx.req.param('name'), { checkCreator });
+      return resolveUser(ctx.req.param('name'), { checkCreator, baseURL });
     }),
   );
 
   app.get(
     '/profiles/:name',
     validate('param', z.object({ name: UserSchema })),
-    toHonoHandler((ctx: Context) => getUserProfile(ctx.req.param('name'))),
+    toHonoHandler((ctx: Context) => getUserProfile(ctx.req.param('name'), { baseURL })),
   );
 
   app.get(
@@ -274,7 +276,7 @@ export function withRoutes(app: ReturnType<typeof createApp>) {
       const func = mode === 'created' ? getUserCreatedEthscritions : getUserOwnedEthscriptions;
 
       if (mode === 'created' || mode === 'owned') {
-        return func(name, settings);
+        return func(name, { ...settings, baseURL });
       }
 
       return {
@@ -352,7 +354,7 @@ export function withRoutes(app: ReturnType<typeof createApp>) {
     toHonoHandler(async (ctx: Context) => {
       const { searchParams } = new URL(ctx.req.url);
       const params = Array.from(searchParams.entries());
-      const settings = {};
+      const settings = { baseURL };
       for (const entry of params) {
         const [key, value] = entry;
 

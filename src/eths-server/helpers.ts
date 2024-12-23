@@ -1,7 +1,6 @@
 // ?NOTE: maybe switch to @hono/zod-openapi on next iteration
 import { zValidator } from '@hono/zod-validator';
 import { Hono, type Context, type ValidationTargets } from 'hono';
-
 import { cors as corsMiddleware } from 'hono/cors';
 import { etag as etagMiddleware } from 'hono/etag';
 import { secureHeaders } from 'hono/secure-headers';

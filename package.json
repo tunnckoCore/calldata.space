@@ -7,7 +7,7 @@
     "node": ">=22"
   },
   "scripts": {
-    "build": "next build && bun run nuke",
+    "build": "next build",
     "db:gen": "drizzle-kit generate --config ./drizzle.config.ts",
     "db:generate": "bun run db:gen",
     "db:mig": "drizzle-kit migrate",

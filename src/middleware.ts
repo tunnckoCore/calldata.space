@@ -2,12 +2,15 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function middleware(req: NextRequest) {
   const host = req.headers.get('host');
-  const [api, root] = host?.split('.') || [];
+  const [one, two, three] = host?.split('.') || [];
+  const chain = one === 'api' ? two : one;
+  const api = one === 'api' ? 'api' : two;
 
-  if (root && api === 'api') {
+  if (/mainnet|sepolia/.test(chain) && api === 'api') {
     const url = new URL(req.url);
 
-    const newUrl = new URL(`/api-main${url.pathname}${url.search || ''}`, req.url);
+    const newUrlPath = `/api-proxy/${chain}${url.pathname}${url.search || ''}`;
+    const newUrl = new URL(newUrlPath, req.url);
 
     return NextResponse.rewrite(newUrl, { request: req });
   }
