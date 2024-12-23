@@ -10,12 +10,9 @@ export * from './helpers.ts';
 export * from './routes.ts';
 export * from './schemas.ts';
 
-export function createNextRouteHandlers(baseURL = BASE_API_URL) {
-  // export const runtime = 'edge';
-  // export const runtime = 'nodejs';
-
+export function createNextRouteHandlers(baseURL) {
   // Creates Hono app with preconfigured middleware and Ethscriptions routes
-  const eths = withRoutes(createApp(), baseURL);
+  const eths = withRoutes(createApp(), baseURL || BASE_API_URL);
   const app = new Hono();
 
   // Mounts the eths app at the root of the new Hono app with `/api` base path
