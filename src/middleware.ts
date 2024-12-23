@@ -18,7 +18,8 @@ export async function middleware(req: NextRequest) {
   if (sub === 'wallet') {
     const url = new URL(req.url);
 
-    const newUrlPath = `/wallet/${one}${url.pathname}${url.search || ''}`;
+    const x = one === 'wallet' ? '' : `/${one}`;
+    const newUrlPath = `/wallet${x}${url.pathname}${url.search || ''}`;
     const newUrl = new URL(newUrlPath, req.url);
 
     return NextResponse.rewrite(newUrl, { request: req });
