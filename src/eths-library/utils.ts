@@ -102,10 +102,19 @@ export async function upstreamFetcher(
   const fpath = (isAttachment ? [id.split('/')[0], 'attachment'] : [id || '']).join('/');
   const search = Object.entries(opts).length > 0 ? `?${searchParams}` : '';
 
-  const resp = await fetch(`${baseURL}/ethscriptions${id ? `/${fpath}` : ''}${search}`);
+  let resp: any;
+
+  try {
+    resp = await fetch(`${baseURL}/ethscriptions${id ? `/${fpath}` : ''}${search}`);
+  } catch (err: any) {
+    return {
+      ok: false,
+      error: { message: `Fetch failed unexpectedly: ${err?.toString()}`, httpStatus: 500 },
+    } as NotOkShape;
+  }
 
   if (!resp.ok) {
-    console.error('Failed to fetch data from API:', resp.status, resp.statusText);
+    console.error('Failed to fetch data from upstream API:', resp.status, resp.statusText);
 
     return {
       ok: false,
