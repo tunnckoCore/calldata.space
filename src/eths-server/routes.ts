@@ -23,7 +23,7 @@ import { DataURISchema, FilterSchema, HashSchema, IdSchema, UserSchema } from '.
 
 export function withRoutes(app: ReturnType<typeof createApp>, baseURL = BASE_API_URL) {
   app.get('/', async (ctx: Context) => {
-    const commitsha = ctx.env?.COMMIT_SHA || 'local';
+    const commitsha = ctx.env?.VERCEL_GIT_COMMIT_REF || 'local';
 
     return ctx.html(`<html lang="en">
   <head>
@@ -38,8 +38,8 @@ export function withRoutes(app: ReturnType<typeof createApp>, baseURL = BASE_API
   <body data-theme="dark" class="relative z-10 overflow-auto overflow-x-hidden bg-[#231631]">
       <div>
         <h1>Ethscriptions API</h1>
-        <p>Build: <a href="https://github.com/tunnckoCore/ethscriptions-api-cache/commit/${commitsha}">${commitsha}</a></p>
-        <p>Source: <a href="https://github.com/tunnckoCore/ethscriptions-api-cache">https://github.com/tunnckoCore/ethscriptions-api-cache</a></p>
+        <p>Build: <a href="https://github.com/tunnckoCore/calldata.space/commit/${commitsha}">${commitsha}</a></p>
+        <p>Source: <a href="https://github.com/tunnckoCore/calldata.space">https://github.com/tunnckoCore/calldata.space</a></p>
       </div>
       <div>${ENDPOINTS.map((x) => {
         if (!x) return '';
@@ -60,7 +60,7 @@ export function withRoutes(app: ReturnType<typeof createApp>, baseURL = BASE_API
   });
 
   app.get('/endpoints', async (ctx: Context) => {
-    const commitsha = ctx.env?.COMMIT_SHA || 'local';
+    const commitsha = ctx.env?.VERCEL_GIT_COMMIT_REF || 'local';
 
     return ctx.json({
       about: {
