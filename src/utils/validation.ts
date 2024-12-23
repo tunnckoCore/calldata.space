@@ -1,4 +1,5 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
+import { NextContext, NextRequestWithUnkeyContext, withUnkey } from '@unkey/nextjs';
 import { parse as qsParse } from 'qs-esm';
 import { z } from 'zod';
 
@@ -111,7 +112,33 @@ export function withValidation<TSchema extends z.ZodSchema>(
   schema: TSchema,
   handler: (req: Request, ctx: BasicHandlerContext<TSchema>) => Promise<any>,
 ) {
-  return async function withValidate(req: Request, ctx: BasicHandlerContext<TSchema>) {
+  return withUnkey(validate, {
+    onError: async (req, res) =>
+      NextResponse.json(
+        {
+          error: {
+            message: res.message || 'Unauthorized',
+            httpStatus: 500,
+          },
+        },
+        { status: 500 },
+      ),
+    handleInvalidKey: async (req, res) =>
+      NextResponse.json(
+        {
+          error: {
+            message: 'Unauthorized',
+            httpStatus: 401,
+          },
+        },
+        { status: 401 },
+      ),
+  });
+
+  async function validate(
+    req: NextRequest | Request | NextRequestWithUnkeyContext,
+    ctx: BasicHandlerContext<TSchema> | NextContext,
+  ) {
     const url = new URL(req.url);
 
     const { where, ...input } = qsParse(url.search.slice(1));
@@ -123,7 +150,7 @@ export function withValidation<TSchema extends z.ZodSchema>(
         req,
         input,
         where: where as Record<string, Record<string, any>>,
-      },
+      } as any,
       schema,
       handler,
     );
@@ -150,7 +177,7 @@ export function withValidation<TSchema extends z.ZodSchema>(
       },
       { status: result.status || 200, headers: result.headers || new Headers() },
     );
-  };
+  }
 }
 
 export function withIncludesExcludes(results: any[], searchQuery: any) {

@@ -59,6 +59,7 @@
     "@radix-ui/react-toggle-group": "^1.1.0",
     "@radix-ui/react-tooltip": "^1.1.6",
     "@tanstack/react-query": "^5.62.3",
+    "@unkey/nextjs": "^0.18.3",
     "babel-plugin-react-compiler": "^19.0.0-beta-37ed2a7-20241206",
     "cdn-cache-control": "^1.2.0",
     "class-variance-authority": "^0.7.1",
