@@ -11,10 +11,14 @@ Ethscriptions Protocol. You can find it at
 
 _Soon it could be renamed to `@calldata.space/core`._
 
+_NOTE: Updated code lives in `src/eths-library` folder._
+
 ## Ethscriptions Server & API
 
 You can find it at
 [tunnckocore/ethscriptions-server](https://github.com/tunnckocore/ethscriptions-server).
+
+_NOTE: Updated code lives in `src/eths-server` folder._
 
 There is a NPM package called `ethscriptions-server` that you can use to run your own server similar
 to the one that we currently host at [api.wgw.lol](https://api.wgw.lol). It's a thin layer on top of
