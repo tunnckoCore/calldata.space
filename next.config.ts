@@ -31,7 +31,7 @@ const nextConfig: NextConfig = {
           // { type: 'host', value: 'api.mainnet.localhost:3000' },
           // { type: 'host', value: 'api.sepolia.localhost:3000' },
         ],
-        destination: '/ehtscom-proxy/:path*',
+        destination: '/ethscom-proxy/:path*',
       },
       // ?NOTE: why we need this while it's also required to have a `middleware` which actually rewrites?!
       // ?NOTE: Sure, one is Vercel-specific and the other is Next.js-specific, but duuh..
