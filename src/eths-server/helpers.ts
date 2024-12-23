@@ -8,11 +8,11 @@ import { trimTrailingSlash } from 'hono/trailing-slash';
 import { ZodSchema } from 'zod';
 
 export type Bindings = {
-  VERCEL_GIT_COMMIT_REF: string;
+  VERCEL_GIT_COMMIT_SHA: string;
 };
 
 export type Env = {
-  VERCEL_GIT_COMMIT_REF: string;
+  VERCEL_GIT_COMMIT_SHA: string;
   ENVIRONMENT: 'production' | 'development';
   UPLOADTHING_TOKEN: string;
 };

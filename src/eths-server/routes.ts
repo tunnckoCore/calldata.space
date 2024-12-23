@@ -1,4 +1,5 @@
 import { type Context } from 'hono';
+import { env as honoGetEnv } from 'hono/adapter';
 import { z } from 'zod';
 
 import { BASE_API_URL } from '@/eths-library/constants.ts';
@@ -21,9 +22,15 @@ import { ENDPOINTS } from './endpoints-docs.ts';
 import { createApp, toHonoHandler, validate } from './helpers.ts';
 import { DataURISchema, FilterSchema, HashSchema, IdSchema, UserSchema } from './schemas.ts';
 
+export function getEnv(ctx: Context, key: string = 'VERCEL_GIT_COMMIT_SHA') {
+  const ctxEnv = ctx.env;
+  const runEnv = honoGetEnv<{ VERCEL_GIT_COMMIT_SHA: string }>(ctx);
+  return runEnv[key] || ctxEnv[key] || 'local';
+}
+
 export function withRoutes(app: ReturnType<typeof createApp>, baseURL = BASE_API_URL) {
   app.get('/', async (ctx: Context) => {
-    const commitsha = ctx.env?.VERCEL_GIT_COMMIT_REF || 'local';
+    const commitsha = getEnv(ctx);
 
     return ctx.html(`<html lang="en">
   <head>
@@ -60,11 +67,11 @@ export function withRoutes(app: ReturnType<typeof createApp>, baseURL = BASE_API
   });
 
   app.get('/endpoints', async (ctx: Context) => {
-    const commitsha = ctx.env?.VERCEL_GIT_COMMIT_REF || 'local';
+    const commitsha = getEnv(ctx);
 
     return ctx.json({
       about: {
-        source: 'https://github.com/tunnckocore/ethscriptions-api-cache',
+        source: 'https://github.com/tunnckocore/calldata.space',
         commit: commitsha,
       },
       endpoints: ENDPOINTS,
