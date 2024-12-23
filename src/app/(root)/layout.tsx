@@ -54,7 +54,6 @@ export default function RootLayout({
         <body
           className={`${font.className} relative z-10 overflow-auto overflow-x-hidden font-sans text-base antialiased`}
         >
-          <img src="/vercel.svg" alt="foo" />
           <div className="starsog animate-pinger"></div>
           <ThemeProvider attribute="class" defaultTheme="dark">
             {children}
