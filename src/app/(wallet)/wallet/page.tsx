@@ -1,7 +1,7 @@
-export default async function WalletPage() {
+export default function walletpage() {
   return (
-    <div className="my-5 flex w-full items-center justify-center text-slate-200">
-      <div className="mx-auto max-w-7xl px-6 py-12">WalletPage</div>
+    <div>
+      <h1>Wallet Root Page</h1>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { Roboto } from 'next/font/google';
 
 import { ThemeProvider, ThemeToggler } from '@/components/theme.tsx';
 
-import '../../(root)/main.css';
+import '@/app/(root)/main.css';
 
 import Link from 'next/link';
 

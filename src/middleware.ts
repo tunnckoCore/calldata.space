@@ -4,7 +4,7 @@ export async function middleware(req: NextRequest) {
   const host = req.headers.get('host') || '';
   const [one, two] = host.split('.') || [];
   const chain = one === 'api' ? 'mainnet' : one;
-  const sub = one === 'api' ? 'api' : two;
+  const sub = one === 'api' ? 'api' : one === 'wallet' ? 'wallet' : two;
 
   if (/mainnet|sepolia/.test(chain) && sub === 'api') {
     const url = new URL(req.url);
@@ -18,7 +18,7 @@ export async function middleware(req: NextRequest) {
   if (sub === 'wallet') {
     const url = new URL(req.url);
 
-    const newUrlPath = `/wallet${url.pathname}${url.search || ''}`;
+    const newUrlPath = `/wallet/${one}${url.pathname}${url.search || ''}`;
     const newUrl = new URL(newUrlPath, req.url);
 
     return NextResponse.rewrite(newUrl, { request: req });
