@@ -114,7 +114,7 @@ export async function getUserProfile(
   const opts = { ...options };
   const res = await upstreamFetcher({
     ...opts,
-    resolve: !isAddress(val),
+    resolve: isAddress(val) === false,
     creator: val,
     media_type: 'application',
     media_subtype: 'vnd.esc.user.profile+json',

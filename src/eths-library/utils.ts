@@ -96,7 +96,7 @@ export async function upstreamFetcher(
   delete opts.baseURL;
 
   const searchStr = qs.stringify(opts, { encode: false, indices: false });
-  const searchParams = new URLSearchParams(searchStr);
+  const searchParams = new URLSearchParams(searchStr.replaceAll('+', '%2B')); // for the mime subtype filters (vnd.esc.user.profile+json)
 
   const isAttachment = id && /attach|blob/i.test(id);
   const fpath = (isAttachment ? [id.split('/')[0], 'attachment'] : [id || '']).join('/');
