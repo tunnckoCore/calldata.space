@@ -1,0 +1,12 @@
+{
+  "extends": "@repo/typescript-config/nextjs.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "allowImportingTsExtensions": false,
+    "paths": {
+      "@/*": ["./*"],
+      "@repo/*": ["../../packages/*"],
+    },
+  },
+  "include": ["next-env.d.ts", "next.config.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+}

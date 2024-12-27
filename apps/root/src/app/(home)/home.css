@@ -1,0 +1,370 @@
+body {
+  /* margin: 0; */
+  /* font-family: Roboto, sans-serif; */
+  /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+      "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+      "Noto Color Emoji"; */
+  /* font-size: 1.060rem; */
+}
+
+#brand,
+.feature .title {
+  font-family: 'Paytone One';
+}
+
+/* [data-theme='dark'] {
+    background-color: #442961;
+    background-image: radial-gradient(circle at center center, #673d94, #231631),
+        repeating-radial-gradient(circle at center center,
+            #673d94,
+            #231631,
+            80px,
+            transparent 140px,
+            transparent 80px);
+    background-blend-mode: multiply;
+}
+
+[data-theme='light'] {
+    @apply bg-[#231631];
+}
+
+@media (min-width: 768px) {
+  [data-theme='light'] {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: repeat;
+    background-image: url('data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 2000 1400%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cmask id=%22b%22 x=%220%22 y=%220%22 width=%222000%22 height=%221400%22%3E%3Cpath fill=%22url(%23a)%22 d=%22M0 0h2000v1400H0z%22%2F%3E%3C%2Fmask%3E%3Cpath fill=%22%23231631%22 d=%22M0 0h2000v1400H0z%22%2F%3E%3Cg style=%22transform-origin:center center%22 stroke=%22%23673d9485%22 stroke-width=%222%22 mask=%22url(%23b)%22%3E%3Cpath fill=%22%23673d942b%22 d=%22M500 0h100v100H500z%22%2F%3E%3Cpath fill=%22none%22 d=%22M600 0h100v100H600z%22%2F%3E%3Cpath fill=%22%23673d9460%22 d=%22M800 0h100v100H800z%22%2F%3E%3Cpath fill=%22none%22 d=%22M900 0h100v100H900zM1200 0h100v100h-100zM1400 0h100v100h-100zM1700 0h100v100h-100zM1800 0h100v100h-100zM1900 0h100v100h-100zM0 100h100v100H0zM200 100h100v100H200zM300 100h100v100H300zM400 100h100v100H400zM700 100h100v100H700zM1000 100h100v100h-100zM1100 100h100v100h-100z%22%2F%3E%3Cpath fill=%22%23673d9473%22 d=%22M1400 100h100v100h-100z%22%2F%3E%3Cpath fill=%22none%22 d=%22M1500 100h100v100h-100z%22%2F%3E%3Cpath fill=%22%23673d942f%22 d=%22M1900 100h100v100h-100z%22%2F%3E%3Cpath fill=%22none%22 d=%22M0 200h100v100H0zM100 200h100v100H100zM300 200h100v100H300z%22%2F%3E%3Cpath fill=%22%23673d9419%22 d=%22M700 200h100v100H700z%22%2F%3E%3Cpath fill=%22none%22 d=%22M900 200h100v100H900z%22%2F%3E%3Cpath fill=%22%23673d944c%22 d=%22M1300 200h100v100h-100z%22%2F%3E%3Cpath fill=%22none%22 d=%22M1800 200h100v100h-100zM1900 200h100v100h-100zM400 300h100v100H400z%22%2F%3E%3Cpath fill=%22%23673d9459%22 d=%22M1000 300h100v100h-100z%22%2F%3E%3Cpath fill=%22none%22 d=%22M1600 300h100v100h-100zM1700 300h100v100h-100z%22%2F%3E%3Cpath fill=%22%23673d942e%22 d=%22M1800 300h100v100h-100z%22%2F%3E%3Cpath fill=%22none%22 d=%22M1900 300h100v100h-100zM0 400h100v100H0z%22%2F%3E%3Cpath fill=%22%23673d943a%22 d=%22M300 400h100v100H300z%22%2F%3E%3Cpath fill=%22none%22 d=%22M400 400h100v100H400z%22%2F%3E%3Cpath fill=%22%23673d9419%22 d=%22M500 400h100v100H500z%22%2F%3E%3Cpath fill=%22none%22 d=%22M700 400h100v100H700zM800 400h100v100H800z%22%2F%3E%3Cpath fill=%22%23673d944d%22 d=%22M1000 400h100v100h-100z%22%2F%3E%3Cpath fill=%22none%22 d=%22M1200 400h100v100h-100zM1300 400h100v100h-100z%22%2F%3E%3Cpath fill=%22%23673d9430%22 d=%22M1600 400h100v100h-100z%22%2F%3E%3Cpath fill=%22none%22 d=%22M1700 400h100v100h-100z%22%2F%3E%3Cpath fill=%22%23673d9454%22 d=%22M1900 400h100v100h-100z%22%2F%3E%3Cpath fill=%22%23673d9462%22 d=%22M0 500h100v100H0z%22%2F%3E%3Cpath fill=%22none%22 d=%22M100 500h100v100H100z%22%2F%3E%3Cpath fill=%22%23673d9428%22 d=%22M200 500h100v100H200z%22%2F%3E%3Cpath fill=%22none%22 d=%22M300 500h100v100H300zM600 500h100v100H600zM1100 500h100v100h-100z%22%2F%3E%3Cpath fill=%22%23673d942b%22 d=%22M1200 500h100v100h-100z%22%2F%3E%3Cpath fill=%22none%22 d=%22M1700 500h100v100h-100zM1900 500h100v100h-100zM200 600h100v100H200zM600 600h100v100H600zM1000 600h100v100h-100z%22%2F%3E%3Cpath fill=%22%23673d9475%22 d=%22M1500 600h100v100h-100z%22%2F%3E%3Cpath fill=%22none%22 d=%22M1600 600h100v100h-100zM1800 600h100v100h-100z%22%2F%3E%3Cpath fill=%22%23673d944f%22 d=%22M300 700h100v100H300z%22%2F%3E%3Cpath fill=%22%23673d9478%22 d=%22M400 700h100v100H400z%22%2F%3E%3Cpath fill=%22%23673d9432%22 d=%22M500 700h100v100H500z%22%2F%3E%3Cpath fill=%22%23673d9482%22 d=%22M700 700h100v100H700z%22%2F%3E%3Cpath fill=%22none%22 d=%22M1300 700h100v100h-100zM1700 700h100v100h-100zM1900 700h100v100h-100zM200 800h100v100H200zM400 800h100v100H400z%22%2F%3E%3Cpath fill=%22%23673d9405%22 d=%22M500 800h100v100H500z%22%2F%3E%3Cpath fill=%22none%22 d=%22M600 800h100v100H600zM700 800h100v100H700zM800 800h100v100H800zM900 800h100v100H900zM1000 800h100v100h-100zM1100 800h100v100h-100zM1300 800h100v100h-100zM1800 800h100v100h-100zM0 900h100v100H0zM100 900h100v100H100z%22%2F%3E%3Cpath fill=%22%23673d9470%22 d=%22M400 900h100v100H400z%22%2F%3E%3Cpath fill=%22%23673d9484%22 d=%22M500 900h100v100H500z%22%2F%3E%3Cpath fill=%22none%22 d=%22M600 900h100v100H600zM800 900h100v100H800z%22%2F%3E%3Cpath fill=%22%23673d9410%22 d=%22M900 900h100v100H900z%22%2F%3E%3Cpath fill=%22none%22 d=%22M1000 900h100v100h-100zM1100 900h100v100h-100zM1300 900h100v100h-100zM1400 900h100v100h-100zM1500 900h100v100h-100z%22%2F%3E%3Cpath fill=%22%23673d9416%22 d=%22M1800 900h100v100h-100z%22%2F%3E%3Cpath fill=%22none%22 d=%22M1900 900h100v100h-100zM100 1000h100v100H100zM300 1000h100v100H300zM600 1000h100v100H600zM1000 1000h100v100h-100z%22%2F%3E%3Cpath fill=%22%23673d9443%22 d=%22M1200 1000h100v100h-100z%22%2F%3E%3Cpath fill=%22%23673d940f%22 d=%22M1400 1000h100v100h-100z%22%2F%3E%3Cpath fill=%22none%22 d=%22M1500 1000h100v100h-100zM1600 1000h100v100h-100zM1900 1000h100v100h-100z%22%2F%3E%3Cpath fill=%22%23673d943a%22 d=%22M200 1100h100v100H200z%22%2F%3E%3Cpath fill=%22none%22 d=%22M300 1100h100v100H300z%22%2F%3E%3Cpath fill=%22%23673d947c%22 d=%22M400 1100h100v100H400z%22%2F%3E%3Cpath fill=%22none%22 d=%22M600 1100h100v100H600zM700 1100h100v100H700z%22%2F%3E%3Cpath fill=%22%23673d9465%22 d=%22M800 1100h100v100H800z%22%2F%3E%3Cpath fill=%22none%22 d=%22M900 1100h100v100H900zM1200 1100h100v100h-100zM1400 1100h100v100h-100zM1600 1100h100v100h-100zM1900 1100h100v100h-100zM400 1200h100v100H400z%22%2F%3E%3Cpath fill=%22%23673d941e%22 d=%22M500 1200h100v100H500z%22%2F%3E%3Cpath fill=%22none%22 d=%22M600 1200h100v100H600zM1000 1200h100v100h-100zM1100 1200h100v100h-100zM1300 1200h100v100h-100z%22%2F%3E%3Cpath fill=%22%23673d940c%22 d=%22M1700 1200h100v100h-100z%22%2F%3E%3Cpath fill=%22none%22 d=%22M200 1300h100v100H200zM400 1300h100v100H400z%22%2F%3E%3Cpath fill=%22%23673d947a%22 d=%22M500 1300h100v100H500z%22%2F%3E%3Cpath fill=%22%23673d9477%22 d=%22M600 1300h100v100H600z%22%2F%3E%3Cpath fill=%22none%22 d=%22M900 1300h100v100H900zM1100 1300h100v100h-100zM1700 1300h100v100h-100zM1900 1300h100v100h-100z%22%2F%3E%3C%2Fg%3E%3Cdefs%3E%3CradialGradient id=%22a%22%3E%3Cstop offset=%2266.4%25%22 stop-color=%22%23fff%22 stop-opacity=%220%22%2F%3E%3Cstop offset=%22100%25%22 stop-color=%22%23fff%22 stop-opacity=%22.336%22%2F%3E%3C%2FradialGradient%3E%3C%2Fdefs%3E%3C%2Fsvg%3E');
+  }
+}
+*/
+
+:root {
+  /* --background: 0 0% 100%; */
+  --background: hsl(268.89, 38.03%, 13.92%);
+  /* --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 142.1 76.2% 36.3%;
+    --primary-foreground: 355.7 100% 97.3%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 142.1 76.2% 36.3%;
+    --radius: 0.5rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%; */
+}
+
+.dark {
+  /* --background: 20 14.3% 4.1%; */
+  --background: hsl(268.93, 40.58%, 27.06%);
+  /* --foreground: 0 0% 95%; */
+  /* --foreground: 74 100% 50%;
+    --card: 24 9.8% 10%;
+    --card-foreground: 0 0% 95%;
+    --popover: 0 0% 9%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 142.1 70.6% 45.3%;
+    --primary-foreground: 144.9 80.4% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 12 6.5% 15.1%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 85.7% 97.3%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 142.4 71.8% 29.2%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%; */
+
+  background-color: hsl(268.93, 40.58%, 27.06%);
+  background-image: radial-gradient(circle at center center, #673d94, #231631),
+    repeating-radial-gradient(
+      circle at center center,
+      #673d94,
+      #231631,
+      80px,
+      transparent 140px,
+      transparent 80px
+    );
+  background-blend-mode: multiply;
+}
+
+@media (min-width: 768px) {
+  .light {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: repeat;
+    background-image: url('data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 2000 1400%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cmask id=%22b%22 x=%220%22 y=%220%22 width=%222000%22 height=%221400%22%3E%3Cpath fill=%22url(%23a)%22 d=%22M0 0h2000v1400H0z%22%2F%3E%3C%2Fmask%3E%3Cpath fill=%22%23231631%22 d=%22M0 0h2000v1400H0z%22%2F%3E%3Cg style=%22transform-origin:center center%22 stroke=%22%23673d9485%22 stroke-width=%222%22 mask=%22url(%23b)%22%3E%3Cpath fill=%22%23673d942b%22 d=%22M500 0h100v100H500z%22%2F%3E%3Cpath fill=%22none%22 d=%22M600 0h100v100H600z%22%2F%3E%3Cpath fill=%22%23673d9460%22 d=%22M800 0h100v100H800z%22%2F%3E%3Cpath fill=%22none%22 d=%22M900 0h100v100H900zM1200 0h100v100h-100zM1400 0h100v100h-100zM1700 0h100v100h-100zM1800 0h100v100h-100zM1900 0h100v100h-100zM0 100h100v100H0zM200 100h100v100H200zM300 100h100v100H300zM400 100h100v100H400zM700 100h100v100H700zM1000 100h100v100h-100zM1100 100h100v100h-100z%22%2F%3E%3Cpath fill=%22%23673d9473%22 d=%22M1400 100h100v100h-100z%22%2F%3E%3Cpath fill=%22none%22 d=%22M1500 100h100v100h-100z%22%2F%3E%3Cpath fill=%22%23673d942f%22 d=%22M1900 100h100v100h-100z%22%2F%3E%3Cpath fill=%22none%22 d=%22M0 200h100v100H0zM100 200h100v100H100zM300 200h100v100H300z%22%2F%3E%3Cpath fill=%22%23673d9419%22 d=%22M700 200h100v100H700z%22%2F%3E%3Cpath fill=%22none%22 d=%22M900 200h100v100H900z%22%2F%3E%3Cpath fill=%22%23673d944c%22 d=%22M1300 200h100v100h-100z%22%2F%3E%3Cpath fill=%22none%22 d=%22M1800 200h100v100h-100zM1900 200h100v100h-100zM400 300h100v100H400z%22%2F%3E%3Cpath fill=%22%23673d9459%22 d=%22M1000 300h100v100h-100z%22%2F%3E%3Cpath fill=%22none%22 d=%22M1600 300h100v100h-100zM1700 300h100v100h-100z%22%2F%3E%3Cpath fill=%22%23673d942e%22 d=%22M1800 300h100v100h-100z%22%2F%3E%3Cpath fill=%22none%22 d=%22M1900 300h100v100h-100zM0 400h100v100H0z%22%2F%3E%3Cpath fill=%22%23673d943a%22 d=%22M300 400h100v100H300z%22%2F%3E%3Cpath fill=%22none%22 d=%22M400 400h100v100H400z%22%2F%3E%3Cpath fill=%22%23673d9419%22 d=%22M500 400h100v100H500z%22%2F%3E%3Cpath fill=%22none%22 d=%22M700 400h100v100H700zM800 400h100v100H800z%22%2F%3E%3Cpath fill=%22%23673d944d%22 d=%22M1000 400h100v100h-100z%22%2F%3E%3Cpath fill=%22none%22 d=%22M1200 400h100v100h-100zM1300 400h100v100h-100z%22%2F%3E%3Cpath fill=%22%23673d9430%22 d=%22M1600 400h100v100h-100z%22%2F%3E%3Cpath fill=%22none%22 d=%22M1700 400h100v100h-100z%22%2F%3E%3Cpath fill=%22%23673d9454%22 d=%22M1900 400h100v100h-100z%22%2F%3E%3Cpath fill=%22%23673d9462%22 d=%22M0 500h100v100H0z%22%2F%3E%3Cpath fill=%22none%22 d=%22M100 500h100v100H100z%22%2F%3E%3Cpath fill=%22%23673d9428%22 d=%22M200 500h100v100H200z%22%2F%3E%3Cpath fill=%22none%22 d=%22M300 500h100v100H300zM600 500h100v100H600zM1100 500h100v100h-100z%22%2F%3E%3Cpath fill=%22%23673d942b%22 d=%22M1200 500h100v100h-100z%22%2F%3E%3Cpath fill=%22none%22 d=%22M1700 500h100v100h-100zM1900 500h100v100h-100zM200 600h100v100H200zM600 600h100v100H600zM1000 600h100v100h-100z%22%2F%3E%3Cpath fill=%22%23673d9475%22 d=%22M1500 600h100v100h-100z%22%2F%3E%3Cpath fill=%22none%22 d=%22M1600 600h100v100h-100zM1800 600h100v100h-100z%22%2F%3E%3Cpath fill=%22%23673d944f%22 d=%22M300 700h100v100H300z%22%2F%3E%3Cpath fill=%22%23673d9478%22 d=%22M400 700h100v100H400z%22%2F%3E%3Cpath fill=%22%23673d9432%22 d=%22M500 700h100v100H500z%22%2F%3E%3Cpath fill=%22%23673d9482%22 d=%22M700 700h100v100H700z%22%2F%3E%3Cpath fill=%22none%22 d=%22M1300 700h100v100h-100zM1700 700h100v100h-100zM1900 700h100v100h-100zM200 800h100v100H200zM400 800h100v100H400z%22%2F%3E%3Cpath fill=%22%23673d9405%22 d=%22M500 800h100v100H500z%22%2F%3E%3Cpath fill=%22none%22 d=%22M600 800h100v100H600zM700 800h100v100H700zM800 800h100v100H800zM900 800h100v100H900zM1000 800h100v100h-100zM1100 800h100v100h-100zM1300 800h100v100h-100zM1800 800h100v100h-100zM0 900h100v100H0zM100 900h100v100H100z%22%2F%3E%3Cpath fill=%22%23673d9470%22 d=%22M400 900h100v100H400z%22%2F%3E%3Cpath fill=%22%23673d9484%22 d=%22M500 900h100v100H500z%22%2F%3E%3Cpath fill=%22none%22 d=%22M600 900h100v100H600zM800 900h100v100H800z%22%2F%3E%3Cpath fill=%22%23673d9410%22 d=%22M900 900h100v100H900z%22%2F%3E%3Cpath fill=%22none%22 d=%22M1000 900h100v100h-100zM1100 900h100v100h-100zM1300 900h100v100h-100zM1400 900h100v100h-100zM1500 900h100v100h-100z%22%2F%3E%3Cpath fill=%22%23673d9416%22 d=%22M1800 900h100v100h-100z%22%2F%3E%3Cpath fill=%22none%22 d=%22M1900 900h100v100h-100zM100 1000h100v100H100zM300 1000h100v100H300zM600 1000h100v100H600zM1000 1000h100v100h-100z%22%2F%3E%3Cpath fill=%22%23673d9443%22 d=%22M1200 1000h100v100h-100z%22%2F%3E%3Cpath fill=%22%23673d940f%22 d=%22M1400 1000h100v100h-100z%22%2F%3E%3Cpath fill=%22none%22 d=%22M1500 1000h100v100h-100zM1600 1000h100v100h-100zM1900 1000h100v100h-100z%22%2F%3E%3Cpath fill=%22%23673d943a%22 d=%22M200 1100h100v100H200z%22%2F%3E%3Cpath fill=%22none%22 d=%22M300 1100h100v100H300z%22%2F%3E%3Cpath fill=%22%23673d947c%22 d=%22M400 1100h100v100H400z%22%2F%3E%3Cpath fill=%22none%22 d=%22M600 1100h100v100H600zM700 1100h100v100H700z%22%2F%3E%3Cpath fill=%22%23673d9465%22 d=%22M800 1100h100v100H800z%22%2F%3E%3Cpath fill=%22none%22 d=%22M900 1100h100v100H900zM1200 1100h100v100h-100zM1400 1100h100v100h-100zM1600 1100h100v100h-100zM1900 1100h100v100h-100zM400 1200h100v100H400z%22%2F%3E%3Cpath fill=%22%23673d941e%22 d=%22M500 1200h100v100H500z%22%2F%3E%3Cpath fill=%22none%22 d=%22M600 1200h100v100H600zM1000 1200h100v100h-100zM1100 1200h100v100h-100zM1300 1200h100v100h-100z%22%2F%3E%3Cpath fill=%22%23673d940c%22 d=%22M1700 1200h100v100h-100z%22%2F%3E%3Cpath fill=%22none%22 d=%22M200 1300h100v100H200zM400 1300h100v100H400z%22%2F%3E%3Cpath fill=%22%23673d947a%22 d=%22M500 1300h100v100H500z%22%2F%3E%3Cpath fill=%22%23673d9477%22 d=%22M600 1300h100v100H600z%22%2F%3E%3Cpath fill=%22none%22 d=%22M900 1300h100v100H900zM1100 1300h100v100h-100zM1700 1300h100v100h-100zM1900 1300h100v100h-100z%22%2F%3E%3C%2Fg%3E%3Cdefs%3E%3CradialGradient id=%22a%22%3E%3Cstop offset=%2266.4%25%22 stop-color=%22%23fff%22 stop-opacity=%220%22%2F%3E%3Cstop offset=%22100%25%22 stop-color=%22%23fff%22 stop-opacity=%22.336%22%2F%3E%3C%2FradialGradient%3E%3C%2Fdefs%3E%3C%2Fsvg%3E');
+  }
+}
+
+.starsog {
+  --star-rgba: rgba(255, 255, 255, 0.8);
+  width: 1px;
+  height: 1px;
+  background: transparent;
+  box-shadow:
+    779px 1331px var(--star-rgba),
+    324px 42px var(--star-rgba),
+    303px 586px var(--star-rgba),
+    1312px 276px var(--star-rgba),
+    1722px 243px var(--star-rgba),
+    1629px 835px var(--star-rgba),
+    479px 969px var(--star-rgba),
+    1231px 960px var(--star-rgba),
+    586px 384px var(--star-rgba),
+    164px 527px var(--star-rgba),
+    8px 646px var(--star-rgba),
+    1150px 1126px var(--star-rgba),
+    665px 1357px var(--star-rgba),
+    1556px 1982px var(--star-rgba),
+    1364px 230px var(--star-rgba),
+    1739px 1302px var(--star-rgba),
+    636px 959px var(--star-rgba),
+    304px 686px var(--star-rgba),
+    614px 751px var(--star-rgba),
+    1935px 816px var(--star-rgba),
+    1428px 60px var(--star-rgba),
+    355px 335px var(--star-rgba),
+    1594px 158px var(--star-rgba),
+    90px 60px var(--star-rgba),
+    1553px 162px var(--star-rgba),
+    1039px 342px var(--star-rgba),
+    1585px 1481px var(--star-rgba),
+    995px 1048px var(--star-rgba),
+    524px 932px var(--star-rgba),
+    214px 413px var(--star-rgba),
+    1701px 1300px var(--star-rgba),
+    1037px 1613px var(--star-rgba),
+    1871px 996px var(--star-rgba),
+    1360px 1635px var(--star-rgba),
+    1110px 1313px var(--star-rgba),
+    412px 1783px var(--star-rgba),
+    1949px 177px var(--star-rgba),
+    903px 1854px var(--star-rgba),
+    700px 1936px var(--star-rgba),
+    378px 125px var(--star-rgba),
+    308px 834px var(--star-rgba),
+    1118px 962px var(--star-rgba),
+    1350px 1929px var(--star-rgba),
+    781px 1811px var(--star-rgba),
+    561px 137px var(--star-rgba),
+    757px 1148px var(--star-rgba),
+    1670px 1979px var(--star-rgba),
+    343px 739px var(--star-rgba),
+    945px 795px var(--star-rgba),
+    576px 1903px var(--star-rgba),
+    1078px 1436px var(--star-rgba),
+    1583px 450px var(--star-rgba),
+    1366px 474px var(--star-rgba),
+    297px 1873px var(--star-rgba),
+    192px 162px var(--star-rgba),
+    1624px 1633px var(--star-rgba),
+    59px 453px var(--star-rgba),
+    82px 1872px var(--star-rgba),
+    1933px 498px var(--star-rgba),
+    1966px 1974px var(--star-rgba),
+    1975px 1688px var(--star-rgba),
+    779px 314px var(--star-rgba),
+    1858px 1543px var(--star-rgba),
+    73px 1507px var(--star-rgba),
+    1693px 975px var(--star-rgba),
+    1683px 108px var(--star-rgba),
+    1768px 1654px var(--star-rgba),
+    654px 14px var(--star-rgba),
+    494px 171px var(--star-rgba),
+    1689px 1895px var(--star-rgba),
+    1660px 263px var(--star-rgba),
+    1031px 903px var(--star-rgba),
+    1203px 1393px var(--star-rgba),
+    1333px 1421px var(--star-rgba),
+    1113px 41px var(--star-rgba),
+    1206px 1645px var(--star-rgba),
+    1325px 1635px var(--star-rgba),
+    142px 388px var(--star-rgba),
+    572px 215px var(--star-rgba),
+    1535px 296px var(--star-rgba),
+    1419px 407px var(--star-rgba),
+    1379px 1003px var(--star-rgba),
+    329px 469px var(--star-rgba),
+    1791px 1652px var(--star-rgba),
+    935px 1802px var(--star-rgba),
+    1330px 1820px var(--star-rgba),
+    421px 1933px var(--star-rgba),
+    828px 365px var(--star-rgba),
+    275px 316px var(--star-rgba),
+    707px 960px var(--star-rgba),
+    1605px 1554px var(--star-rgba),
+    625px 58px var(--star-rgba),
+    717px 1697px var(--star-rgba),
+    1669px 246px var(--star-rgba),
+    1925px 322px var(--star-rgba),
+    1154px 1803px var(--star-rgba),
+    1929px 295px var(--star-rgba),
+    1248px 240px var(--star-rgba),
+    1045px 1755px var(--star-rgba),
+    166px 942px var(--star-rgba),
+    1888px 1773px var(--star-rgba),
+    678px 1963px var(--star-rgba),
+    1370px 569px var(--star-rgba),
+    1974px 1400px var(--star-rgba),
+    1786px 460px var(--star-rgba),
+    51px 307px var(--star-rgba),
+    784px 1400px var(--star-rgba),
+    730px 1258px var(--star-rgba),
+    1712px 393px var(--star-rgba),
+    416px 170px var(--star-rgba),
+    1797px 1932px var(--star-rgba),
+    572px 219px var(--star-rgba),
+    1557px 1856px var(--star-rgba),
+    218px 8px var(--star-rgba),
+    348px 1334px var(--star-rgba),
+    469px 413px var(--star-rgba),
+    385px 1738px var(--star-rgba),
+    1357px 1818px var(--star-rgba),
+    240px 942px var(--star-rgba),
+    248px 1847px var(--star-rgba),
+    1535px 806px var(--star-rgba),
+    236px 1514px var(--star-rgba),
+    1429px 1556px var(--star-rgba),
+    73px 1633px var(--star-rgba),
+    1283px 1786px var(--star-rgba),
+    11px 523px var(--star-rgba),
+    1842px 236px var(--star-rgba),
+    1355px 654px var(--star-rgba),
+    429px 7px var(--star-rgba),
+    1033px 1128px var(--star-rgba),
+    157px 297px var(--star-rgba),
+    545px 635px var(--star-rgba),
+    52px 1080px var(--star-rgba),
+    827px 1520px var(--star-rgba),
+    1121px 490px var(--star-rgba),
+    9px 309px var(--star-rgba),
+    1744px 1586px var(--star-rgba),
+    1014px 417px var(--star-rgba),
+    1534px 524px var(--star-rgba),
+    958px 552px var(--star-rgba),
+    1403px 1496px var(--star-rgba),
+    387px 703px var(--star-rgba),
+    1522px 548px var(--star-rgba),
+    1355px 282px var(--star-rgba),
+    1532px 601px var(--star-rgba),
+    1838px 790px var(--star-rgba),
+    290px 259px var(--star-rgba),
+    295px 598px var(--star-rgba),
+    1601px 539px var(--star-rgba),
+    1561px 1272px var(--star-rgba),
+    34px 1922px var(--star-rgba),
+    1024px 543px var(--star-rgba),
+    467px 369px var(--star-rgba),
+    722px 333px var(--star-rgba),
+    1976px 1255px var(--star-rgba),
+    766px 983px var(--star-rgba),
+    1582px 1285px var(--star-rgba),
+    12px 512px var(--star-rgba),
+    617px 1410px var(--star-rgba),
+    682px 577px var(--star-rgba),
+    1334px 1438px var(--star-rgba),
+    439px 327px var(--star-rgba),
+    1617px 1661px var(--star-rgba),
+    673px 129px var(--star-rgba),
+    794px 941px var(--star-rgba),
+    1386px 1902px var(--star-rgba),
+    37px 1353px var(--star-rgba),
+    1467px 1353px var(--star-rgba),
+    416px 18px var(--star-rgba),
+    187px 344px var(--star-rgba),
+    200px 1898px var(--star-rgba),
+    1491px 1619px var(--star-rgba),
+    811px 347px var(--star-rgba),
+    924px 1827px var(--star-rgba),
+    945px 217px var(--star-rgba),
+    1735px 1228px var(--star-rgba),
+    379px 1890px var(--star-rgba),
+    79px 761px var(--star-rgba),
+    825px 1837px var(--star-rgba),
+    1980px 1558px var(--star-rgba),
+    1308px 1573px var(--star-rgba),
+    1488px 1726px var(--star-rgba),
+    382px 1208px var(--star-rgba),
+    522px 595px var(--star-rgba),
+    1277px 1898px var(--star-rgba),
+    354px 552px var(--star-rgba),
+    161px 1784px var(--star-rgba),
+    614px 251px var(--star-rgba),
+    526px 1576px var(--star-rgba),
+    17px 212px var(--star-rgba),
+    179px 996px var(--star-rgba),
+    467px 1208px var(--star-rgba),
+    1944px 1838px var(--star-rgba),
+    1140px 1093px var(--star-rgba),
+    858px 1007px var(--star-rgba),
+    200px 1064px var(--star-rgba),
+    516px 936px var(--star-rgba),
+    1947px 1492px var(--star-rgba),
+    1455px 1519px var(--star-rgba),
+    45px 602px var(--star-rgba),
+    205px 1039px var(--star-rgba),
+    793px 172px var(--star-rgba),
+    1562px 1739px var(--star-rgba),
+    1056px 110px var(--star-rgba),
+    1512px 379px var(--star-rgba),
+    1795px 1621px var(--star-rgba),
+    1848px 607px var(--star-rgba),
+    262px 1719px var(--star-rgba),
+    477px 991px var(--star-rgba),
+    483px 883px var(--star-rgba),
+    1239px 1197px var(--star-rgba),
+    1496px 647px var(--star-rgba),
+    1649px 25px var(--star-rgba),
+    1491px 1946px var(--star-rgba),
+    119px 996px var(--star-rgba),
+    1647px 1298px var(--star-rgba),
+    1233px 1387px var(--star-rgba),
+    698px 1036px var(--star-rgba),
+    659px 1860px var(--star-rgba),
+    388px 1412px var(--star-rgba),
+    1212px 458px var(--star-rgba),
+    755px 1468px var(--star-rgba),
+    696px 1654px var(--star-rgba),
+    1144px 60px var(--star-rgba);
+}

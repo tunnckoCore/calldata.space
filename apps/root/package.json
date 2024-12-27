@@ -1,0 +1,33 @@
+{
+  "private": true,
+  "name": "calldata-space-root",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev --turbopack"
+  },
+  "dependencies": {
+    "@repo/design-system": "workspace:*",
+    "babel-plugin-react-compiler": "19.0.0-beta-b2e8e9c-20241220",
+    "ethscriptions-server": "workspace:*",
+    "next": "canary"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "^22.10.1",
+    "@types/react": "^19.0.1",
+    "autoprefixer": "^10.4.20",
+    "eslint": "8.57.0",
+    "eslint-config-next": "15.0.4",
+    "eslint-config-tunnckocore": "8.2.3",
+    "eslint-plugin-drizzle": "^0.2.3",
+    "postcss": "^8.4.49",
+    "postcss-load-config": "^6.0.1",
+    "prettier": "3.3.3",
+    "prettier-eslint": "^16.3.0",
+    "prettier-eslint-cli": "^8.0.1",
+    "tailwindcss": "^3.4.16",
+    "tailwindcss-animate": "^1.0.7",
+    "typescript": "^5.7.2"
+  }
+}
