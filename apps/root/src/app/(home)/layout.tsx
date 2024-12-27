@@ -4,7 +4,7 @@ import type { Metadata, Viewport } from 'next';
 import { Roboto } from 'next/font/google';
 import { ThemeProvider } from '@repo/design-system/providers/theme';
 
-import '../globals.css';
+import '@repo/design-system/styles/globals.css';
 import './home.css';
 
 const font = Roboto({ subsets: ['latin'], weight: '400', display: 'swap' });

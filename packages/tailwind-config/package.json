@@ -5,7 +5,8 @@
   "type": "module",
   "exports": {
     ".": "./index.ts",
-    "./config": "./config.ts"
+    "./config": "./config.ts",
+    "./typography": "./typography.ts"
   },
   "scripts": {
     "clean": "git clean -xdf .cache .turbo dist node_modules",

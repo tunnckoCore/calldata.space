@@ -25,7 +25,7 @@ export function CustomCard({ title, text, to, href, external = false, icon }: Ca
                 className="flex rounded-md border border-[#673d94] bg-purple-400/15 bg-clip-padding p-2 backdrop-blur-lg backdrop-filter transition group-hover:border-purple-500"
                 dangerouslySetInnerHTML={{ __html: icon }}
               />
-              <div className="title animate-rainbow bg-size-2x bg-gradient-to-br from-purple-400 to-orange-400 bg-clip-text text-lg tracking-wider text-transparent sm:text-xl">
+              <div className="title animate-rainbow bg-gradient-to-br from-purple-400 to-orange-400 bg-size-2x bg-clip-text text-lg tracking-wider text-transparent sm:text-xl">
                 {title}
               </div>
             </div>

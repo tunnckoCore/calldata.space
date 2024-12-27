@@ -1,7 +1,7 @@
 import Link from 'next/link';
-
 import { CustomCard } from '@repo/design-system/components/custom-card';
 import { ThemeToggler } from '@repo/design-system/providers/theme';
+
 import { features } from './features';
 
 export default function Home() {
