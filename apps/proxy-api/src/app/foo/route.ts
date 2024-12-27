@@ -1,3 +1,4 @@
 export const GET = (_req: Request) => {
-  return Response.json({ ok: true });
+  const data = { ok: true };
+  return Response.json(data);
 };
