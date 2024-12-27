@@ -1,0 +1,51 @@
+{
+  "name": "ethscriptions-server",
+  "version": "0.10.4",
+  "license": "MPL-2.0",
+  "description": "Ethscriptions API Cache Proxy. A Cloudflare Worker that caches and unifies Ethscriptions (or any other) API's responses, according to ESIP-9. Includes support for resolving ENS on-chain / off-chain names, and Ethscriptions names.",
+  "author": "wgw <wgw@wgw.lol>",
+  "homepage": "https://github.com/tunnckoCore/calldata.space",
+  "funding": [
+    "https://ko-fi.com/tunnckoCore/commissions",
+    "https://github.com/sponsors/tunnckoCore"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tunnckoCore/calldata.space.git"
+  },
+  "type": "module",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org",
+    "tag": "latest"
+  },
+  "scripts": {
+    "build": "esmc 'src/*.{js,ts}' --no-cjs --copy",
+    "prepublishOnly": "npm run build",
+    "serve": "bun --watch src/index.ts"
+  },
+  "dependencies": {
+    "@hono/zod-validator": "^0.4.1",
+    "@repo/design-system": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "ethscriptions": "workspace:*",
+    "hono": "^4.6.5",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.1.11",
+    "esmc": "^0.18.3",
+    "typescript": "^5.6.3"
+  }
+}

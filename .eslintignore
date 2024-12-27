@@ -2,6 +2,11 @@ __backup_packages
 src/components/ui
 src/hooks/use-toast.ts
 src/utils/ordex*
+**/components/ui
+**/hooks/use-toast.ts
+**/dist
+
+.nx
 
 CHANGELOG.md
 fixtures

@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "name": "proxy-api",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev --turbopack"
+  },
+  "dependencies": {
+    "ethscriptions-server": "workspace:*",
+    "next": "canary"
+  },
+  "devDependencies": {
+    "@repo/design-system": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "typescript": "^5"
+  }
+}

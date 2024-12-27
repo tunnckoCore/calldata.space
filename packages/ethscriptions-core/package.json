@@ -1,0 +1,82 @@
+{
+  "name": "ethscriptions",
+  "version": "0.9.3",
+  "license": "MPL-2.0",
+  "description": "Library with utility functions for Ethscriptions. Supports for fetching user profiles, filtering ethscriptions, and resolving names & ENS builtin",
+  "author": "wgw <wgw@wgw.lol>",
+  "homepage": "https://github.com/tunnckoCore/calldata.space",
+  "funding": [
+    "https://ko-fi.com/tunnckoCore/commissions",
+    "https://github.com/sponsors/tunnckoCore"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tunnckoCore/calldata.space.git"
+  },
+  "type": "module",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./utils": {
+      "types": "./dist/utils.d.ts",
+      "default": "./dist/utils.js"
+    },
+    "./utils.js": {
+      "types": "./dist/utils.d.ts",
+      "default": "./dist/utils.js"
+    },
+    "./index.ts": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./utils.ts": {
+      "types": "./src/utils.ts",
+      "default": "./src/utils.ts"
+    },
+    "./types.ts": {
+      "types": "./src/types.ts",
+      "default": "./src/types.ts"
+    }
+  },
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "src",
+    "dist"
+  ],
+  "engines": {
+    "bun": ">=1.1.40",
+    "node": ">=20",
+    "npm": "please-use-bun",
+    "yarn": "please-use-bun-yarn-is-dead"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org",
+    "tag": "latest"
+  },
+  "scripts": {
+    "build": "esmc './src/*.ts' --no-cjs",
+    "prepublishOnly": "bun run build",
+    "test": "bun run example.ts"
+  },
+  "dependencies": {
+    "cdn-cache-control": "^1.1.0",
+    "qs-esm": "^7.0.2"
+  },
+  "devDependencies": {
+    "@repo/design-system": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/bun": "latest",
+    "esmc": "^0.18.3",
+    "tsup": "^8.3.0",
+    "typescript": "5.6.3"
+  },
+  "peerDependencies": {
+    "typescript": "5.6.3"
+  },
+  "packageManager": "bun@1.1.40"
+}
