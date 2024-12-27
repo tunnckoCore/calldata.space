@@ -9,6 +9,7 @@
   "dependencies": {
     "@repo/design-system": "workspace:*",
     "babel-plugin-react-compiler": "19.0.0-beta-b2e8e9c-20241220",
+    "ethscriptions": "workspace:*",
     "ethscriptions-server": "workspace:*",
     "next": "canary"
   },

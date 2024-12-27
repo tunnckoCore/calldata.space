@@ -1,5 +1,5 @@
-import { getEthscriptionDetailed } from '@/eths-library';
-import { EnumAllDetailed } from '@/eths-library/types';
+import { getEthscriptionDetailed } from 'ethscriptions';
+import { EnumAllDetailed } from 'ethscriptions/types';
 
 export const GET = async (
   req: Request,
