@@ -1,0 +1,3583 @@
+{
+  "version": "6.0",
+  "nxVersion": "20.3.0",
+  "pathMappings": {
+    "@repo/*": [
+      "./packages/*"
+    ]
+  },
+  "nxJsonPlugins": [],
+  "fileMap": {
+    "projectFileMap": {
+      "@repo/design-system": [
+        {
+          "file": "packages/design-system/components.json",
+          "hash": "10614449471963523723"
+        },
+        {
+          "file": "packages/design-system/components/custom-card.tsx",
+          "hash": "15543918765747795833"
+        },
+        {
+          "file": "packages/design-system/components/dashboard/app-sidebar.tsx",
+          "hash": "2649840935933593046"
+        },
+        {
+          "file": "packages/design-system/components/dashboard/nav-actions.tsx",
+          "hash": "11515167045013729596"
+        },
+        {
+          "file": "packages/design-system/components/dashboard/nav-favorites.tsx",
+          "hash": "10791884663626394117"
+        },
+        {
+          "file": "packages/design-system/components/dashboard/nav-main-10.tsx",
+          "hash": "378741942041858877"
+        },
+        {
+          "file": "packages/design-system/components/dashboard/nav-main.tsx",
+          "hash": "14913676955460279468"
+        },
+        {
+          "file": "packages/design-system/components/dashboard/nav-secondary.tsx",
+          "hash": "290509918643665087"
+        },
+        {
+          "file": "packages/design-system/components/dashboard/nav-user.tsx",
+          "hash": "3099656387532242552"
+        },
+        {
+          "file": "packages/design-system/components/dashboard/nav-workspaces.tsx",
+          "hash": "14403820686962071851"
+        },
+        {
+          "file": "packages/design-system/components/dashboard/team-switcher.tsx",
+          "hash": "12681580874842321050"
+        },
+        {
+          "file": "packages/design-system/components/ui/accordion.tsx",
+          "hash": "12876832444484149218"
+        },
+        {
+          "file": "packages/design-system/components/ui/alert-dialog.tsx",
+          "hash": "7364374330284215080"
+        },
+        {
+          "file": "packages/design-system/components/ui/alert.tsx",
+          "hash": "9078468979652643194"
+        },
+        {
+          "file": "packages/design-system/components/ui/aspect-ratio.tsx",
+          "hash": "5515004553788436449"
+        },
+        {
+          "file": "packages/design-system/components/ui/avatar.tsx",
+          "hash": "8258582331864303883"
+        },
+        {
+          "file": "packages/design-system/components/ui/badge.tsx",
+          "hash": "9915800143750228331"
+        },
+        {
+          "file": "packages/design-system/components/ui/breadcrumb.tsx",
+          "hash": "13304905963559639850"
+        },
+        {
+          "file": "packages/design-system/components/ui/button.tsx",
+          "hash": "1419182102929715287"
+        },
+        {
+          "file": "packages/design-system/components/ui/calendar.tsx",
+          "hash": "13696608022653605737"
+        },
+        {
+          "file": "packages/design-system/components/ui/card.tsx",
+          "hash": "9964453969742448071"
+        },
+        {
+          "file": "packages/design-system/components/ui/carousel.tsx",
+          "hash": "3607510454366050965"
+        },
+        {
+          "file": "packages/design-system/components/ui/chart.tsx",
+          "hash": "1805024825357582449"
+        },
+        {
+          "file": "packages/design-system/components/ui/checkbox.tsx",
+          "hash": "3613260795134238641"
+        },
+        {
+          "file": "packages/design-system/components/ui/collapsible.tsx",
+          "hash": "11550741736187478023"
+        },
+        {
+          "file": "packages/design-system/components/ui/command.tsx",
+          "hash": "7365921086672237194"
+        },
+        {
+          "file": "packages/design-system/components/ui/context-menu.tsx",
+          "hash": "14314668323159083990"
+        },
+        {
+          "file": "packages/design-system/components/ui/dialog.tsx",
+          "hash": "13217863826602733518"
+        },
+        {
+          "file": "packages/design-system/components/ui/drawer.tsx",
+          "hash": "16375722802317199170"
+        },
+        {
+          "file": "packages/design-system/components/ui/dropdown-menu.tsx",
+          "hash": "16803125495189580472"
+        },
+        {
+          "file": "packages/design-system/components/ui/form.tsx",
+          "hash": "2311696503326837003"
+        },
+        {
+          "file": "packages/design-system/components/ui/hover-card.tsx",
+          "hash": "8928678430983497362"
+        },
+        {
+          "file": "packages/design-system/components/ui/input-otp.tsx",
+          "hash": "5483981181798623186"
+        },
+        {
+          "file": "packages/design-system/components/ui/input.tsx",
+          "hash": "2947485574061555290"
+        },
+        {
+          "file": "packages/design-system/components/ui/label.tsx",
+          "hash": "8315753147414034094"
+        },
+        {
+          "file": "packages/design-system/components/ui/menubar.tsx",
+          "hash": "9927513598038957114"
+        },
+        {
+          "file": "packages/design-system/components/ui/navigation-menu.tsx",
+          "hash": "13017575629234310867"
+        },
+        {
+          "file": "packages/design-system/components/ui/pagination.tsx",
+          "hash": "17291174025004068494"
+        },
+        {
+          "file": "packages/design-system/components/ui/popover.tsx",
+          "hash": "10227305523908340425"
+        },
+        {
+          "file": "packages/design-system/components/ui/progress.tsx",
+          "hash": "6758009905015055412"
+        },
+        {
+          "file": "packages/design-system/components/ui/radio-group.tsx",
+          "hash": "4901205170026360939"
+        },
+        {
+          "file": "packages/design-system/components/ui/resizable.tsx",
+          "hash": "6129051118832105875"
+        },
+        {
+          "file": "packages/design-system/components/ui/scroll-area.tsx",
+          "hash": "5676285683587712779"
+        },
+        {
+          "file": "packages/design-system/components/ui/select.tsx",
+          "hash": "1883690907870813656"
+        },
+        {
+          "file": "packages/design-system/components/ui/separator.tsx",
+          "hash": "17980262397515075957"
+        },
+        {
+          "file": "packages/design-system/components/ui/sheet.tsx",
+          "hash": "4552429458038175332"
+        },
+        {
+          "file": "packages/design-system/components/ui/sidebar.tsx",
+          "hash": "9678426423106884854"
+        },
+        {
+          "file": "packages/design-system/components/ui/skeleton.tsx",
+          "hash": "17507397636854174111"
+        },
+        {
+          "file": "packages/design-system/components/ui/slider.tsx",
+          "hash": "14375100465029737233"
+        },
+        {
+          "file": "packages/design-system/components/ui/sonner.tsx",
+          "hash": "997587589519513927"
+        },
+        {
+          "file": "packages/design-system/components/ui/switch.tsx",
+          "hash": "15018034365064161994"
+        },
+        {
+          "file": "packages/design-system/components/ui/table.tsx",
+          "hash": "15989864570589633504"
+        },
+        {
+          "file": "packages/design-system/components/ui/tabs.tsx",
+          "hash": "1171336223671967650"
+        },
+        {
+          "file": "packages/design-system/components/ui/textarea.tsx",
+          "hash": "16907783166523225204"
+        },
+        {
+          "file": "packages/design-system/components/ui/toast.tsx",
+          "hash": "11395234581592602680"
+        },
+        {
+          "file": "packages/design-system/components/ui/toaster.tsx",
+          "hash": "5837700188806454425"
+        },
+        {
+          "file": "packages/design-system/components/ui/toggle-group.tsx",
+          "hash": "17167736083209715798"
+        },
+        {
+          "file": "packages/design-system/components/ui/toggle.tsx",
+          "hash": "16902424937278325617"
+        },
+        {
+          "file": "packages/design-system/components/ui/tooltip.tsx",
+          "hash": "7786966178164765479"
+        },
+        {
+          "file": "packages/design-system/components/ui/use-toast.ts",
+          "hash": "2607289111655563768"
+        },
+        {
+          "file": "packages/design-system/hooks/use-mobile.tsx",
+          "hash": "4070799298352507848"
+        },
+        {
+          "file": "packages/design-system/hooks/use-toast.ts",
+          "hash": "2607289111655563768"
+        },
+        {
+          "file": "packages/design-system/index.tsx",
+          "hash": "8165457975437341091"
+        },
+        {
+          "file": "packages/design-system/lib/utils.ts",
+          "hash": "7306625827951118141"
+        },
+        {
+          "file": "packages/design-system/package.json",
+          "hash": "13422320052034000064",
+          "deps": [
+            "@repo/typescript-config",
+            "npm:@types/node@22.10.2",
+            "npm:@types/react@19.0.2",
+            "npm:autoprefixer",
+            "npm:postcss@8.4.49",
+            "npm:tailwindcss",
+            "npm:typescript@5.7.2",
+            "npm:@hookform/resolvers",
+            "npm:@radix-ui/react-accordion",
+            "npm:@radix-ui/react-alert-dialog",
+            "npm:@radix-ui/react-aspect-ratio",
+            "npm:@radix-ui/react-avatar",
+            "npm:@radix-ui/react-checkbox",
+            "npm:@radix-ui/react-collapsible",
+            "npm:@radix-ui/react-context-menu",
+            "npm:@radix-ui/react-dialog",
+            "npm:@radix-ui/react-dropdown-menu",
+            "npm:@radix-ui/react-hover-card",
+            "npm:@radix-ui/react-icons",
+            "npm:@radix-ui/react-label",
+            "npm:@radix-ui/react-menubar",
+            "npm:@radix-ui/react-navigation-menu",
+            "npm:@radix-ui/react-popover",
+            "npm:@radix-ui/react-progress",
+            "npm:@radix-ui/react-radio-group",
+            "npm:@radix-ui/react-scroll-area",
+            "npm:@radix-ui/react-select",
+            "npm:@radix-ui/react-separator",
+            "npm:@radix-ui/react-slider",
+            "npm:@radix-ui/react-slot",
+            "npm:@radix-ui/react-switch",
+            "npm:@radix-ui/react-tabs",
+            "npm:@radix-ui/react-toast",
+            "npm:@radix-ui/react-toggle",
+            "npm:@radix-ui/react-toggle-group",
+            "npm:@radix-ui/react-tooltip",
+            "npm:class-variance-authority",
+            "npm:clsx",
+            "npm:cmdk",
+            "npm:date-fns",
+            "npm:embla-carousel-react",
+            "npm:geist",
+            "npm:input-otp",
+            "npm:lucide-react",
+            "npm:next-themes",
+            "npm:react",
+            "npm:react-day-picker",
+            "npm:react-hook-form",
+            "npm:react-moveable",
+            "npm:react-resizable-panels",
+            "npm:recharts",
+            "npm:server-only",
+            "npm:sonner",
+            "npm:tailwind-merge",
+            "npm:tailwindcss-animate",
+            "npm:vaul",
+            "npm:zod"
+          ]
+        },
+        {
+          "file": "packages/design-system/providers/theme.tsx",
+          "hash": "4400901986182290872"
+        },
+        {
+          "file": "packages/design-system/styles/globals.css",
+          "hash": "2311870325461477294"
+        },
+        {
+          "file": "packages/design-system/tsconfig.json",
+          "hash": "6776357768647967707"
+        }
+      ],
+      "proxy-api": [
+        {
+          "file": "apps/proxy-api/.gitignore",
+          "hash": "1867017717006394117"
+        },
+        {
+          "file": "apps/proxy-api/README.md",
+          "hash": "10766794746169900117"
+        },
+        {
+          "file": "apps/proxy-api/next.config.ts",
+          "hash": "14776898576450101492"
+        },
+        {
+          "file": "apps/proxy-api/package.json",
+          "hash": "5008326689548268795",
+          "deps": [
+            "@repo/design-system",
+            "@repo/typescript-config",
+            "npm:typescript@5.7.2",
+            "ethscriptions-server",
+            "npm:next@15.1.1-canary.21"
+          ]
+        },
+        {
+          "file": "apps/proxy-api/public/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/proxy-api/src/app/favicon.ico",
+          "hash": "14340266600132540260"
+        },
+        {
+          "file": "apps/proxy-api/src/app/foo/route.ts",
+          "hash": "12950451575882868616"
+        },
+        {
+          "file": "apps/proxy-api/src/app/mainnet/[[...route]]/route.ts",
+          "hash": "7569185408299192558"
+        },
+        {
+          "file": "apps/proxy-api/src/app/sepolia/[[...route]]/route.ts",
+          "hash": "14081008377070497902"
+        },
+        {
+          "file": "apps/proxy-api/src/middleware.ts",
+          "hash": "15367591523743852519"
+        },
+        {
+          "file": "apps/proxy-api/tsconfig.json",
+          "hash": "8335874088999948128"
+        }
+      ],
+      "@repo/tailwind-config": [
+        {
+          "file": "packages/tailwind-config/config.ts",
+          "hash": "2876612840141165087"
+        },
+        {
+          "file": "packages/tailwind-config/index.ts",
+          "hash": "12465442404486446855"
+        },
+        {
+          "file": "packages/tailwind-config/next-forge-tw-config.ts",
+          "hash": "2622360973166378757"
+        },
+        {
+          "file": "packages/tailwind-config/package.json",
+          "hash": "17777030798836565274",
+          "deps": [
+            "@repo/design-system",
+            "@repo/typescript-config",
+            "npm:tailwindcss",
+            "npm:@tailwindcss/typography",
+            "npm:tailwind-merge",
+            "npm:tailwindcss-animate"
+          ]
+        },
+        {
+          "file": "packages/tailwind-config/tsconfig.json",
+          "hash": "15278155512136826870"
+        },
+        {
+          "file": "packages/tailwind-config/typography.config.ts",
+          "hash": "17024911228752817821"
+        }
+      ],
+      "ethscriptions": [
+        {
+          "file": "packages/ethscriptions-core/README.md",
+          "hash": "14838106940188662578"
+        },
+        {
+          "file": "packages/ethscriptions-core/example.ts",
+          "hash": "7020094927010140822"
+        },
+        {
+          "file": "packages/ethscriptions-core/package.json",
+          "hash": "11904387454652449887",
+          "deps": [
+            "npm:typescript@5.6.3",
+            "@repo/design-system",
+            "@repo/typescript-config",
+            "npm:@types/bun",
+            "npm:esmc",
+            "npm:tsup",
+            "npm:cdn-cache-control",
+            "npm:qs-esm"
+          ]
+        },
+        {
+          "file": "packages/ethscriptions-core/src/constants.ts",
+          "hash": "11149721401216598411"
+        },
+        {
+          "file": "packages/ethscriptions-core/src/index.ts",
+          "hash": "16452772478789238876"
+        },
+        {
+          "file": "packages/ethscriptions-core/src/types.ts",
+          "hash": "16327563839604111329"
+        },
+        {
+          "file": "packages/ethscriptions-core/src/utils.ts",
+          "hash": "11763393880760095281"
+        },
+        {
+          "file": "packages/ethscriptions-core/tsconfig.json",
+          "hash": "1230977400457270069"
+        }
+      ],
+      "calldata-space-root": [
+        {
+          "file": "apps/root/.eslintignore",
+          "hash": "5823396249036550760"
+        },
+        {
+          "file": "apps/root/.eslintrc.cjs",
+          "hash": "2280042201991235134"
+        },
+        {
+          "file": "apps/root/.gitignore",
+          "hash": "1867017717006394117"
+        },
+        {
+          "file": "apps/root/.prettierignore",
+          "hash": "4379482887345830284"
+        },
+        {
+          "file": "apps/root/.prettierrc.cjs",
+          "hash": "14736315688657246590"
+        },
+        {
+          "file": "apps/root/README.md",
+          "hash": "10766794746169900117"
+        },
+        {
+          "file": "apps/root/next.config.ts",
+          "hash": "12287046823695475453"
+        },
+        {
+          "file": "apps/root/package.json",
+          "hash": "15976740902196920189",
+          "deps": [
+            "@repo/typescript-config",
+            "npm:@types/node@22.10.2",
+            "npm:@types/react@19.0.2",
+            "npm:autoprefixer",
+            "npm:eslint",
+            "npm:eslint-config-next",
+            "npm:eslint-config-tunnckocore",
+            "npm:eslint-plugin-drizzle",
+            "npm:postcss@8.4.49",
+            "npm:postcss-load-config@6.0.1",
+            "npm:prettier",
+            "npm:prettier-eslint",
+            "npm:prettier-eslint-cli",
+            "npm:tailwindcss",
+            "npm:tailwindcss-animate",
+            "npm:typescript@5.7.2",
+            "@repo/design-system",
+            "npm:babel-plugin-react-compiler",
+            "ethscriptions",
+            "ethscriptions-server",
+            "npm:next@15.1.1-canary.21"
+          ]
+        },
+        {
+          "file": "apps/root/postcss.config.mjs",
+          "hash": "9334535520284521497"
+        },
+        {
+          "file": "apps/root/public/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/root/src/app/(home)/ethscriptions/[id]/[mode]/route.ts",
+          "hash": "14622309821666795509"
+        },
+        {
+          "file": "apps/root/src/app/(home)/features.ts",
+          "hash": "14795565568395839199"
+        },
+        {
+          "file": "apps/root/src/app/(home)/fonts/GeistMonoVF.woff",
+          "hash": "17799230542345324615"
+        },
+        {
+          "file": "apps/root/src/app/(home)/fonts/GeistVF.woff",
+          "hash": "6578897518916770501"
+        },
+        {
+          "file": "apps/root/src/app/(home)/home.css",
+          "hash": "5898437936949234875"
+        },
+        {
+          "file": "apps/root/src/app/(home)/layout.tsx",
+          "hash": "4842515627997980530"
+        },
+        {
+          "file": "apps/root/src/app/(home)/opengraph-image.png",
+          "hash": "5674037935059456198"
+        },
+        {
+          "file": "apps/root/src/app/(home)/page.tsx",
+          "hash": "14745680146387781465"
+        },
+        {
+          "file": "apps/root/src/app/favicon.ico",
+          "hash": "14340266600132540260"
+        },
+        {
+          "file": "apps/root/src/app/globals.css",
+          "hash": "4411934587664596261"
+        },
+        {
+          "file": "apps/root/src/app/layout.tsx",
+          "hash": "16062448267952772712"
+        },
+        {
+          "file": "apps/root/src/xmiddleware.ts",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/root/tailwind.config.ts",
+          "hash": "648720262860808332"
+        },
+        {
+          "file": "apps/root/tsconfig.json",
+          "hash": "2244144004595084404"
+        }
+      ],
+      "ethscriptions-server": [
+        {
+          "file": "packages/ethscriptions-server/README.md",
+          "hash": "7415831579601545569"
+        },
+        {
+          "file": "packages/ethscriptions-server/package.json",
+          "hash": "16735404116423347421",
+          "deps": [
+            "npm:@types/bun",
+            "npm:esmc",
+            "npm:typescript@5.7.2",
+            "npm:@hono/zod-validator",
+            "@repo/design-system",
+            "@repo/typescript-config",
+            "ethscriptions",
+            "npm:hono",
+            "npm:zod"
+          ]
+        },
+        {
+          "file": "packages/ethscriptions-server/src/endpoints-docs.ts",
+          "hash": "11531862442725936904"
+        },
+        {
+          "file": "packages/ethscriptions-server/src/helpers.ts",
+          "hash": "15324452407611335091"
+        },
+        {
+          "file": "packages/ethscriptions-server/src/index.ts",
+          "hash": "8918540443926547769"
+        },
+        {
+          "file": "packages/ethscriptions-server/src/routes.ts",
+          "hash": "9573590614192936963"
+        },
+        {
+          "file": "packages/ethscriptions-server/src/schemas.js",
+          "hash": "12725244615600110726"
+        },
+        {
+          "file": "packages/ethscriptions-server/tsconfig.json",
+          "hash": "1230977400457270069"
+        }
+      ],
+      "@calldata-space/database": [
+        {
+          "file": "packages/database/README.md",
+          "hash": "4001492673578284301"
+        },
+        {
+          "file": "packages/database/index.ts",
+          "hash": "173240374074214184"
+        },
+        {
+          "file": "packages/database/package.json",
+          "hash": "10518028259068294985",
+          "deps": [
+            "npm:@libsql/client",
+            "@repo/design-system",
+            "@repo/typescript-config",
+            "npm:dotenv",
+            "npm:drizzle-orm",
+            "npm:drizzle-zod",
+            "npm:zod"
+          ]
+        },
+        {
+          "file": "packages/database/schema/collections.ts",
+          "hash": "4028759920663423010"
+        },
+        {
+          "file": "packages/database/schema/ethscriptions.ts",
+          "hash": "15754782291724390338"
+        },
+        {
+          "file": "packages/database/schema/index.ts",
+          "hash": "5163631624977378357"
+        },
+        {
+          "file": "packages/database/schema/transactions.ts",
+          "hash": "12247152092369610538"
+        },
+        {
+          "file": "packages/database/schema/transfers.ts",
+          "hash": "10338451300340260660"
+        },
+        {
+          "file": "packages/database/schema/votes.ts",
+          "hash": "4282835533063540120"
+        },
+        {
+          "file": "packages/database/seed.ts",
+          "hash": "3654036909974977956"
+        }
+      ],
+      "@repo/typescript-config": [
+        {
+          "file": "packages/typescript-config/base.json",
+          "hash": "4187928002257127160"
+        },
+        {
+          "file": "packages/typescript-config/nextjs.json",
+          "hash": "5965560772489580401"
+        },
+        {
+          "file": "packages/typescript-config/package.json",
+          "hash": "699629056499617149"
+        },
+        {
+          "file": "packages/typescript-config/react-library.json",
+          "hash": "5983478226996406852"
+        }
+      ]
+    },
+    "nonProjectFiles": [
+      {
+        "file": ".eslintignore",
+        "hash": "5823396249036550760"
+      },
+      {
+        "file": ".eslintrc.cjs",
+        "hash": "2280042201991235134"
+      },
+      {
+        "file": ".github/workflows/ci.yml",
+        "hash": "3088040257501292929"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "6493710811808580875"
+      },
+      {
+        "file": ".npmrc",
+        "hash": "18085261541358865259"
+      },
+      {
+        "file": ".prettierignore",
+        "hash": "4379482887345830284"
+      },
+      {
+        "file": ".prettierrc.cjs",
+        "hash": "14736315688657246590"
+      },
+      {
+        "file": ".vscode/settings.json",
+        "hash": "17102282343651089670"
+      },
+      {
+        "file": ".zed/settings.json",
+        "hash": "10455293243833347402"
+      },
+      {
+        "file": "README.md",
+        "hash": "7709301515866337978"
+      },
+      {
+        "file": "apps/.gitkeep",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "backup/components.json",
+        "hash": "15600071260768553847"
+      },
+      {
+        "file": "backup/drizzle.config.ts",
+        "hash": "10552107175268609862"
+      },
+      {
+        "file": "backup/ethsdb-local.db",
+        "hash": "4925534899858185904"
+      },
+      {
+        "file": "backup/ethsdb-local.db-shm",
+        "hash": "3180695195775150432"
+      },
+      {
+        "file": "backup/ethsdb-local.db-wal",
+        "hash": "6693414182089524290"
+      },
+      {
+        "file": "backup/next.config.ts",
+        "hash": "8301510313643862879"
+      },
+      {
+        "file": "backup/package.json",
+        "hash": "468174903213228924"
+      },
+      {
+        "file": "backup/postcss.config.mjs",
+        "hash": "2557392112968376575"
+      },
+      {
+        "file": "backup/src/app/(apis)/.gitkeep",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "backup/src/app/(apis)/api-main/collections/[id]/route.ts",
+        "hash": "10977275475082166738"
+      },
+      {
+        "file": "backup/src/app/(apis)/api-main/collections/route.ts",
+        "hash": "13503215670851580232"
+      },
+      {
+        "file": "backup/src/app/(apis)/api-main/collections/test-collection-creation.ts",
+        "hash": "15694450597229979825"
+      },
+      {
+        "file": "backup/src/app/(apis)/api-main/ethscriptions/[id]/route.ts",
+        "hash": "10551418455374108029"
+      },
+      {
+        "file": "backup/src/app/(apis)/api-main/ethscriptions/route.ts",
+        "hash": "2231293254481042641"
+      },
+      {
+        "file": "backup/src/app/(apis)/api-main/graphql/route.ts",
+        "hash": "16007226591045530604"
+      },
+      {
+        "file": "backup/src/app/(apis)/api-main/votes/[id]/route.ts",
+        "hash": "14724470833061373545"
+      },
+      {
+        "file": "backup/src/app/(apis)/api-main/votes/route.ts",
+        "hash": "18028219309553517715"
+      },
+      {
+        "file": "backup/src/app/(apis)/ethscom-proxy/mainnet/[[...route]]/route.ts",
+        "hash": "16855106851100785505"
+      },
+      {
+        "file": "backup/src/app/(apis)/ethscom-proxy/sepolia/[[...route]]/route.ts",
+        "hash": "9812703020023044234"
+      },
+      {
+        "file": "backup/src/app/(root)/ethscriptions/[id]/[mode]/route.ts",
+        "hash": "17925814502720048724"
+      },
+      {
+        "file": "backup/src/app/(root)/features.ts",
+        "hash": "14795565568395839199"
+      },
+      {
+        "file": "backup/src/app/(root)/fonts/GeistMonoVF.woff",
+        "hash": "17799230542345324615"
+      },
+      {
+        "file": "backup/src/app/(root)/fonts/GeistVF.woff",
+        "hash": "6578897518916770501"
+      },
+      {
+        "file": "backup/src/app/(root)/layout.tsx",
+        "hash": "1628433781906855779"
+      },
+      {
+        "file": "backup/src/app/(root)/main.css",
+        "hash": "5898437936949234875"
+      },
+      {
+        "file": "backup/src/app/(root)/opengraph-image.png",
+        "hash": "5674037935059456198"
+      },
+      {
+        "file": "backup/src/app/(root)/page.tsx",
+        "hash": "1455976255633338402"
+      },
+      {
+        "file": "backup/src/app/(wallet)/.gitkeep",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "backup/src/app/(wallet)/login/page.tsx",
+        "hash": "7357658640037997998"
+      },
+      {
+        "file": "backup/src/app/(wallet)/wallet/bar/page.tsx",
+        "hash": "8198090364692341422"
+      },
+      {
+        "file": "backup/src/app/(wallet)/wallet/foo/page.tsx",
+        "hash": "12557163111949689457"
+      },
+      {
+        "file": "backup/src/app/(wallet)/wallet/layout.tsx",
+        "hash": "6477273854842653550"
+      },
+      {
+        "file": "backup/src/app/(wallet)/wallet/page.tsx",
+        "hash": "6407194101533168562"
+      },
+      {
+        "file": "backup/src/app/dashboard-1/dashboard.css",
+        "hash": "492086614637708333"
+      },
+      {
+        "file": "backup/src/app/dashboard-1/layout.tsx",
+        "hash": "7569713777610143497"
+      },
+      {
+        "file": "backup/src/app/dashboard-1/page.tsx",
+        "hash": "9206915661830777515"
+      },
+      {
+        "file": "backup/src/app/favicon.ico",
+        "hash": "14340266600132540260"
+      },
+      {
+        "file": "backup/src/app/globals.css",
+        "hash": "4411934587664596261"
+      },
+      {
+        "file": "backup/src/app/layout.tsx",
+        "hash": "1761935503756642735"
+      },
+      {
+        "file": "backup/src/components/custom-card.tsx",
+        "hash": "6977742647175586930"
+      },
+      {
+        "file": "backup/src/components/dashboard/app-sidebar.tsx",
+        "hash": "2649840935933593046"
+      },
+      {
+        "file": "backup/src/components/dashboard/nav-actions.tsx",
+        "hash": "11515167045013729596"
+      },
+      {
+        "file": "backup/src/components/dashboard/nav-favorites.tsx",
+        "hash": "10791884663626394117"
+      },
+      {
+        "file": "backup/src/components/dashboard/nav-main-10.tsx",
+        "hash": "378741942041858877"
+      },
+      {
+        "file": "backup/src/components/dashboard/nav-main.tsx",
+        "hash": "14913676955460279468"
+      },
+      {
+        "file": "backup/src/components/dashboard/nav-secondary.tsx",
+        "hash": "290509918643665087"
+      },
+      {
+        "file": "backup/src/components/dashboard/nav-user.tsx",
+        "hash": "3099656387532242552"
+      },
+      {
+        "file": "backup/src/components/dashboard/nav-workspaces.tsx",
+        "hash": "14403820686962071851"
+      },
+      {
+        "file": "backup/src/components/dashboard/team-switcher.tsx",
+        "hash": "12681580874842321050"
+      },
+      {
+        "file": "backup/src/components/login-form.tsx",
+        "hash": "11419042846527183828"
+      },
+      {
+        "file": "backup/src/components/theme.tsx",
+        "hash": "7631774651366795808"
+      },
+      {
+        "file": "backup/src/components/ui/accordion.tsx",
+        "hash": "6229836667991034670"
+      },
+      {
+        "file": "backup/src/components/ui/alert-dialog.tsx",
+        "hash": "10965094998479154241"
+      },
+      {
+        "file": "backup/src/components/ui/alert.tsx",
+        "hash": "7317990078770239904"
+      },
+      {
+        "file": "backup/src/components/ui/aspect-ratio.tsx",
+        "hash": "5515004553788436449"
+      },
+      {
+        "file": "backup/src/components/ui/avatar.tsx",
+        "hash": "8660661188500548189"
+      },
+      {
+        "file": "backup/src/components/ui/badge.tsx",
+        "hash": "9820710507085213727"
+      },
+      {
+        "file": "backup/src/components/ui/breadcrumb.tsx",
+        "hash": "16363177524338459737"
+      },
+      {
+        "file": "backup/src/components/ui/button.tsx",
+        "hash": "9267699881977892517"
+      },
+      {
+        "file": "backup/src/components/ui/calendar.tsx",
+        "hash": "2756294427345326660"
+      },
+      {
+        "file": "backup/src/components/ui/card.tsx",
+        "hash": "10705375868451136261"
+      },
+      {
+        "file": "backup/src/components/ui/carousel.tsx",
+        "hash": "7809358582496626023"
+      },
+      {
+        "file": "backup/src/components/ui/chart.tsx",
+        "hash": "14522866736833277302"
+      },
+      {
+        "file": "backup/src/components/ui/checkbox.tsx",
+        "hash": "11417592238472237284"
+      },
+      {
+        "file": "backup/src/components/ui/collapsible.tsx",
+        "hash": "11550741736187478023"
+      },
+      {
+        "file": "backup/src/components/ui/command.tsx",
+        "hash": "10225242495018976643"
+      },
+      {
+        "file": "backup/src/components/ui/context-menu.tsx",
+        "hash": "4381347269576642130"
+      },
+      {
+        "file": "backup/src/components/ui/dialog.tsx",
+        "hash": "9175162809309498817"
+      },
+      {
+        "file": "backup/src/components/ui/drawer.tsx",
+        "hash": "12662813428787543576"
+      },
+      {
+        "file": "backup/src/components/ui/dropdown-menu.tsx",
+        "hash": "6587543215777139890"
+      },
+      {
+        "file": "backup/src/components/ui/form.tsx",
+        "hash": "17214337728809531704"
+      },
+      {
+        "file": "backup/src/components/ui/hover-card.tsx",
+        "hash": "1120689349430845509"
+      },
+      {
+        "file": "backup/src/components/ui/input-otp.tsx",
+        "hash": "16318999087990595987"
+      },
+      {
+        "file": "backup/src/components/ui/input.tsx",
+        "hash": "10270228290145902228"
+      },
+      {
+        "file": "backup/src/components/ui/label.tsx",
+        "hash": "17461498100996495370"
+      },
+      {
+        "file": "backup/src/components/ui/menubar.tsx",
+        "hash": "15364340650796091369"
+      },
+      {
+        "file": "backup/src/components/ui/navigation-menu.tsx",
+        "hash": "9052023637928589845"
+      },
+      {
+        "file": "backup/src/components/ui/pagination.tsx",
+        "hash": "11536195279719397334"
+      },
+      {
+        "file": "backup/src/components/ui/popover.tsx",
+        "hash": "14169858307434860779"
+      },
+      {
+        "file": "backup/src/components/ui/progress.tsx",
+        "hash": "5483064031844279887"
+      },
+      {
+        "file": "backup/src/components/ui/radio-group.tsx",
+        "hash": "18329601590791789915"
+      },
+      {
+        "file": "backup/src/components/ui/resizable.tsx",
+        "hash": "7119411678047791219"
+      },
+      {
+        "file": "backup/src/components/ui/scroll-area.tsx",
+        "hash": "17018798627201134961"
+      },
+      {
+        "file": "backup/src/components/ui/select.tsx",
+        "hash": "6419765563394988143"
+      },
+      {
+        "file": "backup/src/components/ui/separator.tsx",
+        "hash": "1978076718437868180"
+      },
+      {
+        "file": "backup/src/components/ui/sheet.tsx",
+        "hash": "16939179561819926374"
+      },
+      {
+        "file": "backup/src/components/ui/sidebar.tsx",
+        "hash": "3231144648939937796"
+      },
+      {
+        "file": "backup/src/components/ui/skeleton.tsx",
+        "hash": "8682262600359381656"
+      },
+      {
+        "file": "backup/src/components/ui/slider.tsx",
+        "hash": "17789705595038685604"
+      },
+      {
+        "file": "backup/src/components/ui/sonner.tsx",
+        "hash": "997587589519513927"
+      },
+      {
+        "file": "backup/src/components/ui/switch.tsx",
+        "hash": "9059707436756408233"
+      },
+      {
+        "file": "backup/src/components/ui/table.tsx",
+        "hash": "10632063416869730844"
+      },
+      {
+        "file": "backup/src/components/ui/tabs.tsx",
+        "hash": "15637375351129848662"
+      },
+      {
+        "file": "backup/src/components/ui/textarea.tsx",
+        "hash": "8546314463615081444"
+      },
+      {
+        "file": "backup/src/components/ui/toast.tsx",
+        "hash": "16887975296491161914"
+      },
+      {
+        "file": "backup/src/components/ui/toaster.tsx",
+        "hash": "12424583411356286543"
+      },
+      {
+        "file": "backup/src/components/ui/toggle-group.tsx",
+        "hash": "12069551333688425799"
+      },
+      {
+        "file": "backup/src/components/ui/toggle.tsx",
+        "hash": "15439560633681304158"
+      },
+      {
+        "file": "backup/src/components/ui/tooltip.tsx",
+        "hash": "15246447838983729843"
+      },
+      {
+        "file": "backup/src/db/graphql/apollo.ts",
+        "hash": "8127896018339326935"
+      },
+      {
+        "file": "backup/src/db/graphql/yoga.ts",
+        "hash": "1248868444431001036"
+      },
+      {
+        "file": "backup/src/db/index.ts",
+        "hash": "173240374074214184"
+      },
+      {
+        "file": "backup/src/db/migrations/0000_peaceful_famine.sql",
+        "hash": "2508179962665455571"
+      },
+      {
+        "file": "backup/src/db/migrations/meta/0000_snapshot.json",
+        "hash": "14345216549322603642"
+      },
+      {
+        "file": "backup/src/db/migrations/meta/_journal.json",
+        "hash": "7959744461854394964"
+      },
+      {
+        "file": "backup/src/db/schema/collections.ts",
+        "hash": "4028759920663423010"
+      },
+      {
+        "file": "backup/src/db/schema/ethscriptions.ts",
+        "hash": "15754782291724390338"
+      },
+      {
+        "file": "backup/src/db/schema/index.ts",
+        "hash": "5163631624977378357"
+      },
+      {
+        "file": "backup/src/db/schema/transactions.ts",
+        "hash": "8444373773705781137"
+      },
+      {
+        "file": "backup/src/db/schema/transfers.ts",
+        "hash": "10338451300340260660"
+      },
+      {
+        "file": "backup/src/db/schema/votes.ts",
+        "hash": "4282835533063540120"
+      },
+      {
+        "file": "backup/src/db/seed.ts",
+        "hash": "3654036909974977956"
+      },
+      {
+        "file": "backup/src/eths-library/constants.ts",
+        "hash": "11149721401216598411"
+      },
+      {
+        "file": "backup/src/eths-library/index.ts",
+        "hash": "10428053335951162419"
+      },
+      {
+        "file": "backup/src/eths-library/types.ts",
+        "hash": "835105126486623401"
+      },
+      {
+        "file": "backup/src/eths-library/utils.ts",
+        "hash": "5760734954521611746"
+      },
+      {
+        "file": "backup/src/eths-server/endpoints-docs.ts",
+        "hash": "9028718572222653408"
+      },
+      {
+        "file": "backup/src/eths-server/helpers.ts",
+        "hash": "17391927200734012542"
+      },
+      {
+        "file": "backup/src/eths-server/index.ts",
+        "hash": "15042139635584982278"
+      },
+      {
+        "file": "backup/src/eths-server/routes.ts",
+        "hash": "12884308006748697151"
+      },
+      {
+        "file": "backup/src/eths-server/schemas.ts",
+        "hash": "16415390323586619842"
+      },
+      {
+        "file": "backup/src/hooks/use-mobile.tsx",
+        "hash": "4070799298352507848"
+      },
+      {
+        "file": "backup/src/hooks/use-toast.ts",
+        "hash": "929334445533890069"
+      },
+      {
+        "file": "backup/src/lib/dynamic.ts",
+        "hash": "8760873673860511179"
+      },
+      {
+        "file": "backup/src/lib/providers.tsx",
+        "hash": "2028333142226427644"
+      },
+      {
+        "file": "backup/src/lib/utils.ts",
+        "hash": "15456290709904554663"
+      },
+      {
+        "file": "backup/src/lib/wagmi.ts",
+        "hash": "12015305831545608272"
+      },
+      {
+        "file": "backup/src/middleware.ts",
+        "hash": "8003283194341416186"
+      },
+      {
+        "file": "backup/src/utils/eths-sdk.ts",
+        "hash": "8118938226590494934"
+      },
+      {
+        "file": "backup/src/utils/eths-seed.ts",
+        "hash": "5369264837653880593"
+      },
+      {
+        "file": "backup/src/utils/ordex-stuff/collection-req-body.json",
+        "hash": "1819710751051916531"
+      },
+      {
+        "file": "backup/src/utils/ordex-stuff/collection-resp-body.json",
+        "hash": "18217521380594076700"
+      },
+      {
+        "file": "backup/src/utils/ordex-stuff/ordex.ts",
+        "hash": "898984834340017810"
+      },
+      {
+        "file": "backup/src/utils/params-validation.ts",
+        "hash": "1707019075515340201"
+      },
+      {
+        "file": "backup/src/utils/validation-og.ts",
+        "hash": "14369523387600210675"
+      },
+      {
+        "file": "backup/src/utils/validation.ts",
+        "hash": "8505180617269661396"
+      },
+      {
+        "file": "backup/tailwind.config.ts",
+        "hash": "260913431905618362"
+      },
+      {
+        "file": "foo",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "next-forge/.autorc",
+        "hash": "4796834201125665836"
+      },
+      {
+        "file": "next-forge/.github/CODE_OF_CONDUCT.md",
+        "hash": "5752722872600086781"
+      },
+      {
+        "file": "next-forge/.github/CONTRIBUTING.md",
+        "hash": "3561143246882798461"
+      },
+      {
+        "file": "next-forge/.github/FUNDING.yml",
+        "hash": "1046884765719901194"
+      },
+      {
+        "file": "next-forge/.github/ISSUE_TEMPLATE/bug_report.md",
+        "hash": "9519112026895018872"
+      },
+      {
+        "file": "next-forge/.github/ISSUE_TEMPLATE/feature_request.md",
+        "hash": "16192630019830287480"
+      },
+      {
+        "file": "next-forge/.github/SECURITY.md",
+        "hash": "15430234096035119050"
+      },
+      {
+        "file": "next-forge/.github/dependabot.yml",
+        "hash": "11501575230584182625"
+      },
+      {
+        "file": "next-forge/.github/pull_request_template.md",
+        "hash": "16841148979304158774"
+      },
+      {
+        "file": "next-forge/.github/workflows/build.yml",
+        "hash": "8021219358789220271"
+      },
+      {
+        "file": "next-forge/.github/workflows/release.yml",
+        "hash": "2159420780081021409"
+      },
+      {
+        "file": "next-forge/.gitignore",
+        "hash": "5894419383104255821"
+      },
+      {
+        "file": "next-forge/.vscode/extensions.json",
+        "hash": "11849509967146133472"
+      },
+      {
+        "file": "next-forge/.vscode/launch.json",
+        "hash": "11324962991476424810"
+      },
+      {
+        "file": "next-forge/.vscode/settings.json",
+        "hash": "8738221747270897140"
+      },
+      {
+        "file": "next-forge/CHANGELOG.md",
+        "hash": "1666546821116378727"
+      },
+      {
+        "file": "next-forge/README.md",
+        "hash": "1021652829731292029"
+      },
+      {
+        "file": "next-forge/apps/api/.gitignore",
+        "hash": "10232186622542379192"
+      },
+      {
+        "file": "next-forge/apps/api/app/apple-icon.png",
+        "hash": "10717203028421546595"
+      },
+      {
+        "file": "next-forge/apps/api/app/cron/keep-alive/route.ts",
+        "hash": "2947153391697982466"
+      },
+      {
+        "file": "next-forge/apps/api/app/global-error.tsx",
+        "hash": "9313124164254398791"
+      },
+      {
+        "file": "next-forge/apps/api/app/health/route.ts",
+        "hash": "4455109953580822382"
+      },
+      {
+        "file": "next-forge/apps/api/app/icon.png",
+        "hash": "1229545952369477339"
+      },
+      {
+        "file": "next-forge/apps/api/app/layout.tsx",
+        "hash": "13197996563187107640"
+      },
+      {
+        "file": "next-forge/apps/api/app/opengraph-image.png",
+        "hash": "9566778529928049243"
+      },
+      {
+        "file": "next-forge/apps/api/app/webhooks/clerk/route.ts",
+        "hash": "14044270523312002984"
+      },
+      {
+        "file": "next-forge/apps/api/app/webhooks/stripe/route.ts",
+        "hash": "15241009077002233208"
+      },
+      {
+        "file": "next-forge/apps/api/instrumentation.ts",
+        "hash": "12735297852668379819"
+      },
+      {
+        "file": "next-forge/apps/api/next.config.ts",
+        "hash": "7062845033500751078"
+      },
+      {
+        "file": "next-forge/apps/api/package.json",
+        "hash": "4128836949190654431"
+      },
+      {
+        "file": "next-forge/apps/api/sentry.client.config.ts",
+        "hash": "11011764100678088786"
+      },
+      {
+        "file": "next-forge/apps/api/tsconfig.json",
+        "hash": "8253776210794783326"
+      },
+      {
+        "file": "next-forge/apps/api/vercel.json",
+        "hash": "12701155742119893052"
+      },
+      {
+        "file": "next-forge/apps/app/.gitignore",
+        "hash": "16417116671523954092"
+      },
+      {
+        "file": "next-forge/apps/app/__tests__/sign-in.test.tsx",
+        "hash": "10728833172539259408"
+      },
+      {
+        "file": "next-forge/apps/app/__tests__/sign-up.test.tsx",
+        "hash": "7172821404438222397"
+      },
+      {
+        "file": "next-forge/apps/app/app/(authenticated)/components/avatar-stack.tsx",
+        "hash": "11735229134100874409"
+      },
+      {
+        "file": "next-forge/apps/app/app/(authenticated)/components/collaboration-provider.tsx",
+        "hash": "4335668339935009528"
+      },
+      {
+        "file": "next-forge/apps/app/app/(authenticated)/components/cursors.tsx",
+        "hash": "9474482151341058091"
+      },
+      {
+        "file": "next-forge/apps/app/app/(authenticated)/components/header.tsx",
+        "hash": "15710521620376572104"
+      },
+      {
+        "file": "next-forge/apps/app/app/(authenticated)/components/posthog-identifier.tsx",
+        "hash": "17524039995067421811"
+      },
+      {
+        "file": "next-forge/apps/app/app/(authenticated)/components/sidebar.tsx",
+        "hash": "10118289225576957921"
+      },
+      {
+        "file": "next-forge/apps/app/app/(authenticated)/layout.tsx",
+        "hash": "8289407079717673188"
+      },
+      {
+        "file": "next-forge/apps/app/app/(authenticated)/page.tsx",
+        "hash": "14335382784245699538"
+      },
+      {
+        "file": "next-forge/apps/app/app/(authenticated)/webhooks/page.tsx",
+        "hash": "3361829904407779833"
+      },
+      {
+        "file": "next-forge/apps/app/app/(unauthenticated)/layout.tsx",
+        "hash": "16369987295748858400"
+      },
+      {
+        "file": "next-forge/apps/app/app/(unauthenticated)/sign-in/[[...sign-in]]/page.tsx",
+        "hash": "7791803675328934986"
+      },
+      {
+        "file": "next-forge/apps/app/app/(unauthenticated)/sign-up/[[...sign-up]]/page.tsx",
+        "hash": "15189682902501365786"
+      },
+      {
+        "file": "next-forge/apps/app/app/.well-known/vercel/flags/route.ts",
+        "hash": "3885618285856636296"
+      },
+      {
+        "file": "next-forge/apps/app/app/actions/users/get.ts",
+        "hash": "834440525258501774"
+      },
+      {
+        "file": "next-forge/apps/app/app/actions/users/search.ts",
+        "hash": "12266214692653927647"
+      },
+      {
+        "file": "next-forge/apps/app/app/api/collaboration/auth/route.ts",
+        "hash": "8904304342273505118"
+      },
+      {
+        "file": "next-forge/apps/app/app/apple-icon.png",
+        "hash": "10717203028421546595"
+      },
+      {
+        "file": "next-forge/apps/app/app/global-error.tsx",
+        "hash": "9313124164254398791"
+      },
+      {
+        "file": "next-forge/apps/app/app/icon.png",
+        "hash": "1229545952369477339"
+      },
+      {
+        "file": "next-forge/apps/app/app/layout.tsx",
+        "hash": "15556414657453426722"
+      },
+      {
+        "file": "next-forge/apps/app/app/opengraph-image.png",
+        "hash": "9566778529928049243"
+      },
+      {
+        "file": "next-forge/apps/app/instrumentation.ts",
+        "hash": "12735297852668379819"
+      },
+      {
+        "file": "next-forge/apps/app/liveblocks.config.ts",
+        "hash": "11325862727116461221"
+      },
+      {
+        "file": "next-forge/apps/app/middleware.ts",
+        "hash": "3526952788726904288"
+      },
+      {
+        "file": "next-forge/apps/app/next.config.ts",
+        "hash": "7062845033500751078"
+      },
+      {
+        "file": "next-forge/apps/app/package.json",
+        "hash": "12365217804817622687"
+      },
+      {
+        "file": "next-forge/apps/app/postcss.config.mjs",
+        "hash": "566473292348274552"
+      },
+      {
+        "file": "next-forge/apps/app/sentry.client.config.ts",
+        "hash": "11011764100678088786"
+      },
+      {
+        "file": "next-forge/apps/app/tailwind.config.ts",
+        "hash": "12366850721082509972"
+      },
+      {
+        "file": "next-forge/apps/app/tsconfig.json",
+        "hash": "8253776210794783326"
+      },
+      {
+        "file": "next-forge/apps/app/vitest.config.ts",
+        "hash": "17886683095511349789"
+      },
+      {
+        "file": "next-forge/apps/docs/api-reference/endpoint/create.mdx",
+        "hash": "15056212618566201838"
+      },
+      {
+        "file": "next-forge/apps/docs/api-reference/endpoint/delete.mdx",
+        "hash": "10802145674241621934"
+      },
+      {
+        "file": "next-forge/apps/docs/api-reference/endpoint/get.mdx",
+        "hash": "15748352390498361368"
+      },
+      {
+        "file": "next-forge/apps/docs/api-reference/introduction.mdx",
+        "hash": "7592850262930088286"
+      },
+      {
+        "file": "next-forge/apps/docs/api-reference/openapi.json",
+        "hash": "17764040780014890930"
+      },
+      {
+        "file": "next-forge/apps/docs/development.mdx",
+        "hash": "7759639375575111600"
+      },
+      {
+        "file": "next-forge/apps/docs/essentials/code.mdx",
+        "hash": "12597158944915003244"
+      },
+      {
+        "file": "next-forge/apps/docs/essentials/images.mdx",
+        "hash": "14934607670296306720"
+      },
+      {
+        "file": "next-forge/apps/docs/essentials/markdown.mdx",
+        "hash": "10267539191699760801"
+      },
+      {
+        "file": "next-forge/apps/docs/essentials/navigation.mdx",
+        "hash": "910745141835849725"
+      },
+      {
+        "file": "next-forge/apps/docs/essentials/reusable-snippets.mdx",
+        "hash": "13941182609983029608"
+      },
+      {
+        "file": "next-forge/apps/docs/essentials/settings.mdx",
+        "hash": "16372252891410834327"
+      },
+      {
+        "file": "next-forge/apps/docs/favicon.svg",
+        "hash": "15299381803452933729"
+      },
+      {
+        "file": "next-forge/apps/docs/images/checks-passed.png",
+        "hash": "17385900494369545239"
+      },
+      {
+        "file": "next-forge/apps/docs/images/hero-dark.svg",
+        "hash": "3993844965998815843"
+      },
+      {
+        "file": "next-forge/apps/docs/images/hero-light.svg",
+        "hash": "17735724880824867085"
+      },
+      {
+        "file": "next-forge/apps/docs/introduction.mdx",
+        "hash": "10190367395947538147"
+      },
+      {
+        "file": "next-forge/apps/docs/logo/dark.svg",
+        "hash": "12708361491080285295"
+      },
+      {
+        "file": "next-forge/apps/docs/logo/light.svg",
+        "hash": "17911797156634941821"
+      },
+      {
+        "file": "next-forge/apps/docs/mint.json",
+        "hash": "15737823755188798827"
+      },
+      {
+        "file": "next-forge/apps/docs/package.json",
+        "hash": "9971801955016238824"
+      },
+      {
+        "file": "next-forge/apps/docs/quickstart.mdx",
+        "hash": "6227431269557493808"
+      },
+      {
+        "file": "next-forge/apps/docs/snippets/snippet-intro.mdx",
+        "hash": "13427192174935242973"
+      },
+      {
+        "file": "next-forge/apps/email/.gitignore",
+        "hash": "14212631169655303142"
+      },
+      {
+        "file": "next-forge/apps/email/emails/contact.tsx",
+        "hash": "2831740756011768906"
+      },
+      {
+        "file": "next-forge/apps/email/package.json",
+        "hash": "1652955858395513808"
+      },
+      {
+        "file": "next-forge/apps/email/tsconfig.json",
+        "hash": "10141825104363237059"
+      },
+      {
+        "file": "next-forge/apps/storybook/.gitignore",
+        "hash": "18007688654706628086"
+      },
+      {
+        "file": "next-forge/apps/storybook/.storybook/main.ts",
+        "hash": "3511970791348507094"
+      },
+      {
+        "file": "next-forge/apps/storybook/.storybook/preview-head.html",
+        "hash": "5286291686840335371"
+      },
+      {
+        "file": "next-forge/apps/storybook/.storybook/preview.tsx",
+        "hash": "6047299362670666879"
+      },
+      {
+        "file": "next-forge/apps/storybook/README.md",
+        "hash": "3068804539965115458"
+      },
+      {
+        "file": "next-forge/apps/storybook/next.config.ts",
+        "hash": "17652475468419143949"
+      },
+      {
+        "file": "next-forge/apps/storybook/package.json",
+        "hash": "14236116191430801761"
+      },
+      {
+        "file": "next-forge/apps/storybook/postcss.config.mjs",
+        "hash": "2557392112968376575"
+      },
+      {
+        "file": "next-forge/apps/storybook/public/favicon.ico",
+        "hash": "9157999678830540297"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/accordion.stories.tsx",
+        "hash": "14196311996371773713"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/alert-dialog.stories.tsx",
+        "hash": "2163582210654833603"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/alert.stories.tsx",
+        "hash": "7332190152221276166"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/aspect-ratio.stories.tsx",
+        "hash": "2989943328466929026"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/avatar.stories.tsx",
+        "hash": "2747467738452027425"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/badge.stories.tsx",
+        "hash": "11786837391122918684"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/breadcrumb.stories.tsx",
+        "hash": "12205819691146027402"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/button.stories.tsx",
+        "hash": "1907979609462622288"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/calendar.stories.tsx",
+        "hash": "12991310997327543692"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/card.stories.tsx",
+        "hash": "8508381748693489772"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/carousel.stories.tsx",
+        "hash": "307407059884820075"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/chart.stories.tsx",
+        "hash": "14664530731181088919"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/checkbox.stories.tsx",
+        "hash": "16160290495081218307"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/collapsible.stories.tsx",
+        "hash": "12431219559778303943"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/command.stories.tsx",
+        "hash": "8111167981954260284"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/context-menu.stories.tsx",
+        "hash": "12413573621672324314"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/dialog.stories.tsx",
+        "hash": "1303044171544255053"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/drawer.stories.tsx",
+        "hash": "806118466170644290"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/dropdown-menu.stories.tsx",
+        "hash": "1662929164741883803"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/form.stories.tsx",
+        "hash": "2182049389131775355"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/hover-card.stories.tsx",
+        "hash": "7802937378458144969"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/input-otp.stories.tsx",
+        "hash": "15931654244841104280"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/input.stories.tsx",
+        "hash": "9656372342588842460"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/label.stories.tsx",
+        "hash": "16946215687812957527"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/menubar.stories.tsx",
+        "hash": "2744885328616649589"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/navigation-menu.stories.tsx",
+        "hash": "16143439258796805624"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/pagination.stories.tsx",
+        "hash": "16569921435162792068"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/popover.stories.tsx",
+        "hash": "18088780784602996308"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/progress.stories.tsx",
+        "hash": "5202623211568712331"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/radio-group.stories.tsx",
+        "hash": "7230737229752819719"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/resizable.stories.tsx",
+        "hash": "5204878227786039552"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/scroll-area.stories.tsx",
+        "hash": "2305500082517420521"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/select.stories.tsx",
+        "hash": "8079311991467257753"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/separator.stories.tsx",
+        "hash": "9128332733174315440"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/sheet.stories.tsx",
+        "hash": "8328779928690209400"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/sidebar.stories.tsx",
+        "hash": "11868576688304629323"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/skeleton.stories.tsx",
+        "hash": "17679709513507740177"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/slider.stories.tsx",
+        "hash": "1027314525244742850"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/sonner.stories.tsx",
+        "hash": "17924225597448151488"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/switch.stories.tsx",
+        "hash": "10812871475203266550"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/table.stories.tsx",
+        "hash": "4920259846210397499"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/tabs.stories.tsx",
+        "hash": "14631919929410376508"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/textarea.stories.tsx",
+        "hash": "11101903000970054846"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/toast.stories.tsx",
+        "hash": "1864614048703440470"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/toggle-group.stories.tsx",
+        "hash": "4153590946817325968"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/toggle.stories.tsx",
+        "hash": "2333414043403395722"
+      },
+      {
+        "file": "next-forge/apps/storybook/stories/tooltip.stories.tsx",
+        "hash": "4127368071379102128"
+      },
+      {
+        "file": "next-forge/apps/storybook/tailwind.config.ts",
+        "hash": "12366850721082509972"
+      },
+      {
+        "file": "next-forge/apps/storybook/tsconfig.json",
+        "hash": "15098739004138050766"
+      },
+      {
+        "file": "next-forge/apps/studio/.gitignore",
+        "hash": "12975187279384539528"
+      },
+      {
+        "file": "next-forge/apps/studio/package.json",
+        "hash": "14086511563086651056"
+      },
+      {
+        "file": "next-forge/apps/studio/tsconfig.json",
+        "hash": "10141825104363237059"
+      },
+      {
+        "file": "next-forge/apps/web/.gitignore",
+        "hash": "16417116671523954092"
+      },
+      {
+        "file": "next-forge/apps/web/.well-known/vercel/flags/route.ts",
+        "hash": "3885618285856636296"
+      },
+      {
+        "file": "next-forge/apps/web/app/(home)/components/cases.tsx",
+        "hash": "8552107028042007128"
+      },
+      {
+        "file": "next-forge/apps/web/app/(home)/components/cta.tsx",
+        "hash": "12556524610931799754"
+      },
+      {
+        "file": "next-forge/apps/web/app/(home)/components/faq.tsx",
+        "hash": "1023737450121047503"
+      },
+      {
+        "file": "next-forge/apps/web/app/(home)/components/features.tsx",
+        "hash": "7053094946435543156"
+      },
+      {
+        "file": "next-forge/apps/web/app/(home)/components/hero.tsx",
+        "hash": "18030750068678144257"
+      },
+      {
+        "file": "next-forge/apps/web/app/(home)/components/stats.tsx",
+        "hash": "3611347641162762137"
+      },
+      {
+        "file": "next-forge/apps/web/app/(home)/components/testimonials.tsx",
+        "hash": "9480087563137652693"
+      },
+      {
+        "file": "next-forge/apps/web/app/(home)/page.tsx",
+        "hash": "15305542198254270501"
+      },
+      {
+        "file": "next-forge/apps/web/app/apple-icon.png",
+        "hash": "10717203028421546595"
+      },
+      {
+        "file": "next-forge/apps/web/app/blog/[slug]/page.tsx",
+        "hash": "14715091852949691827"
+      },
+      {
+        "file": "next-forge/apps/web/app/blog/layout.tsx",
+        "hash": "3204901387650966618"
+      },
+      {
+        "file": "next-forge/apps/web/app/blog/page.tsx",
+        "hash": "9061960896969360184"
+      },
+      {
+        "file": "next-forge/apps/web/app/components/footer.tsx",
+        "hash": "10362639262057322565"
+      },
+      {
+        "file": "next-forge/apps/web/app/components/header/index.tsx",
+        "hash": "11432256083097721700"
+      },
+      {
+        "file": "next-forge/apps/web/app/components/header/logo.svg",
+        "hash": "14642899930182163892"
+      },
+      {
+        "file": "next-forge/apps/web/app/contact/actions/contact.tsx",
+        "hash": "5107672252933782173"
+      },
+      {
+        "file": "next-forge/apps/web/app/contact/components/contact-form.tsx",
+        "hash": "6807188596851754654"
+      },
+      {
+        "file": "next-forge/apps/web/app/contact/page.tsx",
+        "hash": "7233540555548347455"
+      },
+      {
+        "file": "next-forge/apps/web/app/global-error.tsx",
+        "hash": "9313124164254398791"
+      },
+      {
+        "file": "next-forge/apps/web/app/icon.png",
+        "hash": "1229545952369477339"
+      },
+      {
+        "file": "next-forge/apps/web/app/layout.tsx",
+        "hash": "13519132623263913881"
+      },
+      {
+        "file": "next-forge/apps/web/app/legal/[slug]/page.tsx",
+        "hash": "13473094673468931581"
+      },
+      {
+        "file": "next-forge/apps/web/app/legal/layout.tsx",
+        "hash": "13874309323840664202"
+      },
+      {
+        "file": "next-forge/apps/web/app/opengraph-image.png",
+        "hash": "9566778529928049243"
+      },
+      {
+        "file": "next-forge/apps/web/app/pricing/page.tsx",
+        "hash": "12458371933767967664"
+      },
+      {
+        "file": "next-forge/apps/web/app/robots.ts",
+        "hash": "7094622056787995407"
+      },
+      {
+        "file": "next-forge/apps/web/app/sitemap.ts",
+        "hash": "1535102143907789905"
+      },
+      {
+        "file": "next-forge/apps/web/app/styles/web.css",
+        "hash": "5924370762331941472"
+      },
+      {
+        "file": "next-forge/apps/web/components/sidebar.tsx",
+        "hash": "841039295848483163"
+      },
+      {
+        "file": "next-forge/apps/web/instrumentation.ts",
+        "hash": "12735297852668379819"
+      },
+      {
+        "file": "next-forge/apps/web/middleware.ts",
+        "hash": "9610011764183210706"
+      },
+      {
+        "file": "next-forge/apps/web/next.config.ts",
+        "hash": "2240118506201535293"
+      },
+      {
+        "file": "next-forge/apps/web/package.json",
+        "hash": "7771227209055455244"
+      },
+      {
+        "file": "next-forge/apps/web/postcss.config.mjs",
+        "hash": "566473292348274552"
+      },
+      {
+        "file": "next-forge/apps/web/tailwind.config.ts",
+        "hash": "12366850721082509972"
+      },
+      {
+        "file": "next-forge/apps/web/tsconfig.json",
+        "hash": "6816832219770098926"
+      },
+      {
+        "file": "next-forge/apps/web/vercel.json",
+        "hash": "12089926253070231593"
+      },
+      {
+        "file": "next-forge/biome.json",
+        "hash": "18029082901121633763"
+      },
+      {
+        "file": "next-forge/docs/addons/friendlier-words.mdx",
+        "hash": "16174933540561484287"
+      },
+      {
+        "file": "next-forge/docs/addons/metabase.mdx",
+        "hash": "6161313174962339615"
+      },
+      {
+        "file": "next-forge/docs/addons/motion.mdx",
+        "hash": "17607354611144621788"
+      },
+      {
+        "file": "next-forge/docs/addons/next-safe-action.mdx",
+        "hash": "12746370906601854027"
+      },
+      {
+        "file": "next-forge/docs/addons/nuqs.mdx",
+        "hash": "9776428881783877323"
+      },
+      {
+        "file": "next-forge/docs/addons/react-wrap-balancer.mdx",
+        "hash": "13134607522866812088"
+      },
+      {
+        "file": "next-forge/docs/addons/zustand.mdx",
+        "hash": "17234059498054359156"
+      },
+      {
+        "file": "next-forge/docs/deployment/netlify.mdx",
+        "hash": "2108666215184434439"
+      },
+      {
+        "file": "next-forge/docs/deployment/vercel.mdx",
+        "hash": "6054222356365719496"
+      },
+      {
+        "file": "next-forge/docs/faq.mdx",
+        "hash": "1594573158983398108"
+      },
+      {
+        "file": "next-forge/docs/features/ai.mdx",
+        "hash": "14987048904261583988"
+      },
+      {
+        "file": "next-forge/docs/features/analytics/product.mdx",
+        "hash": "7500607473937102856"
+      },
+      {
+        "file": "next-forge/docs/features/analytics/web.mdx",
+        "hash": "10059409090370384722"
+      },
+      {
+        "file": "next-forge/docs/features/authentication.mdx",
+        "hash": "17585374843533518117"
+      },
+      {
+        "file": "next-forge/docs/features/bundle-analysis.mdx",
+        "hash": "13384015313840507489"
+      },
+      {
+        "file": "next-forge/docs/features/cms.mdx",
+        "hash": "18183047557732453371"
+      },
+      {
+        "file": "next-forge/docs/features/collaboration.mdx",
+        "hash": "7802811299871218526"
+      },
+      {
+        "file": "next-forge/docs/features/cron.mdx",
+        "hash": "15107268404007300749"
+      },
+      {
+        "file": "next-forge/docs/features/database.mdx",
+        "hash": "12292858860214008250"
+      },
+      {
+        "file": "next-forge/docs/features/design-system/colors.mdx",
+        "hash": "7383532949558224621"
+      },
+      {
+        "file": "next-forge/docs/features/design-system/components.mdx",
+        "hash": "4784400754128206370"
+      },
+      {
+        "file": "next-forge/docs/features/design-system/dark-mode.mdx",
+        "hash": "13601776322602471545"
+      },
+      {
+        "file": "next-forge/docs/features/design-system/provider.mdx",
+        "hash": "14632511614872891072"
+      },
+      {
+        "file": "next-forge/docs/features/design-system/typography.mdx",
+        "hash": "12622350301302166916"
+      },
+      {
+        "file": "next-forge/docs/features/documentation.mdx",
+        "hash": "8443130495441109485"
+      },
+      {
+        "file": "next-forge/docs/features/email/clerk.mdx",
+        "hash": "9207437230791330013"
+      },
+      {
+        "file": "next-forge/docs/features/email/resend.mdx",
+        "hash": "17042309401604408916"
+      },
+      {
+        "file": "next-forge/docs/features/env.mdx",
+        "hash": "1475353893036328997"
+      },
+      {
+        "file": "next-forge/docs/features/flags.mdx",
+        "hash": "9136215692053741824"
+      },
+      {
+        "file": "next-forge/docs/features/formatting.mdx",
+        "hash": "4643663497218813946"
+      },
+      {
+        "file": "next-forge/docs/features/observability/debugging.mdx",
+        "hash": "3640150417802168146"
+      },
+      {
+        "file": "next-forge/docs/features/observability/error-capture.mdx",
+        "hash": "11089130963884507143"
+      },
+      {
+        "file": "next-forge/docs/features/observability/logging.mdx",
+        "hash": "16170271288485298274"
+      },
+      {
+        "file": "next-forge/docs/features/observability/uptime.mdx",
+        "hash": "3584626392625616945"
+      },
+      {
+        "file": "next-forge/docs/features/payments.mdx",
+        "hash": "9403552405803798463"
+      },
+      {
+        "file": "next-forge/docs/features/security/application.mdx",
+        "hash": "1450206565552943881"
+      },
+      {
+        "file": "next-forge/docs/features/security/dependencies.mdx",
+        "hash": "5742688948075136847"
+      },
+      {
+        "file": "next-forge/docs/features/security/headers.mdx",
+        "hash": "1310906042722521421"
+      },
+      {
+        "file": "next-forge/docs/features/security/ip-geolocation.mdx",
+        "hash": "15195781335280478442"
+      },
+      {
+        "file": "next-forge/docs/features/security/rate-limiting.mdx",
+        "hash": "15747037976354482680"
+      },
+      {
+        "file": "next-forge/docs/features/seo/json-ld.mdx",
+        "hash": "10396725623718068572"
+      },
+      {
+        "file": "next-forge/docs/features/seo/metadata.mdx",
+        "hash": "1300775740549928984"
+      },
+      {
+        "file": "next-forge/docs/features/seo/sitemap.mdx",
+        "hash": "4327673468796197607"
+      },
+      {
+        "file": "next-forge/docs/features/storage.mdx",
+        "hash": "6003692001971297330"
+      },
+      {
+        "file": "next-forge/docs/features/storybook.mdx",
+        "hash": "4874569232820119486"
+      },
+      {
+        "file": "next-forge/docs/features/testing.mdx",
+        "hash": "6801122585202566"
+      },
+      {
+        "file": "next-forge/docs/features/toolbar.mdx",
+        "hash": "6315317057772012126"
+      },
+      {
+        "file": "next-forge/docs/features/webhooks.mdx",
+        "hash": "7606119858824073500"
+      },
+      {
+        "file": "next-forge/docs/images/ai-chatbot.png",
+        "hash": "10428128480150045205"
+      },
+      {
+        "file": "next-forge/docs/images/ai.png",
+        "hash": "13755675031382002355"
+      },
+      {
+        "file": "next-forge/docs/images/authentication.png",
+        "hash": "9840647244647075120"
+      },
+      {
+        "file": "next-forge/docs/images/authors/arcjet/davidmytton.jpg",
+        "hash": "16410651027637134157"
+      },
+      {
+        "file": "next-forge/docs/images/authors/arcjet/logo.jpg",
+        "hash": "16779153342404614564"
+      },
+      {
+        "file": "next-forge/docs/images/authors/basehub/julianbenegas8.jpg",
+        "hash": "8577780522716829860"
+      },
+      {
+        "file": "next-forge/docs/images/authors/basehub/logo.jpg",
+        "hash": "16043151551646249721"
+      },
+      {
+        "file": "next-forge/docs/images/authors/better-auth/imbereket.jpg",
+        "hash": "5324574025259650489"
+      },
+      {
+        "file": "next-forge/docs/images/authors/better-auth/logo.jpg",
+        "hash": "13408972560909921229"
+      },
+      {
+        "file": "next-forge/docs/images/authors/drizzle/alexblokh.jpg",
+        "hash": "13860480522860047393"
+      },
+      {
+        "file": "next-forge/docs/images/authors/drizzle/logo.jpg",
+        "hash": "7749772311582593464"
+      },
+      {
+        "file": "next-forge/docs/images/authors/eslint/logo.jpg",
+        "hash": "290026223344044463"
+      },
+      {
+        "file": "next-forge/docs/images/authors/eslint/slicknet.jpg",
+        "hash": "679025006476871529"
+      },
+      {
+        "file": "next-forge/docs/images/authors/fumadocs/fuma-nama.jpg",
+        "hash": "12868251338685403806"
+      },
+      {
+        "file": "next-forge/docs/images/authors/fumadocs/logo.jpg",
+        "hash": "17335507019864154677"
+      },
+      {
+        "file": "next-forge/docs/images/authors/liveblocks/ctnicholas.jpg",
+        "hash": "1052625024612776438"
+      },
+      {
+        "file": "next-forge/docs/images/authors/liveblocks/logo.jpg",
+        "hash": "4668293497162509756"
+      },
+      {
+        "file": "next-forge/docs/images/authors/metabase/heffhq.jpg",
+        "hash": "8124327107082117562"
+      },
+      {
+        "file": "next-forge/docs/images/authors/metabase/logo.jpg",
+        "hash": "7132600003015077782"
+      },
+      {
+        "file": "next-forge/docs/images/authors/mintlify/fmerian.jpg",
+        "hash": "12026373749129914430"
+      },
+      {
+        "file": "next-forge/docs/images/authors/mintlify/logo.jpg",
+        "hash": "11838174434653128750"
+      },
+      {
+        "file": "next-forge/docs/images/authors/next-forge/haydenbleasel.jpg",
+        "hash": "4420058612048685059"
+      },
+      {
+        "file": "next-forge/docs/images/authors/next-forge/logo.jpg",
+        "hash": "9124487645053064509"
+      },
+      {
+        "file": "next-forge/docs/images/authors/prisma/logo.jpg",
+        "hash": "2886186703475503901"
+      },
+      {
+        "file": "next-forge/docs/images/authors/prisma/nikolasburk.jpg",
+        "hash": "14985910038929034434"
+      },
+      {
+        "file": "next-forge/docs/images/authors/turso/logo.jpg",
+        "hash": "7528342513794439688"
+      },
+      {
+        "file": "next-forge/docs/images/authors/turso/notrab.jpg",
+        "hash": "1941501444582421081"
+      },
+      {
+        "file": "next-forge/docs/images/authors/upstash/fahreddin.jpg",
+        "hash": "18363554699174496000"
+      },
+      {
+        "file": "next-forge/docs/images/authors/upstash/logo.jpg",
+        "hash": "3368491259201176715"
+      },
+      {
+        "file": "next-forge/docs/images/authors/vercel/anthonysheww.jpg",
+        "hash": "3564263258233282718"
+      },
+      {
+        "file": "next-forge/docs/images/authors/vercel/logo.jpg",
+        "hash": "5787388869865985358"
+      },
+      {
+        "file": "next-forge/docs/images/collaboration.png",
+        "hash": "10685207078332424980"
+      },
+      {
+        "file": "next-forge/docs/images/database.png",
+        "hash": "12117761580893794523"
+      },
+      {
+        "file": "next-forge/docs/images/deployment/netlify.png",
+        "hash": "17661414869856546765"
+      },
+      {
+        "file": "next-forge/docs/images/deployment/vercel.png",
+        "hash": "8561809841737101031"
+      },
+      {
+        "file": "next-forge/docs/images/icon.png",
+        "hash": "1229545952369477339"
+      },
+      {
+        "file": "next-forge/docs/images/logo-dark.svg",
+        "hash": "5674031252387128953"
+      },
+      {
+        "file": "next-forge/docs/images/logo-light.svg",
+        "hash": "5849336378079439412"
+      },
+      {
+        "file": "next-forge/docs/images/metabase-add-database.png",
+        "hash": "7868988999919827648"
+      },
+      {
+        "file": "next-forge/docs/images/opengraph-image.png",
+        "hash": "9566778529928049243"
+      },
+      {
+        "file": "next-forge/docs/images/rate-limit.png",
+        "hash": "6595032785223477619"
+      },
+      {
+        "file": "next-forge/docs/images/sign-in.png",
+        "hash": "16900526671638418631"
+      },
+      {
+        "file": "next-forge/docs/images/storybook.png",
+        "hash": "7200778683147333705"
+      },
+      {
+        "file": "next-forge/docs/images/structure/apps.png",
+        "hash": "8123880130412042551"
+      },
+      {
+        "file": "next-forge/docs/images/structure/packages.png",
+        "hash": "14099495324627485665"
+      },
+      {
+        "file": "next-forge/docs/images/testing.png",
+        "hash": "5505707558412705128"
+      },
+      {
+        "file": "next-forge/docs/images/upstash-ratelimit-dashboard.png",
+        "hash": "7858615834442027090"
+      },
+      {
+        "file": "next-forge/docs/images/upstash-ratelimit-navbar.png",
+        "hash": "7255932398231534194"
+      },
+      {
+        "file": "next-forge/docs/images/vercel-toolbar.png",
+        "hash": "8222119356385207762"
+      },
+      {
+        "file": "next-forge/docs/images/web-analytics.png",
+        "hash": "11854134848991997685"
+      },
+      {
+        "file": "next-forge/docs/migrations/authentication/authjs.mdx",
+        "hash": "10117298950711334871"
+      },
+      {
+        "file": "next-forge/docs/migrations/authentication/better-auth.mdx",
+        "hash": "12060797371563687440"
+      },
+      {
+        "file": "next-forge/docs/migrations/cms/content-collections.mdx",
+        "hash": "12587298345964555346"
+      },
+      {
+        "file": "next-forge/docs/migrations/database/drizzle.mdx",
+        "hash": "10660686479167272595"
+      },
+      {
+        "file": "next-forge/docs/migrations/database/planetscale.mdx",
+        "hash": "15665249777134809152"
+      },
+      {
+        "file": "next-forge/docs/migrations/database/prisma-postgres.mdx",
+        "hash": "10077041109917289591"
+      },
+      {
+        "file": "next-forge/docs/migrations/database/supabase.mdx",
+        "hash": "1627895181212550107"
+      },
+      {
+        "file": "next-forge/docs/migrations/database/turso.mdx",
+        "hash": "1109403899445960311"
+      },
+      {
+        "file": "next-forge/docs/migrations/documentation/fumadocs.mdx",
+        "hash": "2408838078247583271"
+      },
+      {
+        "file": "next-forge/docs/migrations/formatting/eslint.mdx",
+        "hash": "2319380011854688429"
+      },
+      {
+        "file": "next-forge/docs/migrations/payments/lemon-squeezy.mdx",
+        "hash": "232716997611164897"
+      },
+      {
+        "file": "next-forge/docs/migrations/storage/upload-thing.mdx",
+        "hash": "13662056892779695981"
+      },
+      {
+        "file": "next-forge/docs/mint.json",
+        "hash": "477637625023768699"
+      },
+      {
+        "file": "next-forge/docs/overview.mdx",
+        "hash": "10409666236356452998"
+      },
+      {
+        "file": "next-forge/docs/package.json",
+        "hash": "9971801955016238824"
+      },
+      {
+        "file": "next-forge/docs/recipes/ai-chatbot.mdx",
+        "hash": "7314076828813719447"
+      },
+      {
+        "file": "next-forge/docs/recipes/analytics-app.mdx",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "next-forge/docs/recipes/chat-app.mdx",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "next-forge/docs/recipes/subscription-saas.mdx",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "next-forge/docs/setup/installation.mdx",
+        "hash": "9346107690904142350"
+      },
+      {
+        "file": "next-forge/docs/setup/prerequisites.mdx",
+        "hash": "10877794908630104682"
+      },
+      {
+        "file": "next-forge/docs/snippets/authors.mdx",
+        "hash": "8656066807795534623"
+      },
+      {
+        "file": "next-forge/docs/snippets/vercel.mdx",
+        "hash": "16938061581741843316"
+      },
+      {
+        "file": "next-forge/docs/structure/apps.mdx",
+        "hash": "10244565917894357232"
+      },
+      {
+        "file": "next-forge/docs/structure/packages.mdx",
+        "hash": "17305125968979894431"
+      },
+      {
+        "file": "next-forge/docs/updates.mdx",
+        "hash": "3653825050386744451"
+      },
+      {
+        "file": "next-forge/license.md",
+        "hash": "12336013567299001052"
+      },
+      {
+        "file": "next-forge/package.json",
+        "hash": "15302372824240344529"
+      },
+      {
+        "file": "next-forge/packages/ai/components/message.tsx",
+        "hash": "5608606479724958611"
+      },
+      {
+        "file": "next-forge/packages/ai/components/thread.tsx",
+        "hash": "223347840406765789"
+      },
+      {
+        "file": "next-forge/packages/ai/index.ts",
+        "hash": "5967933891645419795"
+      },
+      {
+        "file": "next-forge/packages/ai/lib/provider.ts",
+        "hash": "13572429280314835133"
+      },
+      {
+        "file": "next-forge/packages/ai/lib/react.ts",
+        "hash": "13645958813193730205"
+      },
+      {
+        "file": "next-forge/packages/ai/package.json",
+        "hash": "13712033151775469673"
+      },
+      {
+        "file": "next-forge/packages/ai/tsconfig.json",
+        "hash": "16537906936749065510"
+      },
+      {
+        "file": "next-forge/packages/analytics/google.ts",
+        "hash": "13591634845262338737"
+      },
+      {
+        "file": "next-forge/packages/analytics/index.tsx",
+        "hash": "1770641689224878837"
+      },
+      {
+        "file": "next-forge/packages/analytics/package.json",
+        "hash": "15331664405920621643"
+      },
+      {
+        "file": "next-forge/packages/analytics/posthog/client.tsx",
+        "hash": "2842773243464091783"
+      },
+      {
+        "file": "next-forge/packages/analytics/posthog/server.ts",
+        "hash": "4399567846951749940"
+      },
+      {
+        "file": "next-forge/packages/analytics/tsconfig.json",
+        "hash": "15278155512136826870"
+      },
+      {
+        "file": "next-forge/packages/analytics/vercel.ts",
+        "hash": "7917976478605368751"
+      },
+      {
+        "file": "next-forge/packages/auth/client.ts",
+        "hash": "15483874572683023837"
+      },
+      {
+        "file": "next-forge/packages/auth/components/sign-in.tsx",
+        "hash": "9762622963862339675"
+      },
+      {
+        "file": "next-forge/packages/auth/components/sign-up.tsx",
+        "hash": "9604485518535247387"
+      },
+      {
+        "file": "next-forge/packages/auth/middleware.ts",
+        "hash": "15189885460651739180"
+      },
+      {
+        "file": "next-forge/packages/auth/package.json",
+        "hash": "395696390087201300"
+      },
+      {
+        "file": "next-forge/packages/auth/provider.tsx",
+        "hash": "15056006523905756698"
+      },
+      {
+        "file": "next-forge/packages/auth/server.ts",
+        "hash": "18040326191252409840"
+      },
+      {
+        "file": "next-forge/packages/auth/tsconfig.json",
+        "hash": "15278155512136826870"
+      },
+      {
+        "file": "next-forge/packages/cms/components/body.tsx",
+        "hash": "9226298626398046967"
+      },
+      {
+        "file": "next-forge/packages/cms/components/feed.tsx",
+        "hash": "5634475664863776034"
+      },
+      {
+        "file": "next-forge/packages/cms/components/image.tsx",
+        "hash": "17802285090329524385"
+      },
+      {
+        "file": "next-forge/packages/cms/components/toc.tsx",
+        "hash": "13550811929053685255"
+      },
+      {
+        "file": "next-forge/packages/cms/components/toolbar.tsx",
+        "hash": "12134285179431536365"
+      },
+      {
+        "file": "next-forge/packages/cms/index.ts",
+        "hash": "4136881885622612495"
+      },
+      {
+        "file": "next-forge/packages/cms/next-config.ts",
+        "hash": "9336647352011896353"
+      },
+      {
+        "file": "next-forge/packages/cms/package.json",
+        "hash": "15362618151475906040"
+      },
+      {
+        "file": "next-forge/packages/cms/tsconfig.json",
+        "hash": "16537906936749065510"
+      },
+      {
+        "file": "next-forge/packages/cms/typescript-config.json",
+        "hash": "15753941481085060538"
+      },
+      {
+        "file": "next-forge/packages/collaboration/auth.ts",
+        "hash": "5496849934570835338"
+      },
+      {
+        "file": "next-forge/packages/collaboration/config.ts",
+        "hash": "721923136802774269"
+      },
+      {
+        "file": "next-forge/packages/collaboration/hooks.ts",
+        "hash": "6302505890445420927"
+      },
+      {
+        "file": "next-forge/packages/collaboration/package.json",
+        "hash": "18433819901081186787"
+      },
+      {
+        "file": "next-forge/packages/collaboration/room.tsx",
+        "hash": "1909211718328944317"
+      },
+      {
+        "file": "next-forge/packages/collaboration/tsconfig.json",
+        "hash": "15278155512136826870"
+      },
+      {
+        "file": "next-forge/packages/database/.gitignore",
+        "hash": "12975187279384539528"
+      },
+      {
+        "file": "next-forge/packages/database/index.ts",
+        "hash": "9774141320631279734"
+      },
+      {
+        "file": "next-forge/packages/database/package.json",
+        "hash": "15872108804054716331"
+      },
+      {
+        "file": "next-forge/packages/database/prisma/schema.prisma",
+        "hash": "4231353345126685547"
+      },
+      {
+        "file": "next-forge/packages/database/tsconfig.json",
+        "hash": "15278155512136826870"
+      },
+      {
+        "file": "next-forge/packages/design-system/components.json",
+        "hash": "13744181041961070772"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/mode-toggle.tsx",
+        "hash": "16634895931632721873"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/accordion.tsx",
+        "hash": "12876832444484149218"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/alert-dialog.tsx",
+        "hash": "7364374330284215080"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/alert.tsx",
+        "hash": "9078468979652643194"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/aspect-ratio.tsx",
+        "hash": "5515004553788436449"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/avatar.tsx",
+        "hash": "8258582331864303883"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/badge.tsx",
+        "hash": "9915800143750228331"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/breadcrumb.tsx",
+        "hash": "13304905963559639850"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/button.tsx",
+        "hash": "1419182102929715287"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/calendar.tsx",
+        "hash": "13696608022653605737"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/card.tsx",
+        "hash": "9964453969742448071"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/carousel.tsx",
+        "hash": "3607510454366050965"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/chart.tsx",
+        "hash": "1805024825357582449"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/checkbox.tsx",
+        "hash": "3613260795134238641"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/collapsible.tsx",
+        "hash": "11550741736187478023"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/command.tsx",
+        "hash": "7365921086672237194"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/context-menu.tsx",
+        "hash": "14314668323159083990"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/dialog.tsx",
+        "hash": "13217863826602733518"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/drawer.tsx",
+        "hash": "16375722802317199170"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/dropdown-menu.tsx",
+        "hash": "16803125495189580472"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/form.tsx",
+        "hash": "2311696503326837003"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/hover-card.tsx",
+        "hash": "8928678430983497362"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/input-otp.tsx",
+        "hash": "5483981181798623186"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/input.tsx",
+        "hash": "2947485574061555290"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/label.tsx",
+        "hash": "8315753147414034094"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/menubar.tsx",
+        "hash": "9927513598038957114"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/navigation-menu.tsx",
+        "hash": "13017575629234310867"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/pagination.tsx",
+        "hash": "17291174025004068494"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/popover.tsx",
+        "hash": "10227305523908340425"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/progress.tsx",
+        "hash": "6758009905015055412"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/radio-group.tsx",
+        "hash": "4901205170026360939"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/resizable.tsx",
+        "hash": "6129051118832105875"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/scroll-area.tsx",
+        "hash": "5676285683587712779"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/select.tsx",
+        "hash": "1883690907870813656"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/separator.tsx",
+        "hash": "17980262397515075957"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/sheet.tsx",
+        "hash": "4552429458038175332"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/sidebar.tsx",
+        "hash": "9678426423106884854"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/skeleton.tsx",
+        "hash": "17507397636854174111"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/slider.tsx",
+        "hash": "14375100465029737233"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/sonner.tsx",
+        "hash": "997587589519513927"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/switch.tsx",
+        "hash": "15018034365064161994"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/table.tsx",
+        "hash": "15989864570589633504"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/tabs.tsx",
+        "hash": "1171336223671967650"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/textarea.tsx",
+        "hash": "16907783166523225204"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/toast.tsx",
+        "hash": "11395234581592602680"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/toaster.tsx",
+        "hash": "5837700188806454425"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/toggle-group.tsx",
+        "hash": "17167736083209715798"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/toggle.tsx",
+        "hash": "16902424937278325617"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/tooltip.tsx",
+        "hash": "7786966178164765479"
+      },
+      {
+        "file": "next-forge/packages/design-system/components/ui/use-toast.ts",
+        "hash": "2607289111655563768"
+      },
+      {
+        "file": "next-forge/packages/design-system/hooks/use-mobile.tsx",
+        "hash": "14900138732519213047"
+      },
+      {
+        "file": "next-forge/packages/design-system/hooks/use-toast.ts",
+        "hash": "2607289111655563768"
+      },
+      {
+        "file": "next-forge/packages/design-system/index.tsx",
+        "hash": "1275890363235437874"
+      },
+      {
+        "file": "next-forge/packages/design-system/lib/fonts.ts",
+        "hash": "6145084438154835360"
+      },
+      {
+        "file": "next-forge/packages/design-system/lib/utils.ts",
+        "hash": "17645824685875816976"
+      },
+      {
+        "file": "next-forge/packages/design-system/package.json",
+        "hash": "12963614769614024161"
+      },
+      {
+        "file": "next-forge/packages/design-system/postcss.config.mjs",
+        "hash": "9334535520284521497"
+      },
+      {
+        "file": "next-forge/packages/design-system/providers/theme.tsx",
+        "hash": "6657294948629544086"
+      },
+      {
+        "file": "next-forge/packages/design-system/styles/globals.css",
+        "hash": "2311870325461477294"
+      },
+      {
+        "file": "next-forge/packages/design-system/tsconfig.json",
+        "hash": "8598590730215119140"
+      },
+      {
+        "file": "next-forge/packages/email/index.ts",
+        "hash": "12191480358595298266"
+      },
+      {
+        "file": "next-forge/packages/email/package.json",
+        "hash": "9777276199544864564"
+      },
+      {
+        "file": "next-forge/packages/email/templates/contact.tsx",
+        "hash": "3308062756325038627"
+      },
+      {
+        "file": "next-forge/packages/email/tsconfig.json",
+        "hash": "6846231043103870405"
+      },
+      {
+        "file": "next-forge/packages/env/index.ts",
+        "hash": "3988016671738465936"
+      },
+      {
+        "file": "next-forge/packages/env/package.json",
+        "hash": "17877572159847943595"
+      },
+      {
+        "file": "next-forge/packages/env/tsconfig.json",
+        "hash": "390573519903199021"
+      },
+      {
+        "file": "next-forge/packages/feature-flags/access.ts",
+        "hash": "16666846852963640544"
+      },
+      {
+        "file": "next-forge/packages/feature-flags/index.ts",
+        "hash": "11639556183054389088"
+      },
+      {
+        "file": "next-forge/packages/feature-flags/lib/create-flag.ts",
+        "hash": "17651244826609657191"
+      },
+      {
+        "file": "next-forge/packages/feature-flags/package.json",
+        "hash": "10944757930063546074"
+      },
+      {
+        "file": "next-forge/packages/feature-flags/tsconfig.json",
+        "hash": "15278155512136826870"
+      },
+      {
+        "file": "next-forge/packages/next-config/index.ts",
+        "hash": "14243090215646993443"
+      },
+      {
+        "file": "next-forge/packages/next-config/instrumentation.ts",
+        "hash": "7835564264328078292"
+      },
+      {
+        "file": "next-forge/packages/next-config/package.json",
+        "hash": "1280829496767224509"
+      },
+      {
+        "file": "next-forge/packages/next-config/tsconfig.json",
+        "hash": "15278155512136826870"
+      },
+      {
+        "file": "next-forge/packages/observability/error.ts",
+        "hash": "1289651720274080587"
+      },
+      {
+        "file": "next-forge/packages/observability/log.ts",
+        "hash": "15045545815093898308"
+      },
+      {
+        "file": "next-forge/packages/observability/package.json",
+        "hash": "12819062617872143572"
+      },
+      {
+        "file": "next-forge/packages/observability/status/index.tsx",
+        "hash": "4494738978267852103"
+      },
+      {
+        "file": "next-forge/packages/observability/status/types.ts",
+        "hash": "4428153708381739434"
+      },
+      {
+        "file": "next-forge/packages/observability/tsconfig.json",
+        "hash": "15278155512136826870"
+      },
+      {
+        "file": "next-forge/packages/payments/ai.ts",
+        "hash": "4464806461596434623"
+      },
+      {
+        "file": "next-forge/packages/payments/index.ts",
+        "hash": "7007709091457948570"
+      },
+      {
+        "file": "next-forge/packages/payments/package.json",
+        "hash": "7960630103285767539"
+      },
+      {
+        "file": "next-forge/packages/payments/tsconfig.json",
+        "hash": "15278155512136826870"
+      },
+      {
+        "file": "next-forge/packages/rate-limit/index.ts",
+        "hash": "10184704125838982271"
+      },
+      {
+        "file": "next-forge/packages/rate-limit/package.json",
+        "hash": "1136467800102978521"
+      },
+      {
+        "file": "next-forge/packages/security/index.ts",
+        "hash": "14466992052298523398"
+      },
+      {
+        "file": "next-forge/packages/security/middleware.ts",
+        "hash": "4076274410219820226"
+      },
+      {
+        "file": "next-forge/packages/security/package.json",
+        "hash": "13036624307902446971"
+      },
+      {
+        "file": "next-forge/packages/security/tsconfig.json",
+        "hash": "15278155512136826870"
+      },
+      {
+        "file": "next-forge/packages/seo/json-ld.tsx",
+        "hash": "16589216273435830406"
+      },
+      {
+        "file": "next-forge/packages/seo/metadata.ts",
+        "hash": "4096219676938546189"
+      },
+      {
+        "file": "next-forge/packages/seo/package.json",
+        "hash": "2152256593226838700"
+      },
+      {
+        "file": "next-forge/packages/seo/tsconfig.json",
+        "hash": "15278155512136826870"
+      },
+      {
+        "file": "next-forge/packages/storage/client.ts",
+        "hash": "967866752492766315"
+      },
+      {
+        "file": "next-forge/packages/storage/index.ts",
+        "hash": "3082083838276002059"
+      },
+      {
+        "file": "next-forge/packages/storage/package.json",
+        "hash": "13768319395905273815"
+      },
+      {
+        "file": "next-forge/packages/storage/tsconfig.json",
+        "hash": "15278155512136826870"
+      },
+      {
+        "file": "next-forge/packages/tailwind-config/config.ts",
+        "hash": "11916720062881115017"
+      },
+      {
+        "file": "next-forge/packages/tailwind-config/index.ts",
+        "hash": "12465442404486446855"
+      },
+      {
+        "file": "next-forge/packages/tailwind-config/package.json",
+        "hash": "755520651347820738"
+      },
+      {
+        "file": "next-forge/packages/tailwind-config/tsconfig.json",
+        "hash": "15278155512136826870"
+      },
+      {
+        "file": "next-forge/packages/tailwind-config/typography.config.ts",
+        "hash": "17024911228752817821"
+      },
+      {
+        "file": "next-forge/packages/testing/index.js",
+        "hash": "15990709735648376785"
+      },
+      {
+        "file": "next-forge/packages/testing/package.json",
+        "hash": "6889438150497286611"
+      },
+      {
+        "file": "next-forge/packages/testing/tsconfig.json",
+        "hash": "15070729913605300773"
+      },
+      {
+        "file": "next-forge/packages/typescript-config/base.json",
+        "hash": "17026433352810314133"
+      },
+      {
+        "file": "next-forge/packages/typescript-config/nextjs.json",
+        "hash": "12770580029804722324"
+      },
+      {
+        "file": "next-forge/packages/typescript-config/package.json",
+        "hash": "699629056499617149"
+      },
+      {
+        "file": "next-forge/packages/typescript-config/react-library.json",
+        "hash": "5983478226996406852"
+      },
+      {
+        "file": "next-forge/packages/webhooks/index.ts",
+        "hash": "7870378093351941031"
+      },
+      {
+        "file": "next-forge/packages/webhooks/lib/svix.ts",
+        "hash": "14431504006468736682"
+      },
+      {
+        "file": "next-forge/packages/webhooks/package.json",
+        "hash": "8233853312534527470"
+      },
+      {
+        "file": "next-forge/pnpm-lock.yaml",
+        "hash": "2085518319032942410"
+      },
+      {
+        "file": "next-forge/pnpm-workspace.yaml",
+        "hash": "9750177317466281158"
+      },
+      {
+        "file": "next-forge/scripts/init.mjs",
+        "hash": "2125146909388016282"
+      },
+      {
+        "file": "next-forge/splash/.gitignore",
+        "hash": "16863882142098146298"
+      },
+      {
+        "file": "next-forge/splash/app/apple-icon.png",
+        "hash": "10717203028421546595"
+      },
+      {
+        "file": "next-forge/splash/app/components/apps/api.png",
+        "hash": "17323920298006447552"
+      },
+      {
+        "file": "next-forge/splash/app/components/apps/app.png",
+        "hash": "8636787563502123696"
+      },
+      {
+        "file": "next-forge/splash/app/components/apps/docs.png",
+        "hash": "7700283719749479678"
+      },
+      {
+        "file": "next-forge/splash/app/components/apps/email.png",
+        "hash": "9656617695340778796"
+      },
+      {
+        "file": "next-forge/splash/app/components/apps/index.tsx",
+        "hash": "12537186378748150310"
+      },
+      {
+        "file": "next-forge/splash/app/components/apps/studio.png",
+        "hash": "15661305883853127842"
+      },
+      {
+        "file": "next-forge/splash/app/components/apps/web.png",
+        "hash": "12023398339095785683"
+      },
+      {
+        "file": "next-forge/splash/app/components/cta.tsx",
+        "hash": "285681003746606355"
+      },
+      {
+        "file": "next-forge/splash/app/components/demo.tsx",
+        "hash": "13101442943490471335"
+      },
+      {
+        "file": "next-forge/splash/app/components/docs-button.tsx",
+        "hash": "6369250015040292466"
+      },
+      {
+        "file": "next-forge/splash/app/components/features/arcjet.svg",
+        "hash": "13252085702276477746"
+      },
+      {
+        "file": "next-forge/splash/app/components/features/basehub.svg",
+        "hash": "9249345047623338583"
+      },
+      {
+        "file": "next-forge/splash/app/components/features/better-stack.svg",
+        "hash": "16002774043432291738"
+      },
+      {
+        "file": "next-forge/splash/app/components/features/clerk.svg",
+        "hash": "6249264367352181289"
+      },
+      {
+        "file": "next-forge/splash/app/components/features/cmdk.svg",
+        "hash": "16118474676471677201"
+      },
+      {
+        "file": "next-forge/splash/app/components/features/google-analytics.svg",
+        "hash": "9106070633023810423"
+      },
+      {
+        "file": "next-forge/splash/app/components/features/index.tsx",
+        "hash": "138663731530209896"
+      },
+      {
+        "file": "next-forge/splash/app/components/features/liveblocks.svg",
+        "hash": "11797312693895172744"
+      },
+      {
+        "file": "next-forge/splash/app/components/features/lucide.svg",
+        "hash": "1895928108658826663"
+      },
+      {
+        "file": "next-forge/splash/app/components/features/neon.svg",
+        "hash": "8909811696744226519"
+      },
+      {
+        "file": "next-forge/splash/app/components/features/posthog.svg",
+        "hash": "16762174244635433812"
+      },
+      {
+        "file": "next-forge/splash/app/components/features/prisma.svg",
+        "hash": "12534823821994229831"
+      },
+      {
+        "file": "next-forge/splash/app/components/features/radix.svg",
+        "hash": "5381268241916031513"
+      },
+      {
+        "file": "next-forge/splash/app/components/features/react-email.svg",
+        "hash": "4649123262724492539"
+      },
+      {
+        "file": "next-forge/splash/app/components/features/react.svg",
+        "hash": "18384199445722939268"
+      },
+      {
+        "file": "next-forge/splash/app/components/features/recharts.svg",
+        "hash": "4107219631235674446"
+      },
+      {
+        "file": "next-forge/splash/app/components/features/resend.svg",
+        "hash": "8708754465691452182"
+      },
+      {
+        "file": "next-forge/splash/app/components/features/sentry.svg",
+        "hash": "11929461373198040547"
+      },
+      {
+        "file": "next-forge/splash/app/components/features/stripe.svg",
+        "hash": "9846962165081350432"
+      },
+      {
+        "file": "next-forge/splash/app/components/features/svix.svg",
+        "hash": "16922265151888107351"
+      },
+      {
+        "file": "next-forge/splash/app/components/features/tailwind.svg",
+        "hash": "18311143373380122473"
+      },
+      {
+        "file": "next-forge/splash/app/components/features/typescript.svg",
+        "hash": "16448022567389378474"
+      },
+      {
+        "file": "next-forge/splash/app/components/features/ultracite.svg",
+        "hash": "5570952039755545677"
+      },
+      {
+        "file": "next-forge/splash/app/components/features/vercel.svg",
+        "hash": "15641822470440657972"
+      },
+      {
+        "file": "next-forge/splash/app/components/features/zod.svg",
+        "hash": "17256278408959284952"
+      },
+      {
+        "file": "next-forge/splash/app/components/header/github-button.tsx",
+        "hash": "1400951098995476921"
+      },
+      {
+        "file": "next-forge/splash/app/components/header/github.svg",
+        "hash": "2858456024743615440"
+      },
+      {
+        "file": "next-forge/splash/app/components/header/index.tsx",
+        "hash": "3525589008178401469"
+      },
+      {
+        "file": "next-forge/splash/app/components/header/logo.svg",
+        "hash": "14642899930182163892"
+      },
+      {
+        "file": "next-forge/splash/app/components/hero/index.tsx",
+        "hash": "14262733214565753786"
+      },
+      {
+        "file": "next-forge/splash/app/components/hero/next.svg",
+        "hash": "17778110473986974403"
+      },
+      {
+        "file": "next-forge/splash/app/components/hero/turborepo.svg",
+        "hash": "13796339224621874282"
+      },
+      {
+        "file": "next-forge/splash/app/components/installer.tsx",
+        "hash": "7103691900904278366"
+      },
+      {
+        "file": "next-forge/splash/app/components/open-source.tsx",
+        "hash": "10126102849690057610"
+      },
+      {
+        "file": "next-forge/splash/app/components/review/index.tsx",
+        "hash": "1161488131614913351"
+      },
+      {
+        "file": "next-forge/splash/app/components/review/rauchg.jpg",
+        "hash": "12106828030286950078"
+      },
+      {
+        "file": "next-forge/splash/app/components/review/vercel.jpg",
+        "hash": "9511162886987286769"
+      },
+      {
+        "file": "next-forge/splash/app/components/review/x.svg",
+        "hash": "2675397840738232348"
+      },
+      {
+        "file": "next-forge/splash/app/components/social.tsx",
+        "hash": "11160737108751188332"
+      },
+      {
+        "file": "next-forge/splash/app/components/video.tsx",
+        "hash": "12567084621345701726"
+      },
+      {
+        "file": "next-forge/splash/app/global.css",
+        "hash": "10016192809784228305"
+      },
+      {
+        "file": "next-forge/splash/app/icon.png",
+        "hash": "1229545952369477339"
+      },
+      {
+        "file": "next-forge/splash/app/layout.tsx",
+        "hash": "6767881098970870213"
+      },
+      {
+        "file": "next-forge/splash/app/lib/octokit.ts",
+        "hash": "5854528986725770063"
+      },
+      {
+        "file": "next-forge/splash/app/opengraph-image.png",
+        "hash": "9566778529928049243"
+      },
+      {
+        "file": "next-forge/splash/app/page.tsx",
+        "hash": "781771280146218415"
+      },
+      {
+        "file": "next-forge/splash/next.config.ts",
+        "hash": "12373166533203858664"
+      },
+      {
+        "file": "next-forge/splash/package.json",
+        "hash": "11255118288674396542"
+      },
+      {
+        "file": "next-forge/splash/pnpm-lock.yaml",
+        "hash": "9210704308833199168"
+      },
+      {
+        "file": "next-forge/splash/pnpm-workspace.yaml",
+        "hash": "2810928826696238054"
+      },
+      {
+        "file": "next-forge/splash/postcss.config.mjs",
+        "hash": "18078787742636907643"
+      },
+      {
+        "file": "next-forge/splash/tailwind.config.ts",
+        "hash": "11158417534408351534"
+      },
+      {
+        "file": "next-forge/splash/tsconfig.json",
+        "hash": "90617286831375111"
+      },
+      {
+        "file": "next-forge/turbo.json",
+        "hash": "11174308570942491361"
+      },
+      {
+        "file": "next-forge/turbo/generators/config.ts",
+        "hash": "8630846612335900167"
+      },
+      {
+        "file": "next-forge/turbo/generators/package.json",
+        "hash": "13720653527049477467"
+      },
+      {
+        "file": "next-forge/turbo/generators/templates/package.json.hbs",
+        "hash": "12954766227684909790"
+      },
+      {
+        "file": "next-forge/turbo/generators/templates/tsconfig.json.hbs",
+        "hash": "14190804126039766437"
+      },
+      {
+        "file": "nx.json",
+        "hash": "3988621843946082816"
+      },
+      {
+        "file": "package.json",
+        "hash": "9636268082722198177"
+      },
+      {
+        "file": "packages/.gitkeep",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "pnpm-workspace.yaml",
+        "hash": "2373171212127886927"
+      },
+      {
+        "file": "public/file.svg",
+        "hash": "15617830351863523835"
+      },
+      {
+        "file": "public/globe.svg",
+        "hash": "9134466864871335697"
+      },
+      {
+        "file": "public/image-dark.png",
+        "hash": "8814695826196696912"
+      },
+      {
+        "file": "public/image-light.png",
+        "hash": "4363850723422723115"
+      },
+      {
+        "file": "public/logo-dark.png",
+        "hash": "776579952036795813"
+      },
+      {
+        "file": "public/logo-light.png",
+        "hash": "14104119415081678082"
+      },
+      {
+        "file": "public/next.svg",
+        "hash": "8300767200008744458"
+      },
+      {
+        "file": "public/vercel.svg",
+        "hash": "3007623926711696394"
+      },
+      {
+        "file": "public/window.svg",
+        "hash": "16677869292061012332"
+      },
+      {
+        "file": "scripts/cleanup.ts",
+        "hash": "11317578771263076075"
+      },
+      {
+        "file": "tsconfig.json",
+        "hash": "4259287854932540716"
+      }
+    ]
+  }
+}

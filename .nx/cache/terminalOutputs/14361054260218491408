@@ -1,0 +1,4 @@
+
+> ethscriptions@0.9.0 build
+> esmc './src/*.ts' --no-cjs
+

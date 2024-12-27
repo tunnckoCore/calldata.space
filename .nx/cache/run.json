@@ -1,0 +1,21 @@
+{
+  "run": {
+    "command": "nx run proxy-api:build",
+    "startTime": "2024-12-27T15:34:11.665Z",
+    "endTime": "2024-12-27T15:34:11.683Z",
+    "inner": false
+  },
+  "tasks": [
+    {
+      "taskId": "proxy-api:build",
+      "target": "build",
+      "projectName": "proxy-api",
+      "hash": "14566847884412915398",
+      "startTime": "2024-12-27T15:34:11.673Z",
+      "endTime": "2024-12-27T15:34:11.679Z",
+      "params": "",
+      "cacheStatus": "local-cache-hit",
+      "status": 0
+    }
+  ]
+}

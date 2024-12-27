@@ -1,0 +1,12 @@
+
+> ethscriptions@0.9.3 build /home/charlike/code/calldata-space/packages/ethscriptions-core
+> esmc './src/*.ts' --no-cjs
+
+ESM:        dist/constants.js
+Types:      dist/constants.d.ts
+ESM:        dist/index.js
+Types:      dist/index.d.ts
+ESM:        dist/types.js
+Types:      dist/types.d.ts
+ESM:        dist/utils.js
+Types:      dist/utils.d.ts

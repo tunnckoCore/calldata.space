@@ -1,0 +1,43 @@
+
+> proxy-api@0.1.0 build /home/charlike/code/calldata-space/apps/proxy-api
+> next build
+
+   [1m[38;2;173;127;168m▲ Next.js 15.1.1-canary.21[39m[22m
+   - Experiments (use with caution):
+     · ppr
+     · dynamicIO
+
+ [37m[1m [22m[39m Creating an optimized production build ...
+ [32m[1m✓[22m[39m Compiled successfully
+ [37m[1m [22m[39m Skipping validation of types
+ [37m[1m [22m[39m Skipping linting
+ [37m[1m [22m[39m Collecting page data ...
+ [33m[1m⚠[22m[39m Using edge runtime on a page currently disables static generation for that page
+ [37m[1m [22m[39m Generating static pages (0/4) ...
+ [37m[1m [22m[39m Generating static pages (1/4) 
+ [37m[1m [22m[39m Generating static pages (2/4) 
+ [37m[1m [22m[39m Generating static pages (3/4) 
+ [32m[1m✓[22m[39m Generating static pages (4/4)
+ [37m[1m [22m[39m Finalizing page optimization ...
+ [37m[1m [22m[39m Collecting build traces ...
+
+[4mRoute (app)[24m                               [4mSize[24m     [4mFirst Load JS[24m
+┌ ƒ /mainnet/[[...route]]                 136 B           [37m[1m104 kB[22m[39m
+└ ƒ /sepolia/[[...route]]                 136 B           [37m[1m104 kB[22m[39m
++ First Load JS shared by all             [37m[1m104 kB[22m[39m
+  ├ chunks/bbf7c64f-48e1af16a3744658.js   53.3 kB
+  ├ chunks/main-app-aea3959f60a179de.js   49.4 kB
+  └ other shared chunks (total)           1.47 kB
+
+[4mRoute (pages)[24m                             [4mSize[24m     [4mFirst Load JS[24m
+─ ○ /404                                  189 B          [37m[1m98.3 kB[22m[39m
++ First Load JS shared by all             [37m[1m98.1 kB[22m[39m
+  ├ chunks/framework-52666ebe4cc1e711.js  57.5 kB
+  ├ chunks/main-e6348381b549d441.js       39 kB
+  └ other shared chunks (total)           1.66 kB
+
+ƒ Middleware                              [37m[1m32.6 kB[22m[39m
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

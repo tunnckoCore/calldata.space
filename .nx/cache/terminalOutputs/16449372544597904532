@@ -1,0 +1,13 @@
+
+> ethscriptions-server@0.10.4 build /home/charlike/code/calldata-space/packages/ethscriptions-server
+> esmc 'src/*.{js,ts}' --no-cjs --copy
+
+ESM:        dist/endpoints-docs.js
+Types:      dist/endpoints-docs.d.ts
+ESM:        dist/helpers.js
+Types:      dist/helpers.d.ts
+ESM:        dist/index.js
+Types:      dist/index.d.ts
+ESM:        dist/routes.js
+Types:      dist/routes.d.ts
+Copy:       dist/schemas.js

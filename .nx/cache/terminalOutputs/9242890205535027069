@@ -1,0 +1,10 @@
+[0m[2m[35m$[0m [2m[1mesmc 'src/*.{js,ts}' --no-cjs --copy[0m
+ESM:        dist/endpoints-docs.js
+Types:      dist/endpoints-docs.d.ts
+ESM:        dist/helpers.js
+Types:      dist/helpers.d.ts
+ESM:        dist/index.js
+Types:      dist/index.d.ts
+ESM:        dist/routes.js
+Types:      dist/routes.d.ts
+Copy:       dist/schemas.js

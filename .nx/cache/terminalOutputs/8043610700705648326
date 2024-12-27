@@ -1,0 +1,4 @@
+
+> ethscriptions-server@0.10.0 build
+> esmc src/index.ts --no-cjs
+

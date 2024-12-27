@@ -1,0 +1,590 @@
+{
+  "nodes": {
+    "ethscriptions-server": {
+      "name": "ethscriptions-server",
+      "type": "lib",
+      "data": {
+        "root": "packages/ethscriptions-server",
+        "sourceRoot": "packages/ethscriptions-server",
+        "name": "ethscriptions-server",
+        "tags": [
+          "npm:public"
+        ],
+        "metadata": {
+          "targetGroups": {
+            "NPM Scripts": [
+              "build",
+              "prepublishOnly",
+              "serve"
+            ]
+          },
+          "description": "Ethscriptions API Cache Proxy. A Cloudflare Worker that caches and unifies Ethscriptions (or any other) API's responses, according to ESIP-9. Includes support for resolving ENS on-chain / off-chain names, and Ethscriptions names.",
+          "js": {
+            "packageName": "ethscriptions-server",
+            "packageExports": {
+              "./package.json": "./package.json",
+              ".": "./dist/index.js"
+            }
+          }
+        },
+        "targets": {
+          "build": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "build"
+            },
+            "metadata": {
+              "scriptContent": "esmc 'src/*.{js,ts}' --no-cjs --copy",
+              "runCommand": "npm run build"
+            },
+            "configurations": {},
+            "parallelism": true,
+            "outputs": [
+              "{projectRoot}/.next",
+              "{projectRoot}/dist"
+            ],
+            "cache": true
+          },
+          "prepublishOnly": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "prepublishOnly"
+            },
+            "metadata": {
+              "scriptContent": "npm run build",
+              "runCommand": "npm run prepublishOnly"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "serve": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "serve"
+            },
+            "metadata": {
+              "scriptContent": "bun --watch src/index.ts",
+              "runCommand": "npm run serve"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "nx-release-publish": {
+            "executor": "@nx/js:release-publish",
+            "dependsOn": [
+              "^nx-release-publish"
+            ],
+            "options": {},
+            "configurations": {},
+            "parallelism": true
+          }
+        },
+        "implicitDependencies": []
+      }
+    },
+    "ethscriptions": {
+      "name": "ethscriptions",
+      "type": "lib",
+      "data": {
+        "root": "packages/ethscriptions-core",
+        "sourceRoot": "packages/ethscriptions-core",
+        "name": "ethscriptions",
+        "tags": [
+          "npm:public"
+        ],
+        "metadata": {
+          "targetGroups": {
+            "NPM Scripts": [
+              "build",
+              "prepublishOnly",
+              "test"
+            ]
+          },
+          "description": "Library with utility functions for Ethscriptions. Supports for fetching user profiles, filtering ethscriptions, and resolving names & ENS builtin",
+          "js": {
+            "packageName": "ethscriptions",
+            "packageExports": {
+              "./package.json": "./package.json",
+              ".": {
+                "types": "./dist/index.d.ts",
+                "default": "./dist/index.js"
+              },
+              "./utils": {
+                "types": "./dist/utils.d.ts",
+                "default": "./dist/utils.js"
+              },
+              "./utils.js": {
+                "types": "./dist/utils.d.ts",
+                "default": "./dist/utils.js"
+              },
+              "./index.ts": {
+                "types": "./src/index.ts",
+                "default": "./src/index.ts"
+              },
+              "./utils.ts": {
+                "types": "./src/utils.ts",
+                "default": "./src/utils.ts"
+              },
+              "./types.ts": {
+                "types": "./src/types.ts",
+                "default": "./src/types.ts"
+              }
+            }
+          }
+        },
+        "targets": {
+          "build": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "build"
+            },
+            "metadata": {
+              "scriptContent": "esmc './src/*.ts' --no-cjs",
+              "runCommand": "npm run build"
+            },
+            "configurations": {},
+            "parallelism": true,
+            "outputs": [
+              "{projectRoot}/.next",
+              "{projectRoot}/dist"
+            ],
+            "cache": true
+          },
+          "prepublishOnly": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "prepublishOnly"
+            },
+            "metadata": {
+              "scriptContent": "bun run build",
+              "runCommand": "npm run prepublishOnly"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "test": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "test"
+            },
+            "metadata": {
+              "scriptContent": "bun run example.ts",
+              "runCommand": "npm run test"
+            },
+            "configurations": {},
+            "parallelism": true,
+            "cache": true
+          },
+          "nx-release-publish": {
+            "executor": "@nx/js:release-publish",
+            "dependsOn": [
+              "^nx-release-publish"
+            ],
+            "options": {},
+            "configurations": {},
+            "parallelism": true
+          }
+        },
+        "implicitDependencies": []
+      }
+    },
+    "@repo/typescript-config": {
+      "name": "@repo/typescript-config",
+      "type": "lib",
+      "data": {
+        "root": "packages/typescript-config",
+        "sourceRoot": "packages/typescript-config",
+        "name": "@repo/typescript-config",
+        "tags": [
+          "npm:private"
+        ],
+        "metadata": {
+          "targetGroups": {
+            "NPM Scripts": [
+              "clean",
+              "typecheck"
+            ]
+          },
+          "js": {
+            "packageName": "@repo/typescript-config"
+          }
+        },
+        "targets": {
+          "clean": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "clean"
+            },
+            "metadata": {
+              "scriptContent": "git clean -xdf .cache .turbo dist node_modules",
+              "runCommand": "npm run clean"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "typecheck": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "typecheck"
+            },
+            "metadata": {
+              "scriptContent": "tsc --noEmit --emitDeclarationOnly false",
+              "runCommand": "npm run typecheck"
+            },
+            "configurations": {},
+            "parallelism": true
+          }
+        },
+        "implicitDependencies": []
+      }
+    },
+    "@repo/tailwind-config": {
+      "name": "@repo/tailwind-config",
+      "type": "lib",
+      "data": {
+        "root": "packages/tailwind-config",
+        "sourceRoot": "packages/tailwind-config",
+        "name": "@repo/tailwind-config",
+        "tags": [
+          "npm:private"
+        ],
+        "metadata": {
+          "targetGroups": {
+            "NPM Scripts": [
+              "clean",
+              "typecheck"
+            ]
+          },
+          "js": {
+            "packageName": "@repo/tailwind-config",
+            "packageExports": {
+              ".": "./index.ts",
+              "./config": "./config.ts"
+            }
+          }
+        },
+        "targets": {
+          "clean": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "clean"
+            },
+            "metadata": {
+              "scriptContent": "git clean -xdf .cache .turbo dist node_modules",
+              "runCommand": "npm run clean"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "typecheck": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "typecheck"
+            },
+            "metadata": {
+              "scriptContent": "tsc --noEmit --emitDeclarationOnly false",
+              "runCommand": "npm run typecheck"
+            },
+            "configurations": {},
+            "parallelism": true
+          }
+        },
+        "implicitDependencies": []
+      }
+    },
+    "@repo/design-system": {
+      "name": "@repo/design-system",
+      "type": "lib",
+      "data": {
+        "root": "packages/design-system",
+        "sourceRoot": "packages/design-system",
+        "name": "@repo/design-system",
+        "tags": [
+          "npm:private"
+        ],
+        "metadata": {
+          "targetGroups": {
+            "NPM Scripts": [
+              "clean",
+              "typecheck"
+            ]
+          },
+          "js": {
+            "packageName": "@repo/design-system",
+            "packageExports": {
+              ".": {
+                "default": "./index.ts"
+              }
+            }
+          }
+        },
+        "targets": {
+          "clean": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "clean"
+            },
+            "metadata": {
+              "scriptContent": "git clean -xdf .cache .turbo dist node_modules",
+              "runCommand": "npm run clean"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "typecheck": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "typecheck"
+            },
+            "metadata": {
+              "scriptContent": "tsc --noEmit --emitDeclarationOnly false",
+              "runCommand": "npm run typecheck"
+            },
+            "configurations": {},
+            "parallelism": true
+          }
+        },
+        "implicitDependencies": []
+      }
+    },
+    "@calldata-space/database": {
+      "name": "@calldata-space/database",
+      "type": "lib",
+      "data": {
+        "root": "packages/database",
+        "sourceRoot": "packages/database",
+        "name": "@calldata-space/database",
+        "tags": [
+          "npm:private"
+        ],
+        "metadata": {
+          "targetGroups": {},
+          "description": "Database package for calldata-space",
+          "js": {
+            "packageName": "@calldata-space/database",
+            "packageExports": {
+              ".": "./index.ts",
+              "./seed": "./seed.ts"
+            }
+          }
+        },
+        "targets": {},
+        "implicitDependencies": []
+      }
+    },
+    "proxy-api": {
+      "name": "proxy-api",
+      "type": "lib",
+      "data": {
+        "root": "apps/proxy-api",
+        "sourceRoot": "apps/proxy-api",
+        "name": "proxy-api",
+        "tags": [
+          "npm:private"
+        ],
+        "metadata": {
+          "targetGroups": {
+            "NPM Scripts": [
+              "build",
+              "dev"
+            ]
+          },
+          "js": {
+            "packageName": "proxy-api"
+          }
+        },
+        "targets": {
+          "build": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "build"
+            },
+            "metadata": {
+              "scriptContent": "next build",
+              "runCommand": "npm run build"
+            },
+            "configurations": {},
+            "parallelism": true,
+            "outputs": [
+              "{projectRoot}/.next",
+              "{projectRoot}/dist"
+            ],
+            "cache": true
+          },
+          "dev": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "dev"
+            },
+            "metadata": {
+              "scriptContent": "next dev --turbopack",
+              "runCommand": "npm run dev"
+            },
+            "configurations": {},
+            "parallelism": true
+          }
+        },
+        "implicitDependencies": []
+      }
+    },
+    "calldata-space-root": {
+      "name": "calldata-space-root",
+      "type": "lib",
+      "data": {
+        "root": "apps/root",
+        "sourceRoot": "apps/root",
+        "name": "calldata-space-root",
+        "tags": [
+          "npm:private"
+        ],
+        "metadata": {
+          "targetGroups": {
+            "NPM Scripts": [
+              "build",
+              "dev"
+            ]
+          },
+          "js": {
+            "packageName": "calldata-space-root"
+          }
+        },
+        "targets": {
+          "build": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "build"
+            },
+            "metadata": {
+              "scriptContent": "next build",
+              "runCommand": "npm run build"
+            },
+            "configurations": {},
+            "parallelism": true,
+            "outputs": [
+              "{projectRoot}/.next",
+              "{projectRoot}/dist"
+            ],
+            "cache": true
+          },
+          "dev": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "dev"
+            },
+            "metadata": {
+              "scriptContent": "next dev --turbopack",
+              "runCommand": "npm run dev"
+            },
+            "configurations": {},
+            "parallelism": true
+          }
+        },
+        "implicitDependencies": []
+      }
+    }
+  },
+  "externalNodes": {},
+  "dependencies": {
+    "ethscriptions-server": [
+      {
+        "source": "ethscriptions-server",
+        "target": "@repo/design-system",
+        "type": "static"
+      },
+      {
+        "source": "ethscriptions-server",
+        "target": "@repo/typescript-config",
+        "type": "static"
+      },
+      {
+        "source": "ethscriptions-server",
+        "target": "ethscriptions",
+        "type": "static"
+      }
+    ],
+    "ethscriptions": [
+      {
+        "source": "ethscriptions",
+        "target": "@repo/design-system",
+        "type": "static"
+      },
+      {
+        "source": "ethscriptions",
+        "target": "@repo/typescript-config",
+        "type": "static"
+      }
+    ],
+    "@repo/typescript-config": [],
+    "@repo/tailwind-config": [
+      {
+        "source": "@repo/tailwind-config",
+        "target": "@repo/design-system",
+        "type": "static"
+      },
+      {
+        "source": "@repo/tailwind-config",
+        "target": "@repo/typescript-config",
+        "type": "static"
+      }
+    ],
+    "@repo/design-system": [
+      {
+        "source": "@repo/design-system",
+        "target": "@repo/typescript-config",
+        "type": "static"
+      }
+    ],
+    "@calldata-space/database": [
+      {
+        "source": "@calldata-space/database",
+        "target": "@repo/design-system",
+        "type": "static"
+      },
+      {
+        "source": "@calldata-space/database",
+        "target": "@repo/typescript-config",
+        "type": "static"
+      }
+    ],
+    "proxy-api": [
+      {
+        "source": "proxy-api",
+        "target": "@repo/design-system",
+        "type": "static"
+      },
+      {
+        "source": "proxy-api",
+        "target": "@repo/typescript-config",
+        "type": "static"
+      },
+      {
+        "source": "proxy-api",
+        "target": "ethscriptions-server",
+        "type": "static"
+      }
+    ],
+    "calldata-space-root": [
+      {
+        "source": "calldata-space-root",
+        "target": "@repo/typescript-config",
+        "type": "static"
+      },
+      {
+        "source": "calldata-space-root",
+        "target": "@repo/design-system",
+        "type": "static"
+      },
+      {
+        "source": "calldata-space-root",
+        "target": "ethscriptions",
+        "type": "static"
+      },
+      {
+        "source": "calldata-space-root",
+        "target": "ethscriptions-server",
+        "type": "static"
+      }
+    ]
+  },
+  "version": "6.0"
+}
