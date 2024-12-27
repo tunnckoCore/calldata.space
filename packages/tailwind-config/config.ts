@@ -1,16 +1,22 @@
+import typographyConfig from '@repo/tailwind-config/typography';
 import typography from '@tailwindcss/typography';
 import type { Config } from 'tailwindcss';
 import animate from 'tailwindcss-animate';
 
-import typographyConfig from './typography';
-
-export default {
+export const config: Config = {
   darkMode: ['class'],
   content: [
     './node_modules/@repo/design-system/components/**/*.{ts,tsx}',
     './node_modules/@repo/design-system/lib/**/*.{ts,tsx}',
     './node_modules/@repo/design-system/providers/**/*.{ts,tsx}',
     './node_modules/@repo/design-system/index.tsx',
+
+    // ?NOTE: because bun flat all to root node_modules
+    '../../node_modules/@repo/design-system/components/**/*.{ts,tsx}',
+    '../../node_modules/@repo/design-system/lib/**/*.{ts,tsx}',
+    '../../node_modules/@repo/design-system/providers/**/*.{ts,tsx}',
+    '../../node_modules/@repo/design-system/index.tsx',
+
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
