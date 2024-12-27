@@ -29,7 +29,7 @@ export const features = [
   },
   {
     // TODO: switch to docs.calldata.dev (api.calldata.dev)
-    href: 'https://api.wgw.lol',
+    href: 'https://mainnet.api.calldata.space',
     external: true,
     title: 'Develop',
     text: `Are you a developer? We have powerful APIs, tools, and extensive docs. With support for Webhooks, Server Sent Events, and Websockets. Learn from the
