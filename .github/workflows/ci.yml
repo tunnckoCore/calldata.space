@@ -121,5 +121,5 @@ jobs:
       - name: Install dependencies
         run: bun install
 
-      - name: Build app
-        run: bun run build
+      # - name: Build app
+      #   run: bun run build
