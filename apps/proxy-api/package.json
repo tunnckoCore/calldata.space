@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "proxy-api",
+  "name": "calldata-eths-proxy-api",
   "version": "0.1.0",
   "scripts": {
     "build": "next build",
