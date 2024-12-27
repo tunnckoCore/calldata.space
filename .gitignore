@@ -2,7 +2,7 @@
 *.tsbuildinfo
 *.*cache
 .cache
-
+.turbo
 # Vercel
 .vercel
 
